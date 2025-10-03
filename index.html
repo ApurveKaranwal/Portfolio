@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- UPDATED TITLE -->
+    <title>a.p.u.r.v.e</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Inter font (Body Text) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Load Press Start 2P (Pixel Titles) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- NEW: Load Space Mono (High-Tech Data/Code Text) -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- NEW: Load Font Awesome for brand logos (GitHub, X, LinkedIn) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Custom Styles for Pixel Aesthetic and Font -->
+    <style>
+        /* ADDED: Smooth scrolling for all section links */
+        html { 
+            scroll-behavior: smooth;
+        }
+        
+        /* Setting Space Mono as the secondary "high-tech" font */
+        .mono-tech {
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Applying Inter font for modern readability */
+        body { 
+            font-family: 'Inter', sans-serif; /* Default body text font */
+            
+            /* High-Contrast Dark Theme Base */
+            background-color: #030712; /* Darkest Gray / Near Black */
+            color: #d1d5db; /* Light gray for readability */
+            background-image: linear-gradient(0deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px); /* Subtle Neon Scanlines */
+            background-size: 100% 4px;
+            
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Pixel font class for headers and prominent text */
+        .pixel-text {
+            font-family: 'Press Start 2P', cursive;
+            letter-spacing: 0.05rem; 
+            text-shadow: 1px 1px 0 #000; /* Dark base shadow */
+            color: #10b981; /* Default Neon Green */
+        }
+        .pixel-text-dark {
+            color: #1f2937; /* For sections like the yellow CTA strip */
+        }
+
+        /* --- KEYFRAME ANIMATIONS --- */
+
+        /* 1. CRT Flicker Effect (for high-tech header look) */
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { 
+                opacity: 1; 
+                text-shadow: 0 0 10px #10b981, 0 0 15px #3b82f6; /* Neon Green/Blue Glow */
+            }
+            20%, 24%, 55% { 
+                opacity: 0.9; 
+                text-shadow: 0 0 5px #10b981, 0 0 10px #3b82f6; 
+            }
+        }
+        .pixel-text-flicker {
+            animation: flicker 4s infinite;
+        }
+
+        /* 2. Slide In Animation (for section entry) */
+        @keyframes slideIn {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .animated-section {
+            opacity: 0; /* Ensures content is hidden before animation starts */
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        /* --- STYLES --- */
+
+        /* Global button style for a retro feel */
+        .pixel-btn {
+            border-radius: 4px;
+        }
+
+        /* Hover effect for Skill Tags - NEON LOOK */
+        .skill-tag {
+            transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+            cursor: pointer;
+            box-shadow: 2px 2px 0 #10b981; /* Neon green shadow */
+            background-color: #1f2937; /* Dark gray */
+            color: #10b981; /* Neon green text */
+            font-family: 'Space Mono', monospace;
+            text-shadow: 0 0 5px rgba(16, 185, 129, 0.9); /* Neon glow */
+            border-color: #10b981;
+        }
+        .skill-tag:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #10b981, 4px 4px 0 #000000; /* Stronger glow + base shadow */
+        }
+
+        /* Project Card hover improvement - DRAMATIC NEON LIFT */
+        .project-card:hover {
+            transform: translate(-2px, -2px) !important; /* Slight lift */
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.7), 12px 12px 0 #000000 !important; /* Neon green glow + base shadow */
+        }
+        .project-card {
+            border-color: #10b981; /* Neon green border */
+            background-color: #1f2937; /* Dark card background */
+        }
+
+        /* Custom styles for the colorful additional project cards */
+        .project-bullet {
+            font-family: 'Inter', sans-serif;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 3px solid;
+            box-shadow: 4px 4px 0 #000;
+            transition: all 0.15s ease-out;
+            cursor: default;
+        }
+        .project-bullet:hover {
+             transform: scale(1.02);
+             box-shadow: 6px 6px 0 #000;
+        }
+        /* Adjusted bullet colors for dark background */
+        .color-green { background-color: #064e3b; border-color: #10b981; color: #d1d5db; } 
+        .color-red { background-color: #7f1d1d; border-color: #ef4444; color: #d1d5db; }
+        .color-yellow { background-color: #854d0e; border-color: #f59e0b; color: #d1d5db; }
+        .color-blue { background-color: #1e3a8a; border-color: #3b82f6; color: #d1d5db; }
+        .color-orange { background-color: #9a3412; border-color: #f97316; color: #d1d5db; }
+        .color-purple { background-color: #581c87; border-color: #a855f7; color: #d1d5db; }
+        
+        .project-bullet-title {
+            font-weight: 800;
+            font-size: 1.125rem; /* text-lg */
+            color: #10b981; /* Neon green titles */
+            text-shadow: 0 0 5px #10b981;
+        }
+    </style>
+</head>
+<body class="min-h-screen antialiased">
+    
+    <!-- Header -->
+    <header class="p-4 sm:p-6 border-b-4 border-green-400 bg-gray-950 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center flex-wrap">
+            <!-- Title now uses pixel-text and flicker class -->
+            <a href="#" class="text-xl sm:text-2xl font-extrabold tracking-tight flex items-center gap-1 pixel-text pixel-text-flicker" style="color:#10b981;">
+                APURVE.<span class="font-mono">DEV</span>
+                <span class="text-lg">🛠️</span>
+            </a>
+            <div class="flex gap-3 mt-2 sm:mt-0">
+                <!-- Social Links adapted for dark mode -->
+                <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer" class="px-3 py-1 border-2 border-green-400 bg-gray-800 hover:bg-gray-700 transition text-sm rounded pixel-btn flex items-center gap-1 shadow-[2px_2px_0_#10b981]" aria-label="GitHub Profile">
+                    <i class="fa-brands fa-github text-green-400 text-xl"></i> <span class="hidden sm:inline text-gray-300 mono-tech">GitHub</span>
+                </a>
+                <a href="https://x.com/Apurve_Karanwal" target="_blank" rel="noopener noreferrer" class="px-3 py-1 border-2 border-green-400 bg-gray-800 hover:bg-gray-700 transition text-sm rounded pixel-btn flex items-center gap-1 shadow-[2px_2px_0_#10b981]" aria-label="X (Twitter) Profile">
+                    <i class="fa-brands fa-x-twitter text-green-400 text-xl"></i> <span class="hidden sm:inline text-gray-300 mono-tech">X</span>
+                </a>
+                <a href="https://www.linkedin.com/in/apurvekaranwal/" target="_blank" rel="noopener noreferrer" class="px-3 py-1 border-2 border-green-400 bg-gray-800 hover:bg-gray-700 transition text-sm rounded pixel-btn flex items-center gap-1 shadow-[2px_2px_0_#10b981]" aria-label="LinkedIn Profile">
+                    <i class="fa-brands fa-linkedin-in text-green-400 text-xl"></i> <span class="hidden sm:inline text-gray-300 mono-tech">LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="p-8 sm:p-16 text-center responsive-p max-w-7xl mx-auto animated-section" style="animation-delay: 0ms;">
+        <img
+            src="wa.png"
+            alt="Profile photo of Apurve Karanwal wearing sunglasses on a track field"
+            class="w-32 h-32 mx-auto rounded-full border-4 border-green-400 mb-6 shadow-xl object-cover"
+        />
+        <!-- Heading uses pixel-text and flicker class -->
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight pixel-text pixel-text-flicker" style="color:#3b82f6;">// APURVE KARANWAL</h2>
+        <p class="max-w-xl mx-auto mt-4 text-xl text-green-400 mono-tech">
+            &gt; [STATUS: ONLINE] Full-Stack Developer | IoT Engineer. Turning ideas into interactive systems.
+        </p>
+        <!-- CTA Button adapted for dark mode -->
+        <a href="#projects" class="inline-flex items-center mt-8 px-8 py-3 border-4 border-green-400 bg-indigo-600 font-extrabold text-white text-xl rounded-lg shadow-[6px_6px_0_#10b981] hover:bg-indigo-700 transition duration-150 active:translate-x-1 active:translate-y-1 active:shadow-[5px_5px_0_#10b981] cta-pulse mono-tech">
+            > EXECUTE_WORK_VIEW <span class="text-2xl ml-2">⚡</span>
+        </a>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="p-8 sm:p-16 border-t-4 border-green-400 bg-gray-900 responsive-p animated-section" id="skills" style="animation-delay: 200ms;">
+        <!-- Heading uses pixel-text and flicker class -->
+        <h3 class="text-2xl sm:text-3xl font-bold mb-10 text-center pixel-text pixel-text-flicker" style="color:#10b981;">[SYSTEM] KEY SKILLS</h3>
+        <div class="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
+            <!-- Skill Tags using the enhanced neon style -->
+            <span class="px-4 py-2 border-2 font-semibold text-sm rounded-lg skill-tag">Python</span>
+            <span class="px-4 py-2 border-2 font-semibold text-sm rounded-lg skill-tag">HTML</span>
+            <span class="px-4 py-2 border-2 font-semibold text-sm rounded-lg skill-tag">CSS</span>
+            <span class="px-4 py-2 border-2 font-semibold text-sm rounded-lg skill-tag">Node.js</span>
+            <span class="px-4 py-2 border-2 font-semibold text-sm rounded-lg skill-tag">Express.js</span>
+            <span class="px-4 py-2 border-2 font-semibold text-sm rounded-lg skill-tag">Git/GitHub</span>
+            <span class="px-4 py-2 border-2 font-semibold text-sm rounded-lg skill-tag">IoT</span>
+            <span class="px-4 py-2 border-2 font-semibold text-sm rounded-lg skill-tag">MySQL</span>
+            <span class="px-4 py-2 border-2 font-semibold text-sm rounded-lg skill-tag">JavaScript</span>
+            <span class="px-4 py-2 border-2 font-semibold text-sm rounded-lg skill-tag">Arduino</span>
+            <span class="px-4 py-2 border-2 font-semibold text-sm rounded-lg skill-tag">NodeMCU</span>
+        </div>
+    </section>
+
+    <!-- Projects Section (Main Featured Projects) -->
+    <section id="projects" class="p-8 sm:p-16 border-t-4 border-green-400 responsive-p animated-section" style="animation-delay: 400ms;">
+        <!-- Heading uses pixel-text and flicker class -->
+        <h3 class="text-2xl sm:text-3xl font-bold mb-12 text-center pixel-text pixel-text-flicker" style="color:#3b82f6;">[PROJECTS] FEATURED BUILDS <span class="text-2xl ml-2"></span></h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+            
+            <!-- Project Card 1: COVID-19 Tracker -->
+            <div class="p-6 border-4 border-black bg-white rounded-lg shadow-[8px_8px_0_#000000] transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text text-green-400">COVID-19 TRACKER</h4>
+                    <p class="text-gray-400 text-sm mt-2 mb-4 mono-tech">// Compact IoT device monitoring real-time pandemic data (Worldometer & Thingspeak) using NodeMCU and OLED display.</p>
+                </div>
+                <a 
+                    href="https://github.com/ApurveKaranwal/Covid-19-Tracker-OLed-Project" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 border-2 border-green-400 bg-green-400 text-gray-900 font-semibold hover:bg-green-500 text-sm rounded pixel-btn transition duration-150 shadow-[2px_2px_0_#000000] mono-tech"
+                >
+                    > View Project
+                </a>
+            </div>
+            
+            <!-- Project Card 2: ShirtSmith -->
+            <div class="p-6 border-4 border-black bg-white rounded-lg shadow-[8px_8px_0_#000000] transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text text-green-400">ShirtSmith</h4>
+                    <p class="text-gray-400 text-sm mt-2 mb-4 mono-tech">// Python utility for realistic virtual try-ons: overlays custom T-shirt designs onto model images, useful for e-commerce mockups.</p>
+                </div>
+                <a 
+                    href="https://github.com/apurve-projects/shirtsmith-overlay" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 border-2 border-green-400 bg-green-400 text-gray-900 font-semibold hover:bg-green-500 text-sm rounded pixel-btn transition duration-150 shadow-[2px_2px_0_#000000] mono-tech"
+                >
+                    > View Project
+                </a>
+            </div>
+
+            <!-- Project Card 3: SMART IRRIGATION -->
+            <div class="p-6 border-4 border-black bg-white rounded-lg shadow-[8px_8px_0_#000000] transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text text-green-400">SMART IRRIGATION</h4>
+                    <p class="text-gray-400 text-sm mt-2 mb-4 mono-tech">// Automated plant care system using NodeMCU and soil moisture sensors to optimize water usage and send remote status updates.</p>
+                </div>
+                <a 
+                    href="https://github.com/apurve-projects/smart-irrigation-iot" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 border-2 border-green-400 bg-green-400 text-gray-900 font-semibold hover:bg-green-500 text-sm rounded pixel-btn transition duration-150 shadow-[2px_2px_0_#000000] mono-tech"
+                >
+                    > View Project
+                </a>
+            </div>
+
+            <!-- Project Card 4: WOMEN SAFETY SYSTEM -->
+            <div class="p-6 border-4 border-black bg-white rounded-lg shadow-[8px_8px_0_#000000] transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text text-green-400">WOMEN SAFETY SYSTEM</h4>
+                    <p class="text-gray-400 text-sm mt-2 mb-4 mono-tech">// Wearable emergency system with real-time GPS tracking and email/mobile alerts powered by NodeMCU for rapid assistance.</p>
+                </div>
+                <a 
+                    href="https://github.com/apurve-projects/women-safety-system" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 border-2 border-green-400 bg-green-400 text-gray-900 font-semibold hover:bg-green-500 text-sm rounded pixel-btn transition duration-150 shadow-[2px_2px_0_#000000] mono-tech"
+                >
+                    > View Project
+                </a>
+            </div>
+
+            <!-- Project Card 5: Home Automation -->
+            <div class="p-6 border-4 border-black bg-white rounded-lg shadow-[8px_8px_0_#000000] transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text text-green-400">Home Automation</h4>
+                    <p class="text-gray-400 text-sm mt-2 mb-4 mono-tech">// Arduino/NodeMCU-based smart home solution enabling remote control and scheduling of appliances via the Blynk mobile application.</p>
+                </div>
+                <a 
+                    href="https://github.com/ApurveKaranwal/Home-Automation" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 border-2 border-green-400 bg-green-400 text-gray-900 font-semibold hover:bg-green-500 text-sm rounded pixel-btn transition duration-150 shadow-[2px_2px_0_#000000] mono-tech"
+                >
+                    > View Project
+                </a>
+            </div>
+
+            <!-- Project Card 6: TextForge -->
+            <div class="p-6 border-4 border-black bg-white rounded-lg shadow-[8px_8px_0_#000000] transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text text-green-400">TextForge</h4>
+                    <p class="text-gray-400 text-sm mt-2 mb-4 mono-tech">// A Python command-line utility for converting standard text input into creative, stylized ASCII art displays.</p>
+                </div>
+                <a 
+                    href="https://github.com/apurve-projects/textforge-ascii" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 border-2 border-green-400 bg-green-400 text-gray-900 font-semibold hover:bg-green-500 text-sm rounded pixel-btn transition duration-150 shadow-[2px_2px_0_#000000] mono-tech"
+                >
+                    > View Project
+                </a>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- NEW: Additional Lab Projects Section -->
+    <section id="more-projects" class="p-8 sm:p-16 border-t-4 border-green-400 bg-gray-900 responsive-p animated-section" style="animation-delay: 600ms;">
+        <!-- Heading uses pixel-text and flicker class -->
+        <h3 class="text-2xl sm:text-3xl font-bold mb-12 text-center pixel-text pixel-text-flicker" style="color:#10b981;">[LAB_BUILDS] EMBEDDED SYSTEMS</h3>
+        <p class="max-w-4xl mx-auto text-center text-lg text-gray-400 mb-10 mono-tech">
+            // Embedded Systems, Robotics, and IoT prototypes from the personal workshop. (Data Logs Below)
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            
+            <!-- Additional Project 1: Women Safety System (Green) -->
+            <div class="project-bullet color-green">
+                <span class="project-bullet-title">🟢 Women Safety System (Advanced)</span>
+                <p class="text-sm mt-2 mono-tech">Tracks latitude, longitude, speed, and direction on a map of India using NodeMCU and GPS for emergency monitoring and location alerts.</p>
+            </div>
+
+            <!-- Additional Project 2: Alcohol Detection System (Red) -->
+            <div class="project-bullet color-red">
+                <span class="project-bullet-title">🔴 Alcohol Detection System</span>
+                <p class="text-sm mt-2 mono-tech">Safety system that prevents a car from starting if the driver is intoxicated, leveraging an Arduino microcontroller and a precise MQ3 alcohol sensor.</p>
+            </div>
+
+            <!-- Additional Project 3: Smart Plant Monitoring System (Yellow) -->
+            <div class="project-bullet color-yellow">
+                <span class="project-bullet-title">🟡 Smart Plant Monitoring System</span>
+                <p class="text-sm mt-2 mono-tech">Monitors temperature, humidity, and soil moisture, waters plants automatically, detects intruders via PIR sensor, and sends alerts to mobile.</p>
+            </div>
+
+            <!-- Additional Project 4: Bluetooth Remote Control Car (Blue) -->
+            <div class="project-bullet color-blue">
+                <span class="project-bullet-title">🔵 Bluetooth Remote Control Car</span>
+                <p class="text-sm mt-2 mono-tech">A versatile remote-controlled vehicle project managed entirely via a mobile phone application utilizing a Bluetooth communication module.</p>
+            </div>
+
+            <!-- Additional Project 5: Keypad Door Unlock System (Orange) -->
+            <div class="project-bullet color-orange">
+                <span class="project-bullet-title">🟠 Keypad Door Unlock System</span>
+                <p class="text-sm mt-2 mono-tech">A physical security system that grants access with a correct PIN input and automatically locks the door using Arduino/NodeMCU and a solenoid lock.</p>
+            </div>
+
+            <!-- Additional Project 6: Awaken Driver Glasses (Purple) -->
+            <div class="project-bullet color-purple">
+                <span class="project-bullet-title">🟣 Awaken Driver Glasses</span>
+                <p class="text-sm mt-2 mono-tech">Innovative glasses that vibrate if the driver’s eyes remain closed for more than 10 seconds, serving as a critical alert to prevent drowsy driving accidents.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Experience & Certifications Section -->
+    <section class="p-8 sm:p-16 border-t-4 border-green-400 bg-gray-950 responsive-p animated-section" id="experience" style="animation-delay: 800ms;">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+            <div>
+                <!-- Heading uses pixel-text and flicker class -->
+                <h3 class="text-2xl sm:text-3xl font-bold mb-6 pixel-text pixel-text-flicker" style="color:#3b82f6;">[ACCESS]<br>EXPERIENCE</h3>
+                <ul class="space-y-6 text-gray-300 text-lg mono-tech">
+                    <li class="p-4 border-l-4 border-green-400 bg-gray-800 rounded-md shadow-md">
+                        <span class="font-extrabold text-green-400 block mb-1">IoT & Robotics Project Developer (Personal)</span>
+                        <span class="text-sm italic text-gray-400">Designed and implemented IoT and robotics projects using embedded systems like: Home Automation, Smart Irrigation etc...</span>
+                    </li>
+                    <li class="p-4 border-l-4 border-green-400 bg-gray-800 rounded-md shadow-md">
+                        <span class="font-extrabold text-green-400 block mb-1">Member at GDG (present)</span>
+                        <span class="text-sm italic text-gray-400">Active member of GDG, learning from experienced seniors and building new, practical projects.</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <!-- Heading uses pixel-text and flicker class -->
+                <h3 class="text-2xl sm:text-3xl font-bold mb-6 pixel-text pixel-text-flicker" style="color:#3b82f6;">[ACCESS] CERTIFICATIONS</h3>
+                <ul class="space-y-6 text-gray-300 text-lg mono-tech">
+                    <li class="p-4 border-l-4 border-green-400 bg-gray-800 rounded-md shadow-md">
+                        <span class="font-extrabold text-green-400 block mb-1">CS50P – Introduction to Programming with Python</span> (HarvardX)
+                        <span class="text-sm italic text-gray-400">– Near Completion.</span>
+                    </li>
+                    <li class="p-4 border-l-4 border-green-400 bg-gray-800 rounded-md shadow-md">
+                        <span class="font-extrabold text-green-400 block mb-1">Inspire MANAK Award</span> ( Government of India)
+                        <span class="text-sm italic text-gray-400">Two-time district-level Inspire MANAK Awardee, awarded ₹10,000 each for innovative projects.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Education & Awards Section -->
+    <section class="p-8 sm:p-16 border-t-4 border-green-400 bg-gray-900 responsive-p animated-section" id="education" style="animation-delay: 1000ms;">
+        <div class="max-w-7xl mx-auto">
+            <!-- Heading uses pixel-text and flicker class -->
+            <h3 class="text-2xl sm:text-3xl font-bold mb-10 pixel-text pixel-text-flicker text-center" style="color:#10b981;">[INIT] EDUCATION & AWARDS</h3>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="p-6 border-4 border-green-400 bg-gray-800 rounded-lg shadow-[4px_4px_0_#000000]">
+                    <h4 class="text-xl font-bold mb-2 pixel-text text-green-400">B.TECH (IT)</h4>
+                    <p class="text-gray-300 font-semibold mono-tech">KIET Group of Institutions</p>
+                    <p class="text-sm text-gray-400 mono-tech">2025 – 2029 | Expected Graduation</p>
+                    <p class="text-sm mt-3 text-gray-400 mono-tech">Concentrating on artificial intelligence, machine learning, and smart device development.</p>
+                </div>
+                <div class="p-6 border-4 border-green-400 bg-gray-800 rounded-lg shadow-[4px_4px_0_#000000]">
+                    <h4 class="text-xl font-bold mb-2 pixel-text text-green-400">FIRST PRIZE WINNER</h4>
+                    <p class="text-gray-300 font-semibold mono-tech">Bansuri Mahotsav 2022</p>
+                    <p class="text-sm text-gray-400 mono-tech">Awarded for the 'WOMEN SAFETY SYSTEM' project.</p>
+                    <p class="text-sm mt-3 text-gray-400 mono-tech">Recognized for using IoT, with efficient alert mechanisms and reliable location tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: My Lab & Interests Section (Previously part of Contact) -->
+    <section class="p-8 sm:p-16 border-t-4 border-green-400 bg-gray-950 responsive-p animated-section" id="hobbies" style="animation-delay: 1200ms;">
+        <div class="max-w-7xl mx-auto text-center">
+            <!-- Heading uses pixel-text and flicker class -->
+            <h3 class="text-2xl sm:text-3xl font-bold mb-6 pixel-text pixel-text-flicker" style="color:#3b82f6;">[LOG] MY LAB & INTERESTS</h3>
+            <div class="bg-gray-800 p-8 border-4 border-green-400 rounded-lg shadow-[6px_6px_0_#000000] max-w-4xl mx-auto">
+                <p class="text-gray-300 text-lg mono-tech">
+                    // Personal Data Feed: In my free time, I love playing the piano, listening to my favorite songs, diving into PC games, and exploring new books.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA Section (Level Up) - High Contrast -->
+    <section class="py-12 px-8 text-center bg-green-400 border-t-4 border-black responsive-p animated-section" style="animation-delay: 1400ms;">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-3xl font-bold mb-6 text-black pixel-text pixel-text-dark">READY FOR LEVEL UP?</h3>
+            <p class="text-xl text-gray-800 mb-8 mono-tech">
+                [LOG: REQUESTING CONNECTION] If you're looking for a passionate builder to join your team or collaborate on a high-impact project, execute the command below.
+            </p>
+            <!-- Email link is functional -->
+            <a href="mailto: apurvekaranwal2025@gmail.com" class="inline-block px-10 py-4 border-4 border-black bg-indigo-600 font-extrabold text-white text-xl rounded-lg shadow-[6px_6px_0_#000000] hover:bg-indigo-700 transition duration-150 active:translate-x-1 active:translate-y-1 active:shadow-[5px_5px_0_#000000] mono-tech">
+                > SEND_MESSAGE_EMAIL
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="p-6 border-t-4 border-green-400 bg-black text-center text-white text-sm mt-0">
+        <p class="mono-tech text-green-400">System Status: OK. Built by Apurve with <span class="text-red-500">❤️</span> | All rights reserved &copy; 2025</p>
+    </footer>
+
+</body>
+</html>
