@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- UPDATED TITLE -->
-    <title>a.p.u.r.v.e</title>
+    <title>Apurve:://SYSTEM_ONLINE</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -14,13 +13,13 @@
     <!-- Load Press Start 2P (Pixel Titles) -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <!-- NEW: Load Space Mono (High-Tech Data/Code Text) -->
+    <!-- Load Space Mono (High-Tech Data/Code Text) -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- NEW: Load Font Awesome for brand logos (GitHub, X, LinkedIn) -->
+    <!-- Load Font Awesome for brand logos (GitHub, X, LinkedIn) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <!-- Custom Styles for Pixel Aesthetic and Font -->
+    <!-- Custom Styles for Hacker/Terminal Aesthetic -->
     <style>
         /* ADDED: Smooth scrolling for all section links */
         html { 
@@ -39,7 +38,8 @@
             /* High-Contrast Dark Theme Base */
             background-color: #030712; /* Darkest Gray / Near Black */
             color: #d1d5db; /* Light gray for readability */
-            background-image: linear-gradient(0deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px); /* Subtle Neon Scanlines */
+            /* Subtle Neon Scanlines Background */
+            background-image: linear-gradient(0deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
             background-size: 100% 4px;
             
             -webkit-font-smoothing: antialiased;
@@ -53,10 +53,7 @@
             text-shadow: 1px 1px 0 #000; /* Dark base shadow */
             color: #10b981; /* Default Neon Green */
         }
-        .pixel-text-dark {
-            color: #1f2937; /* For sections like the yellow CTA strip */
-        }
-
+        
         /* --- KEYFRAME ANIMATIONS --- */
 
         /* 1. CRT Flicker Effect (for high-tech header look) */
@@ -83,6 +80,50 @@
             opacity: 0; /* Ensures content is hidden before animation starts */
             animation: slideIn 0.8s ease-out forwards;
         }
+        
+        /* 3. Glitch Keyframes for CTA/Photo */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        .glitch-on-hover:hover {
+            animation: glitch 0.3s linear infinite alternate;
+            text-shadow: 2px 2px 0 #10b981, -2px -2px 0 #3b82f6;
+        }
+
+        /* 4. Icon Pulse Animation for Social Links */
+        @keyframes iconPulse {
+            0% { text-shadow: 0 0 5px #10b981; }
+            50% { text-shadow: 0 0 15px #10b981; }
+            100% { text-shadow: 0 0 5px #10b981; }
+        }
+        .icon-pulse {
+            animation: iconPulse 2s infinite ease-in-out;
+        }
+        
+        /* 5. Full Screen Scanline Effect (New Addition) */
+        .scanline-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.15; /* Subtle visibility */
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.6),
+                rgba(0, 0, 0, 0.6) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+        }
+
 
         /* --- STYLES --- */
 
@@ -133,22 +174,60 @@
              box-shadow: 6px 6px 0 #000;
         }
         /* Adjusted bullet colors for dark background */
-        .color-green { background-color: #064e3b; border-color: #10b981; color: #d1d5db; } 
-        .color-red { background-color: #7f1d1d; border-color: #ef4444; color: #d1d5db; }
-        .color-yellow { background-color: #854d0e; border-color: #f59e0b; color: #d1d5db; }
-        .color-blue { background-color: #1e3a8a; border-color: #3b82f6; color: #d1d5db; }
-        .color-orange { background-color: #9a3412; border-color: #f97316; color: #d1d5db; }
-        .color-purple { background-color: #581c87; border-color: #a855f7; color: #d1d5db; }
+        .color-green { background-color: #064e3b; border-color: #10b981; } 
+        .color-red { background-color: #7f1d1d; border-color: #ef4444; }
+        .color-yellow { background-color: #854d0e; border-color: #f59e0b; }
+        .color-blue { background-color: #1e3a8a; border-color: #3b82f6; }
+        .color-orange { background-color: #9a3412; border-color: #f97316; }
+        .color-purple { background-color: #581c87; border-color: #a855f7; }
         
-        .project-bullet-title {
-            font-weight: 800;
-            font-size: 1.125rem; /* text-lg */
-            color: #10b981; /* Neon green titles */
-            text-shadow: 0 0 5px #10b981;
+        /* NEW: Class for titles in the Lab Builds section */
+        .project-bullet-title-green { font-weight: 800; font-size: 1.125rem; text-shadow: 0 0 5px #10b981; color: #10b981; }
+        .project-bullet-title-red { font-weight: 800; font-size: 1.125rem; text-shadow: 0 0 5px #ef4444; color: #ef4444; }
+        .project-bullet-title-yellow { font-weight: 800; font-size: 1.125rem; text-shadow: 0 0 5px #f59e0b; color: #f59e0b; }
+        .project-bullet-title-blue { font-weight: 800; font-size: 1.125rem; text-shadow: 0 0 5px #3b82f6; color: #3b82f6; }
+        .project-bullet-title-orange { font-weight: 800; font-size: 1.125rem; text-shadow: 0 0 5px #f97316; color: #f97316; }
+        .project-bullet-title-purple { font-weight: 800; font-size: 1.125rem; text-shadow: 0 0 5px #a855f7; color: #a855f7; }
+
+        /* Responsive padding adjustment for mobile screens */
+        @media (max-width: 639px) {
+            .responsive-p {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
         }
     </style>
 </head>
 <body class="min-h-screen antialiased">
+    
+    <!-- NEW: Scanline Overlay (Always fixed on top) -->
+    <div class="scanline-overlay"></div>
+
+    <!-- JavaScript for Clock and Animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Clock Logic for System Status Panel
+            function updateClock() {
+                const now = new Date();
+                const timeElement = document.getElementById('live-time');
+                const dateElement = document.getElementById('live-date');
+                
+                if (timeElement) {
+                    // HH:MM:SS format
+                    timeElement.textContent = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                }
+                if (dateElement) {
+                    // Short Date format
+                    dateElement.textContent = now.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' });
+                }
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            // Removed Breadcrumb/Scroll Tracking Logic as the element was removed.
+        });
+    </script>
     
     <!-- Header -->
     <header class="p-4 sm:p-6 border-b-4 border-green-400 bg-gray-950 sticky top-0 z-10">
@@ -161,13 +240,13 @@
             <div class="flex gap-3 mt-2 sm:mt-0">
                 <!-- Social Links adapted for dark mode -->
                 <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer" class="px-3 py-1 border-2 border-green-400 bg-gray-800 hover:bg-gray-700 transition text-sm rounded pixel-btn flex items-center gap-1 shadow-[2px_2px_0_#10b981]" aria-label="GitHub Profile">
-                    <i class="fa-brands fa-github text-green-400 text-xl"></i> <span class="hidden sm:inline text-gray-300 mono-tech">GitHub</span>
+                    <i class="fa-brands fa-github text-green-400 text-xl icon-pulse"></i> <span class="hidden sm:inline text-gray-300 mono-tech">GitHub</span>
                 </a>
                 <a href="https://x.com/Apurve_Karanwal" target="_blank" rel="noopener noreferrer" class="px-3 py-1 border-2 border-green-400 bg-gray-800 hover:bg-gray-700 transition text-sm rounded pixel-btn flex items-center gap-1 shadow-[2px_2px_0_#10b981]" aria-label="X (Twitter) Profile">
-                    <i class="fa-brands fa-x-twitter text-green-400 text-xl"></i> <span class="hidden sm:inline text-gray-300 mono-tech">X</span>
+                    <i class="fa-brands fa-x-twitter text-green-400 text-xl icon-pulse"></i> <span class="hidden sm:inline text-gray-300 mono-tech">X</span>
                 </a>
                 <a href="https://www.linkedin.com/in/apurvekaranwal/" target="_blank" rel="noopener noreferrer" class="px-3 py-1 border-2 border-green-400 bg-gray-800 hover:bg-gray-700 transition text-sm rounded pixel-btn flex items-center gap-1 shadow-[2px_2px_0_#10b981]" aria-label="LinkedIn Profile">
-                    <i class="fa-brands fa-linkedin-in text-green-400 text-xl"></i> <span class="hidden sm:inline text-gray-300 mono-tech">LinkedIn</span>
+                    <i class="fa-brands fa-linkedin-in text-green-400 text-xl icon-pulse"></i> <span class="hidden sm:inline text-gray-300 mono-tech">LinkedIn</span>
                 </a>
             </div>
         </div>
@@ -178,7 +257,7 @@
         <img
             src="wa.png"
             alt="Profile photo of Apurve Karanwal wearing sunglasses on a track field"
-            class="w-32 h-32 mx-auto rounded-full border-4 border-green-400 mb-6 shadow-xl object-cover"
+            class="w-32 h-32 mx-auto rounded-full border-4 border-green-400 mb-6 shadow-xl object-cover project:card-hover"
         />
         <!-- Heading uses pixel-text and flicker class -->
         <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight pixel-text pixel-text-flicker" style="color:#3b82f6;">// APURVE KARANWAL</h2>
@@ -190,6 +269,21 @@
             > EXECUTE_WORK_VIEW <span class="text-2xl ml-2">⚡</span>
         </a>
     </section>
+    
+    <!-- UPDATED: SYSTEM STATUS PANEL -->
+    <section id="system-status" class="text-center pt-8 pb-8 responsive-p animated-section" style="animation-delay: 100ms;">
+        <div class="max-w-md mx-auto p-6 border-4 border-green-400 bg-gray-900 shadow-xl shadow-green-400/30 rounded-lg mono-tech">
+            <p class="text-2xl text-green-400 mb-4 pixel-text text-left">// SYSTEM_STATUS</p>
+            <div class="text-sm text-gray-400 text-left space-y-1">
+                <p>STATUS: <span class="text-green-400">NOMINAL</span></p>
+                <p>UPTIME: <span class="text-yellow-400">74:12:05</span></p> <!-- Static placeholder for Uptime -->
+                <p>LIVE_TIME: <span id="live-time" class="text-blue-400">--:--:--</span></p>
+                <p>DATE: <span id="live-date" class="text-blue-400">-- --- --</span></p>
+                <p>LOCATION: <span class="text-purple-400">ASIA/KOLKATA</span></p> <!-- Static placeholder for Location -->
+            </div>
+        </div>
+    </section>
+
 
     <!-- Skills Section -->
     <section class="p-8 sm:p-16 border-t-4 border-green-400 bg-gray-900 responsive-p animated-section" id="skills" style="animation-delay: 200ms;">
@@ -328,37 +422,37 @@
             
             <!-- Additional Project 1: Women Safety System (Green) -->
             <div class="project-bullet color-green">
-                <span class="project-bullet-title">🟢 Women Safety System (Advanced)</span>
+                <span class="project-bullet-title-green">🟢 Women Safety System (Advanced)</span>
                 <p class="text-sm mt-2 mono-tech">Tracks latitude, longitude, speed, and direction on a map of India using NodeMCU and GPS for emergency monitoring and location alerts.</p>
             </div>
 
             <!-- Additional Project 2: Alcohol Detection System (Red) -->
             <div class="project-bullet color-red">
-                <span class="project-bullet-title">🔴 Alcohol Detection System</span>
+                <span class="project-bullet-title-red">🔴 Alcohol Detection System</span>
                 <p class="text-sm mt-2 mono-tech">Safety system that prevents a car from starting if the driver is intoxicated, leveraging an Arduino microcontroller and a precise MQ3 alcohol sensor.</p>
             </div>
 
             <!-- Additional Project 3: Smart Plant Monitoring System (Yellow) -->
             <div class="project-bullet color-yellow">
-                <span class="project-bullet-title">🟡 Smart Plant Monitoring System</span>
+                <span class="project-bullet-title-yellow">🟡 Smart Plant Monitoring System</span>
                 <p class="text-sm mt-2 mono-tech">Monitors temperature, humidity, and soil moisture, waters plants automatically, detects intruders via PIR sensor, and sends alerts to mobile.</p>
             </div>
 
             <!-- Additional Project 4: Bluetooth Remote Control Car (Blue) -->
             <div class="project-bullet color-blue">
-                <span class="project-bullet-title">🔵 Bluetooth Remote Control Car</span>
+                <span class="project-bullet-title-blue">🔵 Bluetooth Remote Control Car</span>
                 <p class="text-sm mt-2 mono-tech">A versatile remote-controlled vehicle project managed entirely via a mobile phone application utilizing a Bluetooth communication module.</p>
             </div>
 
             <!-- Additional Project 5: Keypad Door Unlock System (Orange) -->
             <div class="project-bullet color-orange">
-                <span class="project-bullet-title">🟠 Keypad Door Unlock System</span>
+                <span class="project-bullet-title-orange">🟠 Keypad Door Unlock System</span>
                 <p class="text-sm mt-2 mono-tech">A physical security system that grants access with a correct PIN input and automatically locks the door using Arduino/NodeMCU and a solenoid lock.</p>
             </div>
 
             <!-- Additional Project 6: Awaken Driver Glasses (Purple) -->
             <div class="project-bullet color-purple">
-                <span class="project-bullet-title">🟣 Awaken Driver Glasses</span>
+                <span class="project-bullet-title-purple">🟣 Awaken Driver Glasses</span>
                 <p class="text-sm mt-2 mono-tech">Innovative glasses that vibrate if the driver’s eyes remain closed for more than 10 seconds, serving as a critical alert to prevent drowsy driving accidents.</p>
             </div>
 
@@ -403,7 +497,7 @@
     <section class="p-8 sm:p-16 border-t-4 border-green-400 bg-gray-900 responsive-p animated-section" id="education" style="animation-delay: 1000ms;">
         <div class="max-w-7xl mx-auto">
             <!-- Heading uses pixel-text and flicker class -->
-            <h3 class="text-2xl sm:text-3xl font-bold mb-10 pixel-text pixel-text-flicker text-center" style="color:#10b981;">[INIT] EDUCATION & AWARDS</h3>
+            <h3 class="text-2xl sm:text-3xl font-bold mb-10 pixel-text pixel-text-flicker" style="color:#10b981;">[INIT] EDUCATION & AWARDS</h3>
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <div class="p-6 border-4 border-green-400 bg-gray-800 rounded-lg shadow-[4px_4px_0_#000000]">
                     <h4 class="text-xl font-bold mb-2 pixel-text text-green-400">B.TECH (IT)</h4>
@@ -437,12 +531,12 @@
     <!-- Final CTA Section (Level Up) - High Contrast -->
     <section class="py-12 px-8 text-center bg-green-400 border-t-4 border-black responsive-p animated-section" style="animation-delay: 1400ms;">
         <div class="max-w-4xl mx-auto">
-            <h3 class="text-3xl font-bold mb-6 text-black pixel-text pixel-text-dark">READY FOR LEVEL UP?</h3>
+            <h3 class="text-3xl font-bold mb-6 text-black pixel-text">READY FOR LEVEL UP?</h3>
             <p class="text-xl text-gray-800 mb-8 mono-tech">
                 [LOG: REQUESTING CONNECTION] If you're looking for a passionate builder to join your team or collaborate on a high-impact project, execute the command below.
             </p>
-            <!-- Email link is functional -->
-            <a href="mailto: apurvekaranwal2025@gmail.com" class="inline-block px-10 py-4 border-4 border-black bg-indigo-600 font-extrabold text-white text-xl rounded-lg shadow-[6px_6px_0_#000000] hover:bg-indigo-700 transition duration-150 active:translate-x-1 active:translate-y-1 active:shadow-[5px_5px_0_#000000] mono-tech">
+            <!-- Email link is functional and has the glitch effect -->
+            <a href="mailto:apurvekaranwal2025@gmail.com" class="inline-block px-10 py-4 border-4 border-black bg-indigo-600 font-extrabold text-white text-xl rounded-lg shadow-[6px_6px_0_#000000] hover:bg-indigo-700 transition duration-150 active:translate-x-1 active:translate-y-1 active:shadow-[5px_5px_0_#000000] mono-tech glitch-on-hover">
                 > SEND_MESSAGE_EMAIL
             </a>
         </div>
@@ -452,6 +546,8 @@
     <footer class="p-6 border-t-4 border-green-400 bg-black text-center text-white text-sm mt-0">
         <p class="mono-tech text-green-400">System Status: OK. Built by Apurve with <span class="text-red-500">❤️</span> | All rights reserved &copy; 2025</p>
     </footer>
+
+    <!-- REMOVED: Code Trace / Breadcrumb Navigation (Fixed Bottom Left) -->
 
 </body>
 </html>
