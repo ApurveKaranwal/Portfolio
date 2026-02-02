@@ -1,50 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apurve Karanwal</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         /* MINECRAFT/PIXEL COLOR PALETTE */
         :root {
             /* Blocky, Earthy Colors */
-            --color-bg-dark: #2c4241; /* Deep forest green/blue */
-            --color-card-main: #4a6c6b; /* Lighter inventory/block color */
-            --color-card-border: #142120; /* Hard, dark shadow color */
-            
+            --color-bg-dark: #2c4241;
+            /* Deep forest green/blue */
+            --color-card-main: #4a6c6b;
+            /* Lighter inventory/block color */
+            --color-card-border: #142120;
+            /* Hard, dark shadow color */
+
             /* Accent Colors */
-            --color-accent-main: #b8e0e0; /* Light Teal (Main text/focus) */
-            --color-accent-secondary: #fcd34d; /* Gold/Yellow (Titles/CTA) */
-            --color-text-light: #e0f2f1; /* Light text */
-            --color-text-dark: #142120; /* Dark text for light buttons */
+            --color-accent-main: #b8e0e0;
+            /* Light Teal (Main text/focus) */
+            --color-accent-secondary: #fcd34d;
+            /* Gold/Yellow (Titles/CTA) */
+            --color-text-light: #e0f2f1;
+            /* Light text */
+            --color-text-dark: #142120;
+            /* Dark text for light buttons */
         }
-        
+
+        /* --- GLOBAL AESTHETICS --- */
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+            background: var(--color-bg-dark);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-card-border);
+            border-left: 2px solid var(--color-bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-card-main);
+            border: 2px solid var(--color-bg-dark);
+            box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-accent-main);
+        }
+
+        /* Selection Color */
+        ::selection {
+            background: var(--color-accent-secondary);
+            color: var(--color-text-dark);
+        }
+
+        /* Scanline Overlay */
+        .scanline-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(to bottom,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 0) 50%,
+                    rgba(0, 0, 0, 0.1) 50%,
+                    rgba(0, 0, 0, 0.1));
+            background-size: 100% 4px;
+            z-index: 9999;
+            opacity: 0.6;
+            animation: scanline-move 0.4s linear infinite;
+        }
+
+        @keyframes scanline-move {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 0 4px;
+            }
+        }
+
+        /* Text Flicker Animation */
+        .pixel-text-flicker {
+            animation: text-flicker 4s infinite;
+        }
+
+        @keyframes text-flicker {
+
+            0%,
+            19.999%,
+            22%,
+            62.999%,
+            64%,
+            64.999%,
+            70%,
+            100% {
+                opacity: 1;
+                text-shadow: 2px 2px 0 var(--color-card-border);
+            }
+
+            20%,
+            21.999%,
+            63%,
+            63.999%,
+            65%,
+            69.999% {
+                opacity: 0.6;
+                text-shadow: none;
+            }
+        }
+
         /* ADDED: Smooth scrolling for all section links */
-        html { 
+        html {
             scroll-behavior: smooth;
         }
-        
+
         /* Setting Space Mono as the secondary "high-tech" font */
         .mono-tech {
             font-family: 'Space Mono', monospace;
         }
 
-        body { 
+        /* BACKGROUND PATTERN */
+        body {
             font-family: 'Inter', sans-serif;
             background-color: var(--color-bg-dark);
+            /* Subtle dot pattern */
+            background-image: radial-gradient(var(--color-card-border) 1px, transparent 0);
+            background-size: 20px 20px;
             color: var(--color-text-light);
-            background-image: none; 
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -52,12 +152,12 @@
         /* Pixel font class for headers and prominent text */
         .pixel-text {
             font-family: 'Press Start 2P', cursive;
-            letter-spacing: 0.05rem; 
+            letter-spacing: 0.05rem;
             /* Classic 2D pixel shadow */
-            text-shadow: 2px 2px 0 var(--color-card-border); 
-            color: var(--color-accent-main); 
+            text-shadow: 2px 2px 0 var(--color-card-border);
+            color: var(--color-accent-main);
         }
-        
+
         /* --- BLOCK / 3D UI STYLING --- */
 
         /* 3D Button/Block Effect Mixin */
@@ -66,7 +166,7 @@
             border-radius: 0;
             background-color: var(--color-card-main);
             /* Simulates a dark drop-shadow block behind the main element */
-            box-shadow: 6px 6px 0 var(--color-card-border); 
+            box-shadow: 6px 6px 0 var(--color-card-border);
             transition: all 0.1s ease-out;
             transform: translate(0, 0);
         }
@@ -74,11 +174,13 @@
         /* Active/Press state for 3D elements */
         .pixel-block-3d:active,
         .pixel-block-3d-cta:active,
-        .pixel-block-3d:hover { /* Hover for non-interactive elements */
+        .pixel-block-3d:hover {
+            /* Hover for non-interactive elements */
             transform: translate(6px, 6px);
-            box-shadow: 0 0 0 var(--color-card-border); /* Hides the shadow when "pressed" */
+            box-shadow: 0 0 0 var(--color-card-border);
+            /* Hides the shadow when "pressed" */
         }
-        
+
         /* Specific button style inheriting 3D effect */
         .pixel-btn-3d {
             @extend .pixel-block-3d;
@@ -87,6 +189,7 @@
             font-weight: 700;
             box-shadow: 3px 3px 0 var(--color-card-border);
         }
+
         .pixel-btn-3d:hover {
             transform: translate(3px, 3px);
             box-shadow: 0 0 0 var(--color-card-border);
@@ -94,9 +197,10 @@
 
         /* Project Card Hover (Lift effect) */
         .project-card:hover {
-            transform: translate(-3px, -3px) !important; 
-            box-shadow: 10px 10px 0 var(--color-card-border) !important; 
+            transform: translate(-3px, -3px) !important;
+            box-shadow: 10px 10px 0 var(--color-card-border) !important;
         }
+
         .project-card {
             border-color: var(--color-accent-main);
             /* Project cards use the 3D block mixin */
@@ -115,6 +219,7 @@
             text-shadow: none;
             @extend .pixel-btn-3d;
         }
+
         .skill-tag:hover {
             transform: translate(3px, 3px);
             box-shadow: 0 0 0 var(--color-card-border);
@@ -125,6 +230,48 @@
             color: var(--color-accent-secondary) !important;
             text-shadow: 3px 3px 0 var(--color-card-border);
         }
+
+        /* AMBASSADOR GOLD GRADIENT & GLOW */
+        .gold-gradient-text {
+            background: linear-gradient(to right, #fcd34d, #f59e0b, #fcd34d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .ambassador-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-color: var(--color-accent-secondary) !important;
+        }
+
+        .ambassador-icon-pulse {
+            animation: soft-pulse 2s infinite;
+        }
+
+        @keyframes soft-pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(252, 211, 77, 0.4);
+            }
+
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(252, 211, 77, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(252, 211, 77, 0);
+            }
+        }
+
         .hero-subtitle-mono {
             color: var(--color-accent-main) !important;
         }
@@ -134,26 +281,160 @@
             background-color: var(--color-card-border);
             border-bottom-color: var(--color-accent-main) !important;
         }
+
         .footer-bg {
             background-color: var(--color-card-border);
             color: var(--color-accent-main);
         }
-        
+
+        /* PRELOADER STYLES */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-bg-dark);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out, visibility 0.5s;
+        }
+
+        #preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-text {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--color-accent-secondary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            animation: text-blink 1s infinite alternate;
+        }
+
+        .progress-bar-container {
+            width: 300px;
+            height: 20px;
+            border: 4px solid var(--color-card-border);
+            background-color: var(--color-card-border);
+            padding: 2px;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background-color: var(--color-accent-main);
+            transition: width 0.1s linear;
+        }
+
+        @keyframes text-blink {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
     </style>
 </head>
-<body class="min-h-screen antialiased">
-    
+
+<body class="min-h-screen antialiased" style="overflow: hidden;">
+
+    <!-- RETRO PRELOADER -->
+    <div id="preloader">
+        <div class="loader-text" id="loader-text">INITIALIZING SYSTEM...</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progress-bar"></div>
+        </div>
+        <div class="mono-tech text-xs mt-4" style="color:var(--color-accent-main); opacity: 0.7;" id="loader-subtext">
+            > CHECKING_MODULES...
+        </div>
+    </div>
+
+    <!-- AUDIO TOGGLE -->
+    <button id="audio-toggle"
+        class="fixed bottom-6 right-6 z-50 p-3 rounded-full pixel-block-3d transition-transform hover:scale-110"
+        style="background-color:var(--color-accent-secondary); border-color:var(--color-card-border); color:var(--color-text-dark);"
+        aria-label="Toggle Sound">
+        <i class="fa-solid fa-volume-xmark text-xl" id="audio-icon"></i>
+    </button>
+
+    <!-- MATRIX RAIN CANVAS -->
+    <canvas id="matrix-canvas"
+        style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:9998; pointer-events:none; display:none;"></canvas>
+
     <div class="scanline-overlay"></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
+
+            // Typewriter Effect Logic (Wrapped in function)
+            const textToType = "> **[STATUS: ONLINE]** Aspiring Full-Stack Developer | IoT Engineer. Turning ideas into interactive systems.";
+            const typeWriterElement = document.getElementById('hero-typewriter');
+
+            function startTypewriter() {
+                if (typeWriterElement) {
+                    typeWriterElement.textContent = "";
+                    let i = 0;
+                    function typeWriter() {
+                        if (i < textToType.length) {
+                            typeWriterElement.textContent += textToType.charAt(i);
+                            i++;
+                            setTimeout(typeWriter, 35);
+                        }
+                    }
+                    typeWriter();
+                }
+            }
+
+            // PRELOADER LOGIC
+            const preloader = document.getElementById('preloader');
+            const progressBar = document.getElementById('progress-bar');
+            const loaderText = document.getElementById('loader-text');
+            const loaderSubtext = document.getElementById('loader-subtext');
+
+            let width = 0;
+            // "Badass" random loading simulation
+            const interval = setInterval(() => {
+                // Random increments
+                width += Math.floor(Math.random() * 5) + 1;
+
+                if (width > 30 && width < 50) loaderSubtext.innerText = "> LOADING_ASSETS...";
+                if (width > 50 && width < 80) loaderSubtext.innerText = "> ESTABLISHING_LINK...";
+                if (width > 80) loaderSubtext.innerText = "> DECODING_DATA...";
+
+                if (width >= 100) {
+                    width = 100;
+                    clearInterval(interval);
+                    loaderText.innerText = "ACCESS GRANTED";
+                    loaderSubtext.innerText = "> WELCOME_USER";
+                    progressBar.style.backgroundColor = "var(--color-accent-secondary)"; // Turn gold on finish
+
+                    setTimeout(() => {
+                        preloader.classList.add('fade-out');
+                        document.body.style.overflow = ''; // Restore scroll
+
+                        // Start Hero Typewriter AFTER loader finishes
+                        setTimeout(startTypewriter, 500);
+
+                    }, 800);
+                }
+                progressBar.style.width = width + '%';
+            }, 30); // Speed of loading
+
             // Clock Logic for System Status Panel
             function updateClock() {
                 const now = new Date();
                 const timeElement = document.getElementById('live-time');
                 const dateElement = document.getElementById('live-date');
-                
+
                 if (timeElement) {
                     timeElement.textContent = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
                 }
@@ -169,12 +450,12 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('fade-in');
-                        entry.target.style.opacity = 1; 
+                        entry.target.style.opacity = 1;
                         observer.unobserve(entry.target);
                     }
                 });
             }, {
-                threshold: 0.1 
+                threshold: 0.1
             });
 
             document.querySelectorAll('.animated-section').forEach(section => {
@@ -182,78 +463,96 @@
             });
         });
     </script>
-    
-    <header class="p-4 sm:p-6 border-b-4 header-bg sticky top-0 z-10" style="border-bottom-color: var(--color-accent-main) !important;">
+
+    <header class="p-4 sm:p-6 border-b-4 header-bg sticky top-0 z-10"
+        style="border-bottom-color: var(--color-accent-main) !important;">
         <div class="max-w-7xl mx-auto flex justify-between items-center flex-wrap">
-            <a href="#" class="text-xl sm:text-2xl font-extrabold tracking-tight flex items-center gap-1 pixel-text pixel-text-flicker" style="color:var(--color-accent-main);">
+            <a href="#"
+                class="text-xl sm:text-2xl font-extrabold tracking-tight flex items-center gap-1 pixel-text pixel-text-flicker"
+                style="color:var(--color-accent-main);">
                 APURVE.<span class="font-mono">DEV</span>
                 <span class="text-lg"></span>
             </a>
             <div class="flex gap-3 mt-2 sm:mt-0">
-                
-            <a href="resume.pdf" download target="_blank" rel="noopener noreferrer" class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="Download Resume (PDF)"
-    style="border-color: var(--color-card-border); background-color: #3b82f6; color: var(--color-text-light);">
-    <i class="fa-solid fa-file-pdf text-xl icon-pulse" style="color:var(--color-text-light);"></i> <span class="hidden sm:inline mono-tech">Resume</span>
-            </a>
 
-            <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer" class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="GitHub Profile"
-                style="border-color: var(--color-card-border); background-color: #333333; color: var(--color-text-light);">
-                <i class="fa-brands fa-github text-xl icon-pulse" style="color:var(--color-text-light);"></i> <span class="hidden sm:inline mono-tech">GitHub</span>
-            </a>
+                <a href="resume.pdf" download target="_blank" rel="noopener noreferrer"
+                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="Download Resume (PDF)"
+                    style="border-color: var(--color-card-border); background-color: #3b82f6; color: var(--color-text-light);">
+                    <i class="fa-solid fa-file-pdf text-xl icon-pulse" style="color:var(--color-text-light);"></i> <span
+                        class="hidden sm:inline mono-tech">Resume</span>
+                </a>
 
-            <a href="https://discord.com/users/1365348956074147860" target="_blank" rel="noopener noreferrer" class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="Discord Profile"
-                style="border-color: var(--color-card-border); background-color: #5865f2; color: var(--color-text-light);">
-                <i class="fa-brands fa-discord text-xl icon-pulse" style="color:var(--color-text-light);"></i> <span class="hidden sm:inline mono-tech">Discord</span>
-            </a>
+                <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
+                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="GitHub Profile"
+                    style="border-color: var(--color-card-border); background-color: #333333; color: var(--color-text-light);">
+                    <i class="fa-brands fa-github text-xl icon-pulse" style="color:var(--color-text-light);"></i> <span
+                        class="hidden sm:inline mono-tech">GitHub</span>
+                </a>
 
-            <a href="https://x.com/Apurve_Karanwal" target="_blank" rel="noopener noreferrer" class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="X (Twitter) Profile"
-                style="border-color: var(--color-card-border); background-color: #000000; color: var(--color-text-light);">
-                <i class="fa-brands fa-x-twitter text-xl icon-pulse" style="color:var(--color-text-light);"></i> <span class="hidden sm:inline mono-tech">X</span>
-            </a>
+                <a href="https://discord.com/users/1365348956074147860" target="_blank" rel="noopener noreferrer"
+                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="Discord Profile"
+                    style="border-color: var(--color-card-border); background-color: #5865f2; color: var(--color-text-light);">
+                    <i class="fa-brands fa-discord text-xl icon-pulse" style="color:var(--color-text-light);"></i> <span
+                        class="hidden sm:inline mono-tech">Discord</span>
+                </a>
 
-            <a href="https://www.linkedin.com/in/apurvekaranwal/" target="_blank" rel="noopener noreferrer" class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="LinkedIn Profile"
-                style="border-color: var(--color-card-border); background-color: #0a66c2; color: var(--color-text-light);">
-                <i class="fa-brands fa-linkedin-in text-xl icon-pulse" style="color:var(--color-text-light);"></i> <span class="hidden sm:inline mono-tech">LinkedIn</span>
-            </a>
+                <a href="https://x.com/Apurve_Karanwal" target="_blank" rel="noopener noreferrer"
+                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="X (Twitter) Profile"
+                    style="border-color: var(--color-card-border); background-color: #000000; color: var(--color-text-light);">
+                    <i class="fa-brands fa-x-twitter text-xl icon-pulse" style="color:var(--color-text-light);"></i>
+                    <span class="hidden sm:inline mono-tech">X</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/apurvekaranwal/" target="_blank" rel="noopener noreferrer"
+                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="LinkedIn Profile"
+                    style="border-color: var(--color-card-border); background-color: #0a66c2; color: var(--color-text-light);">
+                    <i class="fa-brands fa-linkedin-in text-xl icon-pulse" style="color:var(--color-text-light);"></i>
+                    <span class="hidden sm:inline mono-tech">LinkedIn</span>
+                </a>
             </div>
         </div>
     </header>
 
-    <section class="p-8 sm:p-16 text-center responsive-p max-w-7xl mx-auto animated-section" style="animation-delay: 0ms;">
-        <img
-            src="wa.png"
-            alt="Profile photo of Apurve Karanwal wearing sunglasses on a track field"
-            class="w-32 h-32 mx-auto rounded-full border-4 mb-6 object-cover" 
-            style="border-color:var(--color-accent-secondary); box-shadow: 4px 4px 0 var(--color-card-border);"
-        />
-        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight pixel-text pixel-text-flicker hero-title-pixel">// APURVE KARANWAL</h2> 
-        <p class="max-w-xl mx-auto mt-4 text-xl mono-tech hero-subtitle-mono">
-            &gt; **[STATUS: ONLINE]** Aspiring Full-Stack Developer | IoT Engineer. Turning ideas into interactive systems.
+    <section class="p-8 sm:p-16 text-center responsive-p max-w-7xl mx-auto animated-section"
+        style="animation-delay: 0ms;">
+        <img src="wa.png" alt="Profile photo of Apurve Karanwal wearing sunglasses on a track field"
+            class="w-32 h-32 mx-auto rounded-full border-4 mb-6 object-cover"
+            style="border-color:var(--color-accent-secondary); box-shadow: 4px 4px 0 var(--color-card-border);" />
+        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight pixel-text pixel-text-flicker hero-title-pixel">//
+            APURVE KARANWAL</h2>
+        <p class="max-w-xl mx-auto mt-4 text-xl mono-tech hero-subtitle-mono" id="hero-typewriter"
+            style="min-height: 3.5rem;">
+
         </p>
-        <a href="#projects" class="inline-flex items-center mt-8 px-8 py-3 font-extrabold text-xl rounded-lg mono-tech glitch-on-hover pixel-block-3d-cta" 
-            style="border-color: var(--color-card-border); background-color: var(--color-accent-secondary); color: var(--color-text-dark); box-shadow: 6px 6px 0 var(--color-card-border); font-weight:700;"
-        > 
+        <a href="#projects"
+            class="inline-flex items-center mt-8 px-8 py-3 font-extrabold text-xl rounded-lg mono-tech glitch-on-hover pixel-block-3d-cta"
+            style="border-color: var(--color-card-border); background-color: var(--color-accent-secondary); color: var(--color-text-dark); box-shadow: 6px 6px 0 var(--color-card-border); font-weight:700;">
             > EXECUTE_WORK_VIEW <span class="text-2xl ml-2">⚡</span>
         </a>
     </section>
-    
-    <section id="system-status" class="text-center pt-8 pb-8 responsive-p animated-section" style="animation-delay: 100ms;">
+
+    <section id="system-status" class="text-center pt-8 pb-8 responsive-p animated-section"
+        style="animation-delay: 100ms;">
         <div class="max-w-md mx-auto p-6 rounded-lg mono-tech pixel-block-3d"
             style="border-color:var(--color-accent-main); background-color:var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
-            <p class="text-2xl mb-4 pixel-text text-left" style="color:var(--color-accent-secondary);">// SYSTEM_STATUS</p>
+            <p class="text-2xl mb-4 pixel-text text-left" style="color:var(--color-accent-secondary);">// SYSTEM_STATUS
+            </p>
             <div class="text-sm text-left space-y-1" style="color:var(--color-text-light);">
                 <p>STATUS: <span style="color:var(--color-accent-main);">NOMINAL</span></p>
-                <p>UPTIME: <span style="color:var(--color-accent-secondary);">74:12:05</span></p> 
+                <p>UPTIME: <span style="color:var(--color-accent-secondary);">74:12:05</span></p>
                 <p>LIVE_TIME: <span id="live-time" style="color:#60a5fa;">--:--:--</span></p>
                 <p>DATE: <span id="live-date" style="color:#60a5fa;">-- --- --</span></p>
-                <p>LOCATION: <span style="color:#c084fc;">ASIA/DELHI</span></p> 
+                <p>LOCATION: <span style="color:#c084fc;">ASIA/DELHI</span></p>
             </div>
         </div>
     </section>
 
 
-    <section class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" id="skills" style="animation-delay: 200ms; border-top-color:var(--color-accent-main);">
-        <h3 class="text-2xl sm:text-3xl font-bold mb-10 text-center pixel-text pixel-text-flicker" style="color:var(--color-accent-main);">[SYSTEM] KEY SKILLS</h3>
+
+    <section class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" id="skills"
+        style="animation-delay: 200ms; border-top-color:var(--color-accent-main);">
+        <h3 class="text-2xl sm:text-3xl font-bold mb-10 text-center pixel-text pixel-text-flicker"
+            style="color:var(--color-accent-main);">[SYSTEM] KEY SKILLS</h3>
         <div class="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
             <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Python</span>
             <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">FastAPI</span>
@@ -266,40 +565,58 @@
             <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">MySQL</span>
             <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">SQLite</span>
             <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">IoT</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">NodeMCU</span> 
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Arduino </span> 
+            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">NodeMCU</span>
+            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Arduino </span>
             <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">MongoDB</span>
         </div>
     </section>
 
-    <section id="open-source" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" style="animation-delay: 300ms; border-top-color:var(--color-accent-main); background-color:var(--color-card-main);">
+    <section id="open-source" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section"
+        style="animation-delay: 300ms; border-top-color:var(--color-accent-main); background-color:var(--color-card-main);">
         <div class="max-w-7xl mx-auto">
-            <h3 class="text-2xl sm:text-3xl font-bold mb-10 text-center pixel-text pixel-text-flicker" style="color:var(--color-accent-secondary);">[LOG] OPEN SOURCE CONTRIBUTIONS <span class="text-xl ml-2"><i class="fa-solid fa-code-branch"></i></span></h3>
-            <p class="max-w-4xl mx-auto text-center text-lg mono-tech" style="color:var(--color-text-light); opacity:0.8;">
-                // Actively contributing to public repositories, improving codebases, and fostering collaboration within the development community.
+            <h3 class="text-2xl sm:text-3xl font-bold mb-10 text-center pixel-text pixel-text-flicker"
+                style="color:var(--color-accent-secondary);">[LOG] OPEN SOURCE CONTRIBUTIONS <span
+                    class="text-xl ml-2"><i class="fa-solid fa-code-branch"></i></span></h3>
+            <p class="max-w-4xl mx-auto text-center text-lg mono-tech"
+                style="color:var(--color-text-light); opacity:0.8;">
+                // Actively contributing to public repositories, improving codebases, and fostering collaboration within
+                the development community.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                
-                <div class="p-4 rounded-md mono-tech pixel-block-3d" style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                    <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">FOSS-Community/progress-tracker</h4>
-                    <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.7;">**Contribution:** Improve error handling, add Node.js check, auto .html extension, wrap in main()</p>
-                    <a href="https://github.com/FOSS-Community/progress-tracker/commit/2c9d980a8aef91ad658eb2def9600de67bf0a488" target="_blank" rel="noopener noreferrer" class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
+
+                <div class="p-4 rounded-md mono-tech pixel-block-3d"
+                    style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                    <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">
+                        FOSS-Community/progress-tracker</h4>
+                    <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.7;">**Contribution:**
+                        Improve error handling, add Node.js check, auto .html extension, wrap in main()</p>
+                    <a href="https://github.com/FOSS-Community/progress-tracker/commit/2c9d980a8aef91ad658eb2def9600de67bf0a488"
+                        target="_blank" rel="noopener noreferrer" class="text-sm mono-tech transition duration-150"
+                        style="color:#60a5fa;">
                         > View PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
                     </a>
                 </div>
 
-                <div class="p-4 rounded-md mono-tech pixel-block-3d" style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                    <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">coming soon...</h4>
-                    <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.7;">**Contribution:** coming soon...</p>
-                    <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer" class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
+                <div class="p-4 rounded-md mono-tech pixel-block-3d"
+                    style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                    <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">coming
+                        soon...</h4>
+                    <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.7;">**Contribution:**
+                        coming soon...</p>
+                    <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
+                        class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
                         > View PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
                     </a>
                 </div>
 
-                <div class="p-4 rounded-md mono-tech pixel-block-3d" style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                    <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">coming soon...</h4>
-                    <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.7;">**Contribution:** coming soon...</p>
-                    <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer" class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
+                <div class="p-4 rounded-md mono-tech pixel-block-3d"
+                    style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                    <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">coming
+                        soon...</h4>
+                    <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.7;">**Contribution:**
+                        coming soon...</p>
+                    <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
+                        class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
                         > View PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
                     </a>
                 </div>
@@ -307,449 +624,741 @@
         </div>
     </section>
 
-    <section id="projects" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" style="animation-delay: 400ms; border-top-color:var(--color-accent-secondary);">
-        <h3 class="text-2xl sm:text-3xl font-bold mb-12 text-center pixel-text pixel-text-flicker" style="color:var(--color-accent-main);">[PROJECTS] FEATURED BUILDS </h3>
+    <section id="projects" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section"
+        style="animation-delay: 400ms; border-top-color:var(--color-accent-secondary);">
+        <h3 class="text-2xl sm:text-3xl font-bold mb-12 text-center pixel-text pixel-text-flicker"
+            style="color:var(--color-accent-main);">[PROJECTS] FEATURED BUILDS </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">PNGProtect</h4> 
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **PNGProtect is an image protection system that uses algorithmic pixel manipulation and checksum-based integrity techniques to safeguard PNG assets. The application is implemented with a scalable web architecture for efficient and secure image processing.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">
+                        PNGProtect</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
+                        **PNGProtect is an image protection system that uses algorithmic pixel manipulation and
+                        checksum-based integrity techniques to safeguard PNG assets. The application is implemented with
+                        a scalable web architecture for efficient and secure image processing.</p>
                 </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/PNGProtect" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/PNGProtect" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">pyOCR</h4> 
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **AI-Powered Medical OCR**: A Python tool using Tesseract, OpenCV, and BeautifulSoup to parse blood test reports (PDF/images), extracting data for health applications.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">pyOCR
+                    </h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
+                        **AI-Powered Medical OCR**: A Python tool using Tesseract, OpenCV, and BeautifulSoup to parse
+                        blood test reports (PDF/images), extracting data for health applications.</p>
                 </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/pyOCR" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/pyOCR" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-            
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Cha-Ching!</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **An expense tracking application built with FastAPI and SQLite, designed to keep your daily finances organised, efficient, and easy to manage.</p>
-                </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/Cha-Ching" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
 
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">RAG PIPELINE</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **An AI chatbot that answers questions from PDFs using RAG, powered by LangChain, Groq LLaMA 3.1, and FAISS. Built with Streamlit, HuggingFace, and PyPDF for seamless PDF processing and intelligent retrieval.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">
+                        Cha-Ching!</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **An
+                        expense tracking application built with FastAPI and SQLite, designed to keep your daily finances
+                        organised, efficient, and easy to manage.</p>
                 </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/RAG_pipeline" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/Cha-Ching" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
 
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">WOMEN SAFETY SYSTEM</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Wearable Emergency IoT**: Device with real-time GPS tracking and instant **email/mobile alerts** powered by **NodeMCU**.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">RAG
+                        PIPELINE</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **An
+                        AI chatbot that answers questions from PDFs using RAG, powered by LangChain, Groq LLaMA 3.1, and
+                        FAISS. Built with Streamlit, HuggingFace, and PyPDF for seamless PDF processing and intelligent
+                        retrieval.</p>
                 </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/WOMEN_SAFETY_SYSTEM" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/RAG_pipeline" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
 
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">CipherVault</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Secure Password Manager**: Python application utilizing **Fernet encryption** for secure generation, storage, and retrieval of credentials.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">WOMEN
+                        SAFETY SYSTEM</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
+                        **Wearable Emergency IoT**: Device with real-time GPS tracking and instant **email/mobile
+                        alerts** powered by **NodeMCU**.</p>
                 </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/CipherVault" 
-                    target="_blank"
+                <a href="https://github.com/ApurveKaranwal/WOMEN_SAFETY_SYSTEM" target="_blank"
                     rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
 
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">TextForge</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **ASCII Art Generator**: A Python command-line utility for converting standard text input into various **stylized, creative ASCII art** displays.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">
+                        CipherVault</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
+                        **Secure Password Manager**: Python application utilizing **Fernet encryption** for secure
+                        generation, storage, and retrieval of credentials.</p>
                 </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/TextForge" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/CipherVault" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-            
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">HOME AUTOMATION</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// Smart IoT-based system for remote **monitoring and control** of household appliances, designed to increase convenience and energy efficiency.</p>
-                </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/Home-Automation" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
 
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Expense Tracker</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// Full-stack application for managing daily expenses. Features include **category-based tracking**, data export, and simple visualization.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">TextForge
+                    </h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
+                        **ASCII Art Generator**: A Python command-line utility for converting standard text input into
+                        various **stylized, creative ASCII art** displays.</p>
                 </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/Expense_Tracker" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/TextForge" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-            
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">COVID-19 TRACKER</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// Compact IoT device monitoring real-time pandemic data (Worldometer & Thingspeak) using NodeMCU and OLED display.</p>
-                </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/Covid-19-Tracker-OLed-Project" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">SMART IRRIGATION</h4> 
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//**Automated Farming System**: IoT solution using **NodeMCU** and soil moisture sensors. Regulates water usage and sends remote status updates.</p>
-                </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/SMART_IRRIGATION" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-            
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Securo</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//A fast and secure password manager backend built with FastAPI and SQLite, featuring auto password generation and safe storage.</p>
-                </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/Securo" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
 
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Shirt Smith</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// Virtual Try-On Utility**: Python-based tool for creating realistic virtual T-shirt mockups by overlaying custom designs onto model images.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">HOME
+                        AUTOMATION</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// Smart
+                        IoT-based system for remote **monitoring and control** of household appliances, designed to
+                        increase convenience and energy efficiency.</p>
                 </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal/ShirtSmith" 
-                    target="_blank"
+                <a href="https://github.com/ApurveKaranwal/Home-Automation" target="_blank" rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
+                    > VIEW_REPOSITORY
+                </a>
+            </div>
+
+            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Expense
+                        Tracker</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
+                        Full-stack application for managing daily expenses. Features include **category-based
+                        tracking**, data export, and simple visualization.</p>
+                </div>
+                <a href="https://github.com/ApurveKaranwal/Expense_Tracker" target="_blank" rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
+                    > VIEW_REPOSITORY
+                </a>
+            </div>
+
+            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">COVID-19
+                        TRACKER</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
+                        Compact IoT device monitoring real-time pandemic data (Worldometer & Thingspeak) using NodeMCU
+                        and OLED display.</p>
+                </div>
+                <a href="https://github.com/ApurveKaranwal/Covid-19-Tracker-OLed-Project" target="_blank"
                     rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">coming soon...</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// coming soon...</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">SMART
+                        IRRIGATION</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">
+                        //**Automated Farming System**: IoT solution using **NodeMCU** and soil moisture sensors.
+                        Regulates water usage and sends remote status updates.</p>
                 </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/SMART_IRRIGATION" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
+                    > VIEW_REPOSITORY
+                </a>
+            </div>
+
+            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Securo
+                    </h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//A fast
+                        and secure password manager backend built with FastAPI and SQLite, featuring auto password
+                        generation and safe storage.</p>
+                </div>
+                <a href="https://github.com/ApurveKaranwal/Securo" target="_blank" rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
+                    > VIEW_REPOSITORY
+                </a>
+            </div>
+
+            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Shirt
+                        Smith</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
+                        Virtual Try-On Utility**: Python-based tool for creating realistic virtual T-shirt mockups by
+                        overlaying custom designs onto model images.</p>
+                </div>
+                <a href="https://github.com/ApurveKaranwal/ShirtSmith" target="_blank" rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">coming soon...</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// coming soon...</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">coming
+                        soon...</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// coming
+                        soon...</p>
                 </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">coming soon...</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// coming soon...</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">coming
+                        soon...</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// coming
+                        soon...</p>
                 </div>
-                <a 
-                    href="https://github.com/ApurveKaranwal" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;"
-                >
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
+                    > VIEW_REPOSITORY
+                </a>
+            </div>
+            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">coming
+                        soon...</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// coming
+                        soon...</p>
+                </div>
+                <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
         </div>
     </section>
-    
-    <section id="academic-projects" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" style="animation-delay: 500ms; border-top-color:var(--color-accent-secondary); background-color:var(--color-card-main);">
+
+    <section id="academic-projects" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section"
+        style="animation-delay: 500ms; border-top-color:var(--color-accent-secondary); background-color:var(--color-card-main);">
         <div class="max-w-7xl mx-auto">
-            <h3 class="text-2xl sm:text-3xl font-bold mb-10 text-center pixel-text pixel-text-flicker" style="color:var(--color-accent-secondary);">[ACADEMIC] UNIVERSITY PROJECTS</h3>
-            <p class="max-w-4xl mx-auto text-center text-lg mono-tech" style="color:var(--color-text-light); opacity:0.8;">
-                // Capstones, course work, and group projects demonstrating fundamental understanding of computer science and IT principles.
+            <h3 class="text-2xl sm:text-3xl font-bold mb-10 text-center pixel-text pixel-text-flicker"
+                style="color:var(--color-accent-secondary);">[ACADEMIC] UNIVERSITY PROJECTS</h3>
+            <p class="max-w-4xl mx-auto text-center text-lg mono-tech"
+                style="color:var(--color-text-light); opacity:0.8;">
+                // Capstones, course work, and group projects demonstrating fundamental understanding of computer
+                science and IT principles.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="p-6 mono-tech pixel-block-3d" style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div class="p-6 mono-tech pixel-block-3d"
+                    style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
                     <h4 class="text-xl font-bold mb-2 mono-tech" style="color:#60a5fa;">CS50 Python</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">Gained a strong foundation in computer science and programming, covering algorithms, data structures, object-oriented programming, and real-world problem solving using Python.</p>
-                    <a href="https://github.com/ApurveKaranwal/CS50_Python" target="_blank" class="text-sm mono-tech pixel-btn-3d" style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">Gained a
+                        strong foundation in computer science and programming, covering algorithms, data structures,
+                        object-oriented programming, and real-world problem solving using Python.</p>
+                    <a href="https://github.com/ApurveKaranwal/CS50_Python" target="_blank"
+                        class="text-sm mono-tech pixel-btn-3d"
+                        style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
                         > View Code/Report
                     </a>
                 </div>
 
-                <div class="p-6 mono-tech pixel-block-3d" style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
-                    <h4 class="text-xl font-bold mb-2 mono-tech" style="color:#60a5fa;"><Wbr>Web Development Fundamentals</Wbr></h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">A static travel agency website created as part of my college web development project using HTML. It includes multiple web pages with forms, tables, internal navigation links, and marquees, showcasing the design of a travel booking site.</p>
-                    <a href="https://github.com/ApurveKaranwal/WebDesign_Assignment_MSE1" target="_blank" class="text-sm mono-tech pixel-btn-3d" style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
+                <div class="p-6 mono-tech pixel-block-3d"
+                    style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
+                    <h4 class="text-xl font-bold mb-2 mono-tech" style="color:#60a5fa;">
+                        <Wbr>Web Development Fundamentals</Wbr>
+                    </h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">A static
+                        travel agency website created as part of my college web development project using HTML. It
+                        includes multiple web pages with forms, tables, internal navigation links, and marquees,
+                        showcasing the design of a travel booking site.</p>
+                    <a href="https://github.com/ApurveKaranwal/WebDesign_Assignment_MSE1" target="_blank"
+                        class="text-sm mono-tech pixel-btn-3d"
+                        style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
                         > View Code/Report
                     </a>
                 </div>
 
-                <div class="p-6 mono-tech pixel-block-3d" style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div class="p-6 mono-tech pixel-block-3d"
+                    style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
                     <h4 class="text-xl font-bold mb-2 mono-tech" style="color:#60a5fa;">Design Thinking</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">A fully responsive, multi-page public transportation system website that demonstrates how a rapidly growing city can improve mobility using modern design, data handling, and a Node.js backend.</p>
-                    <a href="https://github.com/ApurveKaranwal/DT_Assignment" target="_blank" class="text-sm mono-tech pixel-btn-3d" style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">A fully
+                        responsive, multi-page public transportation system website that demonstrates how a rapidly
+                        growing city can improve mobility using modern design, data handling, and a Node.js backend.</p>
+                    <a href="https://github.com/ApurveKaranwal/DT_Assignment" target="_blank"
+                        class="text-sm mono-tech pixel-btn-3d"
+                        style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
                         > View Code/Report
                     </a>
                 </div>
 
-                <div class="p-6 mono-tech pixel-block-3d" style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div class="p-6 mono-tech pixel-block-3d"
+                    style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
                     <h4 class="text-xl font-bold mb-2 mono-tech" style="color:#60a5fa;">coming soon...</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">coming soon...</p>
-                    <a href="https://github.com/ApurveKaranwal" target="_blank" class="text-sm mono-tech pixel-btn-3d" style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">coming
+                        soon...</p>
+                    <a href="https://github.com/ApurveKaranwal" target="_blank" class="text-sm mono-tech pixel-btn-3d"
+                        style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
                         > View Code/Report
                     </a>
                 </div>
-                <div class="p-6 mono-tech pixel-block-3d" style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div class="p-6 mono-tech pixel-block-3d"
+                    style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
                     <h4 class="text-xl font-bold mb-2 mono-tech" style="color:#60a5fa;">coming soon...</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">coming soon...</p>
-                    <a href="https://github.com/ApurveKaranwal" target="_blank" class="text-sm mono-tech pixel-btn-3d" style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">coming
+                        soon...</p>
+                    <a href="https://github.com/ApurveKaranwal" target="_blank" class="text-sm mono-tech pixel-btn-3d"
+                        style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
                         > View Code/Report
                     </a>
                 </div>
-                <div class="p-6 mono-tech pixel-block-3d" style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div class="p-6 mono-tech pixel-block-3d"
+                    style="border-color:#60a5fa; background-color:#1e40af; box-shadow: 4px 4px 0 var(--color-card-border);">
                     <h4 class="text-xl font-bold mb-2 mono-tech" style="color:#60a5fa;">coming soon...</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">coming soon...</p>
-                    <a href="https://github.com/ApurveKaranwal" target="_blank" class="text-sm mono-tech pixel-btn-3d" style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">coming
+                        soon...</p>
+                    <a href="https://github.com/ApurveKaranwal" target="_blank" class="text-sm mono-tech pixel-btn-3d"
+                        style="border-color:var(--color-card-border); background-color:var(--color-accent-main); color:var(--color-text-dark); font-weight:700; padding:4px 8px; font-size: 0.8rem;">
                         > View Code/Report
                     </a>
                 </div>
-                
+
             </div>
         </div>
     </section>
 
-    
-    <section id="more-projects" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" style="animation-delay: 600ms; border-top-color:var(--color-accent-main);">
-        <h3 class="text-2xl sm:text-3xl font-bold mb-12 text-center pixel-text pixel-text-flicker" style="color:var(--color-accent-main);">[LAB_BUILDS] EMBEDDED SYSTEMS</h3>
+
+    <section id="more-projects" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section"
+        style="animation-delay: 600ms; border-top-color:var(--color-accent-main);">
+        <h3 class="text-2xl sm:text-3xl font-bold mb-12 text-center pixel-text pixel-text-flicker"
+            style="color:var(--color-accent-main);">[LAB_BUILDS] EMBEDDED SYSTEMS</h3>
         <p class="max-w-4xl mx-auto text-center text-lg mono-tech" style="color:var(--color-text-light); opacity:0.8;">
             // Embedded Systems, Robotics, and IoT prototypes from the personal workshop. (Data Logs Below)
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-            
+
             <div class="project-bullet color-green pixel-block-3d">
                 <span class="project-bullet-title-green">// Women Safety System</span>
-                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">Tracks live latitude, longitude, speed, and direction. Displays live location on a map of India using **NodeMCU and GPS** for emergency monitoring and location alerts.</p>
+                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">Tracks live
+                    latitude, longitude, speed, and direction. Displays live location on a map of India using **NodeMCU
+                    and GPS** for emergency monitoring and location alerts.</p>
             </div>
 
             <div class="project-bullet color-red pixel-block-3d">
                 <span class="project-bullet-title-red">// Alcohol Detection System</span>
-                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">Safety system that prevents a car from starting if the driver is intoxicated, leveraging an **Arduino microcontroller** and a precise **MQ3 alcohol sensor**.</p>
+                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">Safety system that
+                    prevents a car from starting if the driver is intoxicated, leveraging an **Arduino microcontroller**
+                    and a precise **MQ3 alcohol sensor**.</p>
             </div>
 
             <div class="project-bullet color-yellow pixel-block-3d">
                 <span class="project-bullet-title-yellow">// Smart Plant Monitoring System</span>
-                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">Monitors temperature, humidity, and soil moisture, waters plants automatically, detects intruders via **PIR sensor**, and sends alerts to mobile.</p>
+                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">Monitors
+                    temperature, humidity, and soil moisture, waters plants automatically, detects intruders via **PIR
+                    sensor**, and sends alerts to mobile.</p>
             </div>
 
             <div class="project-bullet color-blue pixel-block-3d">
                 <span class="project-bullet-title-blue">// Bluetooth Remote Control Car</span>
-                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">A versatile remote-controlled vehicle project managed entirely via a mobile phone application utilizing a **Bluetooth communication module**.</p>
+                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">A versatile
+                    remote-controlled vehicle project managed entirely via a mobile phone application utilizing a
+                    **Bluetooth communication module**.</p>
             </div>
 
             <div class="project-bullet color-orange pixel-block-3d">
                 <span class="project-bullet-title-orange">// Keypad Door Unlock System</span>
-                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">A physical security system that grants access with a correct PIN input and automatically locks the door using **Arduino** and a solenoid lock.</p>
+                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">A physical
+                    security system that grants access with a correct PIN input and automatically locks the door using
+                    **Arduino** and a solenoid lock.</p>
             </div>
 
             <div class="project-bullet color-purple pixel-block-3d">
                 <span class="project-bullet-title-purple">// Awaken Driver Glasses</span>
-                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">Innovative glasses that **vibrate** if the driver’s eyes remain closed for more than 10 seconds, serving as a critical alert to prevent drowsy driving accidents.</p>
+                <p class="text-sm mt-2 mono-tech" style="color:var(--color-text-light); opacity:0.8;">Innovative glasses
+                    that **vibrate** if the driver’s eyes remain closed for more than 10 seconds, serving as a critical
+                    alert to prevent drowsy driving accidents.</p>
             </div>
 
         </div>
     </section>
 
-    <section class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" id="experience" style="animation-delay: 800ms; border-top-color:var(--color-accent-secondary); background-color:var(--color-card-main);">
+    <!-- HELA LABS AMBASSADOR SECTION -->
+    <section id="ambassador-role" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section"
+        style="border-top-color:var(--color-accent-secondary); background-color:var(--color-bg-dark);">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 items-center p-8 rounded-lg pixel-block-3d ambassador-card"
+                style="box-shadow: 8px 8px 0 var(--color-card-border);">
+
+                <!-- Logo / Visual Column -->
+                <div class="md:col-span-1 text-center border-r-0 md:border-r-4 border-dashed py-4"
+                    style="border-color:rgba(252, 211, 77, 0.3);">
+                    <div class="inline-flex items-center justify-center w-28 h-28 rounded-full border-4 mb-4 ambassador-icon-pulse"
+                        style="border-color:var(--color-accent-secondary); background-color:var(--color-bg-dark);">
+                        <i class="fa-solid fa-handshake text-5xl gold-gradient-text"
+                            style="-webkit-text-fill-color: initial;"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold pixel-text gold-gradient-text"
+                        style="text-shadow: 2px 2px 0 rgba(0,0,0,0.5);">HELA LABS</h4>
+                    <p class="text-xs font-bold mono-tech uppercase tracking-widest mt-2"
+                        style="color:var(--color-text-light); letter-spacing: 0.15em;">Regional Ambassador</p>
+                </div>
+
+                <!-- Content Column -->
+                <div class="md:col-span-2 text-left pl-0 md:pl-6">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 pixel-text"
+                        style="color:var(--color-text-light); line-height: 1.4;">
+                        <i class="fa-solid fa-bolt text-yellow-500 mr-2"></i> POWERING THE <br /><span
+                            class="gold-gradient-text">DECENTRALIZED FRONTIER</span>
+                    </h3>
+                    <p class="text-lg mono-tech mb-6 leading-relaxed"
+                        style="color:var(--color-text-light); opacity:0.9;">
+                        As an official <strong>Community Ambassador</strong>, I bridge the gap between complex
+                        blockchain tech and the developer community. My mission is to drive <span
+                            class="text-yellow-400">adoption</span>, facilitate <span
+                            class="text-yellow-400">innovation</span>, and build a robust ecosystem on Hela Labs.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 mt-6">
+                        <a href="https://helalabs.com" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center px-8 py-3 text-sm font-bold rounded mono-tech pixel-btn-3d transition-all hover:scale-105"
+                            style="border-color:var(--color-accent-secondary); background-color:var(--color-accent-secondary); color:var(--color-text-dark); box-shadow: 4px 4px 0 rgba(0,0,0,0.5);">
+                            > ACCESS_PORTAL <i class="fa-solid fa-arrow-right ml-2 animate-bounce-x"></i>
+                        </a>
+                        <a href="mailto:apurvekaranwal2025@gmail.com"
+                            class="inline-flex items-center px-8 py-3 text-sm font-bold rounded mono-tech pixel-btn-3d opacity-80 hover:opacity-100"
+                            style="border-color:var(--color-text-light); background-color:transparent; color:var(--color-text-light);">
+                            [?] INQUIRE
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" id="experience"
+        style="animation-delay: 800ms; border-top-color:var(--color-accent-secondary); background-color:var(--color-card-main);">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
             <div>
-                <h3 class="text-2xl sm:text-3xl font-bold mb-6 pixel-text pixel-text-flicker" style="color:var(--color-accent-main);">[ACCESS] PROFESSIONAL TRACK</h3>
+                <h3 class="text-2xl sm:text-3xl font-bold mb-6 pixel-text pixel-text-flicker"
+                    style="color:var(--color-accent-main);">[ACCESS] PROFESSIONAL TRACK</h3>
                 <ul class="space-y-6 text-lg mono-tech">
-                    <li class="p-4 border-l-4 rounded-md pixel-block-3d" style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">IoT & Robotics Project Developer (Personal)</span>
-                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Designed and implemented high-impact IoT and robotics projects using embedded systems like NodeMCU and Arduino.</span>
+                    <li class="p-4 border-l-4 rounded-md pixel-block-3d"
+                        style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">IoT &
+                            Robotics Project Developer (Personal)</span>
+                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Designed and
+                            implemented high-impact IoT and robotics projects using embedded systems like NodeMCU and
+                            Arduino.</span>
                     </li>
-                    <li class="p-4 border-l-4 rounded-md pixel-block-3d" style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Active Member: FOSSCU-K</span>
-                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Proud member of FOSSCU-K, learning open-source and vibing with the top-tier brains of KIET.</span>
+                    <li class="p-4 border-l-4 rounded-md pixel-block-3d"
+                        style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Active
+                            Member: FOSSCU-K</span>
+                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Proud member of
+                            FOSSCU-K, learning open-source and vibing with the top-tier brains of KIET.</span>
                     </li>
-                    <li class="p-4 border-l-4 rounded-md pixel-block-3d" style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Active Member: Geek Room KIET (GRK)</span>
-                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Engaged member of GRK, learning from mentors and collaborating on innovative, hands-on software and hardware projects.</span>
+                    <li class="p-4 border-l-4 rounded-md pixel-block-3d"
+                        style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Active
+                            Member: Geek Room KIET (GRK)</span>
+                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Engaged member
+                            of GRK, learning from mentors and collaborating on innovative, hands-on software and
+                            hardware projects.</span>
                     </li>
-                    <li class="p-4 border-l-4 rounded-md pixel-block-3d" style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Active Member: Google Developer Group (GDG)</span>
-                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Actively involved in the GDG community, focusing on collaborative learning and practical project development.</span>
+                    <li class="p-4 border-l-4 rounded-md pixel-block-3d"
+                        style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Active
+                            Member: Google Developer Group (GDG)</span>
+                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Actively
+                            involved in the GDG community, focusing on collaborative learning and practical project
+                            development.</span>
                     </li>
                 </ul>
             </div>
             <div>
-                <h3 class="text-2xl sm:text-3xl font-bold mb-6 pixel-text pixel-text-flicker" style="color:var(--color-accent-main);">[ACCESS] CERTIFICATIONS</h3>
+                <h3 class="text-2xl sm:text-3xl font-bold mb-6 pixel-text pixel-text-flicker"
+                    style="color:var(--color-accent-main);">[ACCESS] CERTIFICATIONS</h3>
                 <ul class="space-y-6 text-lg mono-tech">
-                    <li class="p-4 border-l-4 rounded-md pixel-block-3d" style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">CS50P – Introduction to Programming with Python</span> (HarvardX)
-                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">– Near Completion (Excellent foundation in Python fundamentals).</span>
+                    <li class="p-4 border-l-4 rounded-md pixel-block-3d"
+                        style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">CS50P –
+                            Introduction to Programming with Python</span> (HarvardX)
+                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">– Near
+                            Completion (Excellent foundation in Python fundamentals).</span>
                     </li>
-                    <li class="p-4 border-l-4 rounded-md pixel-block-3d" style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Inspire MANAK Award (2x)</span> ( Government of India)
-                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Two-time district-level awardee, receiving ₹10,000 each for innovative, high-potential projects.</span>
+                    <li class="p-4 border-l-4 rounded-md pixel-block-3d"
+                        style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Inspire
+                            MANAK Award (2x)</span> ( Government of India)
+                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Two-time
+                            district-level awardee, receiving ₹10,000 each for innovative, high-potential
+                            projects.</span>
                     </li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <section class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" id="education" style="animation-delay: 1000ms; border-top-color:var(--color-accent-main);">
+    <section class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" id="education"
+        style="animation-delay: 1000ms; border-top-color:var(--color-accent-main);">
         <div class="max-w-7xl mx-auto">
-            <h3 class="text-2xl sm:text-3xl font-bold mb-10 pixel-text pixel-text-flicker" style="color:var(--color-accent-main);">[INIT] EDUCATION & AWARDS</h3>
+            <h3 class="text-2xl sm:text-3xl font-bold mb-10 pixel-text pixel-text-flicker"
+                style="color:var(--color-accent-main);">[INIT] EDUCATION & AWARDS</h3>
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="p-6 rounded-lg pixel-block-3d" style="border-color:var(--color-accent-secondary); background-color:var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">B.TECH (IT)</h4>
-                    <p class="font-semibold mono-tech" style="color:var(--color-text-light);">KIET Group of Institutions</p>
-                    <p class="text-sm mono-tech" style="color:var(--color-text-light); opacity:0.7;">2025 – 2029 | Expected Graduation</p>
-                    <p class="text-sm mt-3 mono-tech" style="color:var(--color-text-light); opacity:0.7;">Concentrating on artificial intelligence, machine learning, and smart device development.</p>
+                <div class="p-6 rounded-lg pixel-block-3d"
+                    style="border-color:var(--color-accent-secondary); background-color:var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">B.TECH
+                        (IT)</h4>
+                    <p class="font-semibold mono-tech" style="color:var(--color-text-light);">KIET Group of Institutions
+                    </p>
+                    <p class="text-sm mono-tech" style="color:var(--color-text-light); opacity:0.7;">2025 – 2029 |
+                        Expected Graduation</p>
+                    <p class="text-sm mt-3 mono-tech" style="color:var(--color-text-light); opacity:0.7;">Concentrating
+                        on artificial intelligence, machine learning, and smart device development.</p>
                 </div>
-                <div class="p-6 rounded-lg pixel-block-3d" style="border-color:var(--color-accent-secondary); background-color:var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">FIRST PRIZE WINNER</h4>
+                <div class="p-6 rounded-lg pixel-block-3d"
+                    style="border-color:var(--color-accent-secondary); background-color:var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">FIRST
+                        PRIZE WINNER</h4>
                     <p class="font-semibold mono-tech" style="color:var(--color-text-light);">Bansuri Mahotsav 2022</p>
-                    <p class="text-sm mono-tech" style="color:var(--color-text-light); opacity:0.7;">Awarded for the 'WOMEN SAFETY SYSTEM' project.</p>
-                    <p class="text-sm mt-3 mono-tech" style="color:var(--color-text-light); opacity:0.7;">Recognized for using IoT, with efficient alert mechanisms and reliable location tracking.</p>
+                    <p class="text-sm mono-tech" style="color:var(--color-text-light); opacity:0.7;">Awarded for the
+                        'WOMEN SAFETY SYSTEM' project.</p>
+                    <p class="text-sm mt-3 mono-tech" style="color:var(--color-text-light); opacity:0.7;">Recognized for
+                        using IoT, with efficient alert mechanisms and reliable location tracking.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" id="hobbies" style="animation-delay: 1200ms; border-top-color:var(--color-accent-secondary); background-color:var(--color-card-main);">
+    <section class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" id="hobbies"
+        style="animation-delay: 1200ms; border-top-color:var(--color-accent-secondary); background-color:var(--color-card-main);">
         <div class="max-w-7xl mx-auto text-center">
-            <h3 class="text-2xl sm:text-3xl font-bold mb-6 pixel-text pixel-text-flicker" style="color:var(--color-accent-secondary);">[LOG] MY LAB & INTERESTS</h3>
-            <div class="p-8 rounded-lg max-w-4xl mx-auto pixel-block-3d" style="border-color:var(--color-accent-main); background-color:var(--color-bg-dark); box-shadow: 6px 6px 0 var(--color-card-border);">
+            <h3 class="text-2xl sm:text-3xl font-bold mb-6 pixel-text pixel-text-flicker"
+                style="color:var(--color-accent-secondary);">[LOG] MY LAB & INTERESTS</h3>
+            <div class="p-8 rounded-lg max-w-4xl mx-auto pixel-block-3d"
+                style="border-color:var(--color-accent-main); background-color:var(--color-bg-dark); box-shadow: 6px 6px 0 var(--color-card-border);">
                 <p class="text-lg mono-tech" style="color:var(--color-text-light);">
-                    // Personal Data Feed: In my free time, I love playing the **piano**, listening to my favorite songs, diving into **PC games**, and exploring new **books**.
+                    // Personal Data Feed: In my free time, I love playing the **piano**, listening to my favorite
+                    songs, diving into **PC games**, and exploring new **books**.
                 </p>
             </div>
         </div>
     </section>
-    
-    <section class="py-12 px-8 text-center responsive-p animated-section" style="animation-delay: 1400ms; background-color:var(--color-accent-main); border-top: 4px solid var(--color-card-border);">
+
+    <section class="py-12 px-8 text-center responsive-p animated-section"
+        style="animation-delay: 1400ms; background-color:var(--color-accent-main); border-top: 4px solid var(--color-card-border);">
         <div class="max-w-4xl mx-auto">
-            <h3 class="text-3xl font-bold mb-6 pixel-text" style="color:var(--color-text-dark); text-shadow: 2px 2px 0 var(--color-text-light);">READY FOR LEVEL UP?</h3>
+            <h3 class="text-3xl font-bold mb-6 pixel-text"
+                style="color:var(--color-text-dark); text-shadow: 2px 2px 0 var(--color-text-light);">READY FOR LEVEL
+                UP?</h3>
             <p class="text-xl mb-8 mono-tech" style="color:var(--color-card-border); font-weight:700;">
-                [LOG: REQUESTING CONNECTION] If you're looking for a passionate builder to join your team or collaborate on a high-impact project, execute the command below.
+                [LOG: REQUESTING CONNECTION] If you're looking for a passionate builder to join your team or collaborate
+                on a high-impact project, execute the command below.
             </p>
-            <a href="mailto:apurvekaranwal2025@gmail.com" class="inline-block px-10 py-4 font-extrabold text-xl rounded-lg mono-tech glitch-on-hover pixel-block-3d-cta"
-                style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); box-shadow: 6px 6px 0 var(--color-card-border); font-weight:700;"
-            >
+            <a href="mailto:apurvekaranwal2025@gmail.com"
+                class="inline-block px-10 py-4 font-extrabold text-xl rounded-lg mono-tech glitch-on-hover pixel-block-3d-cta"
+                style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); box-shadow: 6px 6px 0 var(--color-card-border); font-weight:700;">
                 > SEND_MESSAGE_EMAIL
             </a>
         </div>
     </section>
 
-    <footer class="p-6 border-t-4 footer-bg text-center text-sm mt-0" style="border-top-color: var(--color-accent-main);">
-        <p class="mono-tech" style="color:var(--color-accent-main);">System Status: OK. Built by Apurve with <span style="color:#ef4444;">❤️</span> | All rights reserved &copy; 2025</p>
+    <footer class="p-6 border-t-4 footer-bg text-center text-sm mt-0"
+        style="border-top-color: var(--color-accent-main);">
+        <p class="mono-tech" style="color:var(--color-accent-main);">System Status: OK. Built by Apurve with <span
+                style="color:#ef4444;">❤️</span> | All rights reserved &copy; 2025</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* --- AUDIO SYSTEM --- */
+            let audioCtx = null; // Init on first interaction
+            let isMuted = true; // Default muted for UX
+
+            const audioToggle = document.getElementById('audio-toggle');
+            const audioIcon = document.getElementById('audio-icon');
+
+            // Init Audio Context on user interaction (browser policy)
+            function initAudio() {
+                if (!audioCtx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    audioCtx = new AudioContext();
+                }
+            }
+
+            // Synth Sound Generator
+            function playSound(type) {
+                if (isMuted || !audioCtx) return;
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'hover') {
+                    // High pitch blip
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(800, now);
+                    osc.frequency.exponentialRampToValueAtTime(1200, now + 0.05);
+                    gain.gain.setValueAtTime(0.05, now); // Quiet
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                } else if (type === 'click') {
+                    // Low pitch confirm
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(200, now);
+                    osc.frequency.exponentialRampToValueAtTime(50, now + 0.1);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+                    osc.start(now);
+                    osc.stop(now + 0.1);
+                } else if (type === 'matrix') {
+                    // Matrix Loop Start sound
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(100, now);
+                    osc.frequency.linearRampToValueAtTime(800, now + 1);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.linearRampToValueAtTime(0, now + 1);
+                    osc.start(now);
+                    osc.stop(now + 1);
+                }
+            }
+
+            // Bind Events
+            document.querySelectorAll('a, button, .project-card, .pixel-block-3d').forEach(el => {
+                el.addEventListener('mouseenter', () => playSound('hover'));
+                el.addEventListener('click', () => playSound('click'));
+            });
+
+            // Toggle logic
+            audioToggle.addEventListener('click', () => {
+                initAudio();
+                isMuted = !isMuted;
+                if (!isMuted) {
+                    audioIcon.classList.replace('fa-volume-xmark', 'fa-volume-high');
+                    playSound('click'); // Feedback
+                } else {
+                    audioIcon.classList.replace('fa-volume-high', 'fa-volume-xmark');
+                }
+            });
+
+
+            /* --- KONAMI CODE MATRIX EASTER EGG --- */
+            const secretCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+            let currentSequence = [];
+
+            const canvas = document.getElementById('matrix-canvas');
+            const ctx = canvas.getContext('2d');
+            let matrixInterval;
+
+            document.addEventListener('keydown', (e) => {
+                currentSequence.push(e.key);
+                // Keep sequence same length as code
+                if (currentSequence.length > secretCode.length) {
+                    currentSequence.shift();
+                }
+                // Check match
+                if (JSON.stringify(currentSequence) === JSON.stringify(secretCode)) {
+                    triggerMatrix();
+                    currentSequence = []; // Reset
+                }
+            });
+
+            function triggerMatrix() {
+                initAudio();
+                if (!isMuted) playSound('matrix');
+
+                canvas.style.display = 'block';
+                canvas.style.pointerEvents = 'auto'; // Enable clicking to close
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヂギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+                const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                const nums = '0123456789';
+                const alphabet = katakana + latin + nums;
+
+                const fontSize = 16;
+                const columns = canvas.width / fontSize;
+                const drops = [];
+
+                for (let x = 0; x < columns; x++) {
+                    drops[x] = 1;
+                }
+
+                const draw = () => {
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    ctx.fillStyle = '#0F0'; // Green text
+                    ctx.font = fontSize + 'px monospace';
+
+                    for (let i = 0; i < drops.length; i++) {
+                        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                            drops[i] = 0;
+
+                        drops[i]++;
+                    }
+                };
+
+                if (matrixInterval) clearInterval(matrixInterval);
+                matrixInterval = setInterval(draw, 30);
+
+                // Click to close
+                canvas.addEventListener('click', () => {
+                    canvas.style.display = 'none';
+                    canvas.style.pointerEvents = 'none'; // Reset pointer events
+                    clearInterval(matrixInterval);
+                }, { once: true });
+            }
+
+            // Handle Resize
+            window.addEventListener('resize', () => {
+                if (canvas.style.display === 'block') {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+            });
+
+        });
+    </script>
 </body>
+
 </html>
