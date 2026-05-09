@@ -1,4 +1,4 @@
-﻿/* MINECRAFT/PIXEL COLOR PALETTE */
+/* MINECRAFT/PIXEL COLOR PALETTE */
 :root {
     /* Blocky, Earthy Colors */
     --color-bg-dark: #2c4241;
@@ -820,5 +820,244 @@ body {
     pointer-events: none;
     animation: chainPulse 3s ease-in-out infinite;
     box-shadow: 0 0 10px rgba(98, 126, 234, 0.5);
+}
+
+/* === MISSING UTILITY CLASSES === */
+
+/* Section animation (fade-in on scroll via IntersectionObserver) */
+.animated-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.animated-section.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive padding utility used on sections */
+.responsive-p {
+    padding-left: clamp(1rem, 4vw, 4rem);
+    padding-right: clamp(1rem, 4vw, 4rem);
+}
+
+/* Project Bullet cards (Embedded Systems section) */
+.project-bullet {
+    padding: 1rem 1.25rem;
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-radius: 0;
+}
+
+.project-bullet-title-green  { color: #4ade80; font-weight: 700; font-family: "Space Mono", monospace; }
+.project-bullet-title-red    { color: #f87171; font-weight: 700; font-family: "Space Mono", monospace; }
+.project-bullet-title-yellow { color: #fcd34d; font-weight: 700; font-family: "Space Mono", monospace; }
+.project-bullet-title-blue   { color: #60a5fa; font-weight: 700; font-family: "Space Mono", monospace; }
+.project-bullet-title-orange { color: #fb923c; font-weight: 700; font-family: "Space Mono", monospace; }
+.project-bullet-title-purple { color: #c084fc; font-weight: 700; font-family: "Space Mono", monospace; }
+
+.color-green  { border-left-color: #4ade80; background-color: rgba(74, 222, 128, 0.06); }
+.color-red    { border-left-color: #f87171; background-color: rgba(248, 113, 113, 0.06); }
+.color-yellow { border-left-color: #fcd34d; background-color: rgba(252, 211, 77, 0.06); }
+.color-blue   { border-left-color: #60a5fa; background-color: rgba(96, 165, 250, 0.06); }
+.color-orange { border-left-color: #fb923c; background-color: rgba(251, 146, 60, 0.06); }
+.color-purple { border-left-color: #c084fc; background-color: rgba(192, 132, 252, 0.06); }
+
+/* Fluid progress bar */
+.progress-bar-container {
+    width: min(300px, 80vw);
+}
+
+/* Pong canvas responsive */
+#pong-canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mobile touch controls for Pong */
+.pong-touch-controls {
+    display: none;
+}
+
+/* === RESPONSIVE BREAKPOINTS === */
+
+/* ── Tablet / small desktop ≤ 900px ── */
+@media (max-width: 900px) {
+    .hero-title-pixel {
+        font-size: clamp(1rem, 4vw, 2rem) !important;
+    }
+    .pong-container {
+        padding: 20px 12px;
+    }
+}
+
+/* ── Tablet ≤ 768px ── */
+@media (max-width: 768px) {
+    /* Hero */
+    .hero-title-pixel {
+        font-size: clamp(0.85rem, 3.5vw, 1.6rem) !important;
+    }
+
+    /* Ambassador section: remove vertical divider border */
+    .ambassador-card .md\:border-r-4 {
+        border-right: none !important;
+    }
+
+    /* Open-source / academic grids → single column */
+    .grid.md\:grid-cols-3,
+    .grid.md\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Experience section stack */
+    .grid.md\:grid-cols-2.gap-12 {
+        gap: 2rem !important;
+    }
+
+    /* Pong canvas */
+    .pong-container {
+        padding: 16px 8px;
+        width: 95%;
+    }
+    #pong-canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Show touch controls */
+    .pong-touch-controls {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+        margin-top: 12px;
+    }
+    .pong-touch-btn {
+        flex: 1;
+        padding: 14px 0;
+        font-size: 1.4rem;
+        border: 2px solid var(--color-accent-main);
+        background: transparent;
+        color: var(--color-accent-main);
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: "Space Mono", monospace;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    .pong-touch-btn:active {
+        background: var(--color-card-main);
+    }
+
+    /* Pong controls text */
+    .pong-controls {
+        font-size: 0.7rem;
+    }
+
+    /* Resume / Code modal containers */
+    .resume-container,
+    .code-container {
+        padding: 24px 16px;
+        width: 95%;
+    }
+    .resume-header h2,
+    .code-header h2 {
+        font-size: 1rem;
+    }
+    .resume-message,
+    .code-title {
+        font-size: 0.8rem;
+    }
+    .resume-buttons,
+    .code-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .resume-btn,
+    .code-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ── Small phones ≤ 640px ── */
+@media (max-width: 640px) {
+    /* Header: make nav buttons icon-only, allow wrap */
+    header .flex.gap-3 {
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 6px;
+    }
+    header .pixel-btn-3d {
+        padding: 6px 8px;
+    }
+
+    /* Hero section */
+    .hero-title-pixel {
+        font-size: clamp(0.7rem, 3vw, 1.2rem) !important;
+    }
+    section.text-center.responsive-p {
+        padding: 2rem 1rem !important;
+    }
+
+    /* System status card */
+    #system-status .max-w-md {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    /* Skills section — tighter tags */
+    .skill-tag {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+
+    /* Project cards */
+    .project-card {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* CTA button */
+    .pixel-block-3d-cta {
+        font-size: 0.9rem !important;
+        padding: 0.6rem 1.2rem !important;
+    }
+
+    /* Footer */
+    footer p {
+        font-size: 0.7rem;
+    }
+
+    /* Audio toggle position */
+    #audio-toggle {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 8px;
+    }
+
+    /* Preloader progress bar */
+    .progress-bar-container {
+        width: 80vw;
+    }
+    .loader-text {
+        font-size: 0.75rem;
+        text-align: center;
+        padding: 0 1rem;
+    }
+}
+
+/* ── Very small phones ≤ 400px ── */
+@media (max-width: 400px) {
+    .hero-title-pixel {
+        font-size: clamp(0.55rem, 2.5vw, 0.9rem) !important;
+        letter-spacing: 0;
+    }
+    header a.pixel-text {
+        font-size: 0.8rem !important;
+    }
+    .pixel-block-3d-cta {
+        font-size: 0.75rem !important;
+    }
 }
 ﻿

@@ -1,4 +1,4 @@
-﻿
+
 document.addEventListener("DOMContentLoaded", () => {
     // === WEB3 PHYSICAL ELEMENTS ===
 
@@ -365,6 +365,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openPongGame() {
         pongModal.classList.add("active");
+
+        // Resize canvas to fit container on small screens
+        const container = document.querySelector(".pong-container");
+        if (container) {
+            const maxW = Math.min(700, container.clientWidth - 24);
+            const ratio = maxW / 700;
+            canvas.width = maxW;
+            canvas.height = Math.round(400 * ratio);
+            // Re-init game positions to match new dimensions
+            game.leftPaddle.x = 10;
+            game.leftPaddle.y = canvas.height / 2 - paddleHeight / 2;
+            game.rightPaddle.x = canvas.width - paddleWidth - 10;
+            game.rightPaddle.y = canvas.height / 2 - paddleHeight / 2;
+        }
+
         gameRunning = true;
         gamePaused = false;
         game.leftScore = 0;
@@ -392,6 +407,26 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === pongModal) {
             closePongGame();
         }
+    });
+
+    // === MOBILE TOUCH CONTROLS FOR PONG ===
+    const touchBtns = {
+        "touch-left-up":    { key: "w",          down: true },
+        "touch-left-down":  { key: "s",          down: true },
+        "touch-right-up":   { key: "ArrowUp",    down: true },
+        "touch-right-down": { key: "ArrowDown",  down: true },
+    };
+    Object.entries(touchBtns).forEach(([id, cfg]) => {
+        const btn = document.getElementById(id);
+        if (!btn) return;
+        const press   = () => { game.keys[cfg.key] = true; };
+        const release = () => { game.keys[cfg.key] = false; };
+        btn.addEventListener("touchstart",  press,   { passive: true });
+        btn.addEventListener("touchend",    release, { passive: true });
+        btn.addEventListener("touchcancel", release, { passive: true });
+        btn.addEventListener("mousedown",   press);
+        btn.addEventListener("mouseup",     release);
+        btn.addEventListener("mouseleave",  release);
     });
 
     document.addEventListener("keydown", (e) => {
