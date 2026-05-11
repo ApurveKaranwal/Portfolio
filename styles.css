@@ -979,6 +979,39 @@ body {
     }
 }
 
+/* === BLOG ARTICLE CARDS === */
+
+.blog-article-card {
+    border-radius: 0;
+    transition: all 0.2s ease-out;
+    position: relative;
+}
+
+.blog-article-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 7px 7px 0 var(--color-card-border) !important;
+}
+
+.blog-article-card:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--color-card-border) !important;
+}
+
+.blog-article-card h4 {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    text-shadow: 2px 2px 0 var(--color-card-border);
+    line-height: 1.2;
+}
+
+.blog-article-card .pixel-btn-3d {
+    transition: all 0.2s ease;
+}
+
+.blog-article-card .pixel-btn-3d:hover {
+    background-color: var(--color-accent-secondary) !important;
+    transform: translate(2px, 2px);
+}
+
 /* ── Small phones ≤ 640px ── */
 @media (max-width: 640px) {
     /* Header: make nav buttons icon-only, allow wrap */
