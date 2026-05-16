@@ -1187,3 +1187,254 @@ body {
     margin-top: 5px;
     letter-spacing: 1px;
 }
+
+/* === ADVANCED EASTER EGGS === */
+
+/* Custom Cursor */
+@media (pointer: fine) {
+    body {
+        cursor: none;
+    }
+    a, button, input, .project-card, .pixel-btn-3d {
+        cursor: none !important;
+    }
+}
+
+#custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 6px; height: 6px;
+    background-color: #00f5ff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+    box-shadow: 0 0 10px #00f5ff;
+}
+
+#cursor-trail {
+    position: fixed;
+    top: 0; left: 0;
+    width: 30px; height: 30px;
+    border: 2px solid rgba(0, 245, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999998;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, border-color 0.2s;
+}
+
+.cursor-hover #custom-cursor {
+    width: 12px; height: 12px;
+    background-color: #fcd34d;
+    box-shadow: 0 0 15px #fcd34d;
+}
+
+.cursor-hover #cursor-trail {
+    width: 50px; height: 50px;
+    border-color: rgba(252, 211, 77, 0.8);
+}
+
+/* Retro CRT Mode */
+.crt-mode {
+    animation: crt-flicker 0.15s infinite;
+    text-shadow: 1px 0 1px rgba(255,0,0,0.5), -1px 0 1px rgba(0,0,255,0.5);
+    overflow: hidden;
+}
+
+.crt-mode::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 99999;
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
+}
+
+@keyframes crt-flicker {
+    0% { opacity: 0.95; }
+    100% { opacity: 1; }
+}
+
+/* Nuke Overlay */
+#nuke-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(255,0,0,0.2);
+    z-index: 13000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    animation: alarm-flash 1s infinite alternate;
+}
+
+@keyframes alarm-flash {
+    0% { background-color: rgba(255,0,0,0.1); }
+    100% { background-color: rgba(255,0,0,0.5); }
+}
+
+.nuke-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 150px;
+    color: #fff;
+    text-shadow: 0 0 50px #f00;
+}
+
+.fall-down {
+    transition: transform 3s cubic-bezier(0.55, 0.085, 0.68, 0.53) !important;
+    transform: translateY(150vh) rotate(25deg) !important;
+    pointer-events: none;
+}
+
+/* CLI Mode */
+#cli-mode-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #000;
+    z-index: 15000;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Space Mono', monospace;
+    color: #0f0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+#cli-output {
+    white-space: pre-wrap;
+    margin-bottom: 10px;
+}
+
+.cli-input-line {
+    display: flex;
+    align-items: center;
+}
+
+.cli-prompt {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #0f0;
+}
+
+#cli-input {
+    background: transparent;
+    border: none;
+    color: #0f0;
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    flex-grow: 1;
+    outline: none;
+}
+
+/* === PHASE 3 INTERACTIVE FEATURES === */
+
+/* Voice Button Active State */
+.voice-active {
+    animation: pulse-red 1s infinite alternate;
+    background-color: #ef4444 !important;
+}
+
+@keyframes pulse-red {
+    from { box-shadow: 0 0 10px #ef4444; }
+    to { box-shadow: 0 0 30px #ef4444; }
+}
+
+/* Dark Web Mode */
+.dark-web-mode {
+    --color-bg-dark: #0a0a0a !important;
+    --color-card-main: #171717 !important;
+    --color-card-border: #000000 !important;
+    --color-accent-main: #ff0000 !important;
+    --color-accent-secondary: #ffffff !important;
+    --color-text-light: #d1d5db !important;
+    --color-text-dark: #000000 !important;
+    background-image: radial-gradient(rgba(255, 0, 0, 0.1) 1px, transparent 0) !important;
+}
+
+.dark-web-mode .header-bg, .dark-web-mode .footer-bg {
+    background-color: #000000 !important;
+    border-color: #ff0000 !important;
+}
+
+.dark-web-mode .pixel-btn-3d {
+    background-color: #262626 !important;
+    border-color: #ff0000 !important;
+    color: #ffffff !important;
+}
+
+.dark-web-mode .project-card, .dark-web-mode .skill-tag {
+    background-color: #1a1a1a !important;
+    border-color: #ff0000 !important;
+    color: #ff0000 !important;
+}
+
+/* Boss Fight Overlay */
+#boss-fight-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 14000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: crosshair !important;
+}
+
+.boss-health-bar-container {
+    width: 60%;
+    height: 30px;
+    background-color: #333;
+    border: 4px solid #fff;
+    margin-top: 50px;
+    box-shadow: 0 0 20px #ff0000;
+}
+
+#boss-health-bar {
+    width: 100%;
+    height: 100%;
+    background-color: #ff0000;
+    transition: width 0.1s;
+}
+
+#boss-character {
+    font-size: 150px;
+    color: #00f5ff;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 0 0 50px #00f5ff;
+    transition: transform 0.1s, top 0.1s, left 0.1s;
+    user-select: none;
+}
+
+#boss-character.hit {
+    color: #ff0000;
+    text-shadow: 0 0 50px #ff0000;
+    transform: translateX(-50%) scale(0.9);
+}
+
+.boss-instructions {
+    position: absolute;
+    bottom: 50px;
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    font-size: 20px;
+    animation: text-blink 1s infinite alternate;
+}
+
+.explosion {
+    animation: explode 0.5s forwards;
+}
+
+@keyframes explode {
+    0% { transform: translateX(-50%) scale(1); opacity: 1; filter: brightness(1); }
+    50% { transform: translateX(-50%) scale(2); opacity: 1; filter: brightness(2); }
+    100% { transform: translateX(-50%) scale(0); opacity: 0; filter: brightness(3); }
+}

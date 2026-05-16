@@ -645,7 +645,11 @@ document.addEventListener("DOMContentLoaded", () => {
             currentSequence.shift();
         }
         if (JSON.stringify(currentSequence) === JSON.stringify(secretCode)) {
-            triggerMatrix();
+            if (typeof startBossFight === "function") {
+                startBossFight();
+            } else {
+                triggerMatrix();
+            }
             currentSequence = [];
         }
     });
@@ -800,4 +804,418 @@ document.addEventListener("DOMContentLoaded", () => {
             canvas.height = window.innerHeight;
         }
     });
+
+    // --- ADVANCED EASTER EGGS LOGIC ---
+
+    // 1. Custom Cursor
+    const customCursor = document.getElementById("custom-cursor");
+    const cursorTrail = document.getElementById("cursor-trail");
+    if (customCursor && cursorTrail) {
+        let cursorX = window.innerWidth / 2, cursorY = window.innerHeight / 2;
+        let trailX = cursorX, trailY = cursorY;
+
+        document.addEventListener("mousemove", (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+            customCursor.style.left = cursorX + "px";
+            customCursor.style.top = cursorY + "px";
+        });
+
+        function animateTrail() {
+            trailX += (cursorX - trailX) * 0.15;
+            trailY += (cursorY - trailY) * 0.15;
+            cursorTrail.style.left = trailX + "px";
+            cursorTrail.style.top = trailY + "px";
+            requestAnimationFrame(animateTrail);
+        }
+        animateTrail();
+
+        document.querySelectorAll("a, button, input, .project-card, .pixel-btn-3d").forEach(el => {
+            el.addEventListener("mouseenter", () => document.body.classList.add("cursor-hover"));
+            el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-hover"));
+        });
+    }
+
+    // 2. Retro CRT TV Filter
+    const retroCode = ["r", "e", "t", "r", "o"];
+    let retroSequence = [];
+
+    document.addEventListener("keydown", (e) => {
+        retroSequence.push(e.key.toLowerCase());
+        if (retroSequence.length > retroCode.length) {
+            retroSequence.shift();
+        }
+        if (JSON.stringify(retroSequence) === JSON.stringify(retroCode)) {
+            document.body.classList.toggle("crt-mode");
+            retroSequence = [];
+            if ('speechSynthesis' in window) {
+                const u = new SpeechSynthesisUtterance(document.body.classList.contains("crt-mode") ? "Retro Mode Activated" : "Retro Mode Deactivated");
+                u.pitch = 0.8;
+                window.speechSynthesis.speak(u);
+            }
+        }
+    });
+
+    // 3. Self-Destruct Protocol
+    const nukeBtn = document.getElementById("nuke-btn");
+    const nukeOverlay = document.getElementById("nuke-overlay");
+    const nukeCountdown = document.getElementById("nuke-countdown");
+    let isNuked = false;
+
+    if (nukeBtn) {
+        nukeBtn.addEventListener("click", () => {
+            if (isNuked) return;
+            isNuked = true;
+            
+            nukeOverlay.style.display = "flex";
+            if ('speechSynthesis' in window) {
+                const u = new SpeechSynthesisUtterance("Warning. Self destruct sequence initiated.");
+                u.pitch = 0.5;
+                u.rate = 1.1;
+                window.speechSynthesis.speak(u);
+            }
+
+            let count = 5;
+            nukeCountdown.innerText = "0" + count;
+            
+            const countdownInterval = setInterval(() => {
+                count--;
+                nukeCountdown.innerText = "0" + count;
+                if (count <= 0) {
+                    clearInterval(countdownInterval);
+                    nukeOverlay.style.display = "none";
+                    
+                    document.querySelectorAll("section, header, footer, canvas").forEach(el => {
+                        el.classList.add("fall-down");
+                        el.style.transform = `translateY(150vh) rotate(${(Math.random() - 0.5) * 60}deg)`;
+                        el.style.transitionDuration = (1 + Math.random() * 2) + "s";
+                    });
+                }
+            }, 1000);
+        });
+    }
+
+    // 4. CLI Mode
+    const cliModeBtn = document.getElementById("cli-mode-btn");
+    const cliOverlay = document.getElementById("cli-mode-overlay");
+    const cliInput = document.getElementById("cli-input");
+    const cliOutput = document.getElementById("cli-output");
+
+    if (cliModeBtn && cliOverlay) {
+        cliModeBtn.addEventListener("click", () => {
+            cliOverlay.style.display = "flex";
+            cliInput.focus();
+            cliOutput.innerHTML = "Welcome to APURVE.DEV Terminal v1.0.0\nType 'help' to see available commands.\n\n";
+        });
+
+        cliOverlay.addEventListener("click", () => cliInput.focus());
+
+        cliInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                const cmd = cliInput.value.trim().toLowerCase();
+                cliInput.value = "";
+                cliOutput.innerHTML += `<span style="color:#0f0;">admin@apurve.dev:~$ </span>${cmd}\n`;
+                
+                if (cmd === "help") {
+                    cliOutput.innerHTML += `Available commands:\n  help      - show this message\n  whoami    - about the author\n  ls        - list files and directories\n  cat       - display file contents (try 'cat skills.txt')\n  open      - open a section (try 'open projects')\n  date      - show current system date and time\n  echo      - print text to terminal\n  matrix    - ???\n  sudo      - execute a command as superuser\n  clear     - clear terminal\n  exit      - exit terminal mode\n`;
+                } else if (cmd === "whoami") {
+                    cliOutput.innerHTML += `Name: Apurve Karanwal\nRole: Full-Stack Developer & IoT Engineer\nLocation: Asia/Delhi\nStatus: Building the future.\nBio: I specialize in creating high-performance web applications, scalable backend systems, and hardware-software integrations. Passionate about AI, 3D web experiences, and cypherpunk aesthetics.\n`;
+                } else if (cmd === "ls") {
+                    cliOutput.innerHTML += `skills.txt   projects.dir   education.txt   hobbies.txt   resume.pdf   top_secret.enc\n`;
+                } else if (cmd === "cat skills.txt") {
+                    cliOutput.innerHTML += `[LANGUAGES]: Python, JavaScript, HTML5, CSS3, C++\n[BACKEND]: Node.js, Express, FastAPI, Django\n[DATABASES]: MongoDB, PostgreSQL, MySQL\n[TOOLS]: Docker, Git, Linux, Postman\n[HARDWARE]: Arduino, Raspberry Pi, IoT Sensors\n`;
+                } else if (cmd === "cat education.txt") {
+                    cliOutput.innerHTML += `B.Tech in Computer Science and Engineering\nFocus: Software Engineering, Data Structures, Algorithms, and System Design.\n`;
+                } else if (cmd === "cat hobbies.txt") {
+                    cliOutput.innerHTML += `1. Coding side projects (like this terminal!)\n2. Exploring Web3 and AI tech\n3. Hardware tinkering\n4. Gaming\n`;
+                } else if (cmd === "cat top_secret.enc") {
+                    cliOutput.innerHTML += `Access Denied: File is encrypted with AES-256. Requires superuser privileges.\n`;
+                } else if (cmd === "sudo cat top_secret.enc") {
+                    cliOutput.innerHTML += `Decrypting...\n...\n...\nThe cake is a lie.\nAlso, try typing 'matrix' or 'retro'.\n`;
+                } else if (cmd.startsWith("cat ")) {
+                    cliOutput.innerHTML += `cat: ${cmd.substring(4)}: No such file or directory\n`;
+                } else if (cmd.startsWith("echo ")) {
+                    cliOutput.innerHTML += `${cmd.substring(5)}\n`;
+                } else if (cmd === "date") {
+                    cliOutput.innerHTML += `${new Date().toString()}\n`;
+                } else if (cmd === "matrix") {
+                    cliOutput.innerHTML += `Initializing Matrix Protocol...\n`;
+                    setTimeout(() => {
+                        cliOverlay.style.display = "none";
+                        if (typeof triggerMatrix === "function") triggerMatrix();
+                    }, 800);
+                } else if (cmd === "retro") {
+                    cliOutput.innerHTML += `Toggling CRT retro filter...\n`;
+                    document.body.classList.toggle("crt-mode");
+                } else if (cmd.startsWith("sudo ")) {
+                    cliOutput.innerHTML += `[sudo] password for guest: \nSorry, try again.\n[sudo] password for guest: \nsudo: 3 incorrect password attempts\nThis incident will be reported.\n`;
+                } else if (cmd.startsWith("open ")) {
+                    const target = cmd.substring(5).trim();
+                    if (target === "projects" || target === "skills" || target === "contact" || target === "about") {
+                        cliOutput.innerHTML += `Opening ${target} section...\n`;
+                        setTimeout(() => {
+                            cliOverlay.style.display = "none";
+                            const el = document.getElementById(target);
+                            if (el) el.scrollIntoView({behavior: "smooth"});
+                        }, 500);
+                    } else {
+                        cliOutput.innerHTML += `open: ${target}: Section not found\n`;
+                    }
+                } else if (cmd === "clear") {
+                    cliOutput.innerHTML = "";
+                } else if (cmd === "exit") {
+                    cliOverlay.style.display = "none";
+                } else if (cmd !== "") {
+                    cliOutput.innerHTML += `Command not found: ${cmd}\n`;
+                }
+                
+                cliOutput.innerHTML += "\n";
+                cliOverlay.scrollTop = cliOverlay.scrollHeight;
+            }
+        });
+    }
+
+    // --- PHASE 3: ULTIMATE INTERACTIVE FEATURES ---
+
+    // 1. Spiderweb Canvas
+    const swCanvas = document.getElementById("spiderweb-canvas");
+    if (swCanvas) {
+        const sctx = swCanvas.getContext("2d");
+        let particles = [];
+        const numParticles = 60;
+        const connectionDistance = 120;
+        const mouseConnectionDistance = 180;
+
+        function resizeSw() {
+            swCanvas.width = window.innerWidth;
+            swCanvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resizeSw);
+        resizeSw();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * swCanvas.width;
+                this.y = Math.random() * swCanvas.height;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = (Math.random() - 0.5) * 1.5;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > swCanvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > swCanvas.height) this.vy *= -1;
+            }
+            draw() {
+                sctx.beginPath();
+                sctx.arc(this.x, this.y, 1.5, 0, Math.PI * 2);
+                sctx.fillStyle = "rgba(0, 245, 255, 0.5)";
+                sctx.fill();
+            }
+        }
+
+        for (let i = 0; i < numParticles; i++) particles.push(new Particle());
+
+        function drawSpiderweb() {
+            sctx.clearRect(0, 0, swCanvas.width, swCanvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                
+                // Check mouse
+                const dxm = mouseX - particles[i].x;
+                const dym = mouseY - particles[i].y;
+                const distm = Math.sqrt(dxm*dxm + dym*dym);
+                if (distm < mouseConnectionDistance) {
+                    sctx.beginPath();
+                    sctx.moveTo(particles[i].x, particles[i].y);
+                    sctx.lineTo(mouseX, mouseY);
+                    sctx.strokeStyle = `rgba(252, 211, 77, ${1 - distm/mouseConnectionDistance})`;
+                    sctx.lineWidth = 1.5;
+                    sctx.stroke();
+                }
+
+                // Check other particles
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < connectionDistance) {
+                        sctx.beginPath();
+                        sctx.moveTo(particles[i].x, particles[i].y);
+                        sctx.lineTo(particles[j].x, particles[j].y);
+                        sctx.strokeStyle = `rgba(0, 245, 255, ${0.4 * (1 - dist/connectionDistance)})`;
+                        sctx.lineWidth = 0.5;
+                        sctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(drawSpiderweb);
+        }
+        drawSpiderweb();
+    }
+
+    // 2. Voice Control System
+    const voiceBtn = document.getElementById("voice-mode-btn");
+    let isListening = false;
+    let recognition;
+
+    if (voiceBtn) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = false;
+            
+            recognition.onstart = () => {
+                isListening = true;
+                voiceBtn.classList.add("voice-active");
+            };
+            
+            recognition.onend = () => {
+                isListening = false;
+                voiceBtn.classList.remove("voice-active");
+            };
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[event.results.length - 1][0].transcript.toLowerCase();
+                console.log("Voice Command heard:", transcript);
+                
+                if (transcript.includes("scroll to projects") || transcript.includes("open projects")) {
+                    document.getElementById("projects").scrollIntoView({behavior: "smooth"});
+                } else if (transcript.includes("scroll to skills") || transcript.includes("open skills")) {
+                    document.getElementById("skills").scrollIntoView({behavior: "smooth"});
+                } else if (transcript.includes("dark web") || transcript.includes("dark mode")) {
+                    document.body.classList.toggle("dark-web-mode");
+                } else if (transcript.includes("enable retro") || transcript.includes("retro mode")) {
+                    document.body.classList.toggle("crt-mode");
+                } else if (transcript.includes("self destruct") || transcript.includes("destruct")) {
+                    if(nukeBtn) nukeBtn.click();
+                } else if (transcript.includes("matrix")) {
+                    if (typeof triggerMatrix === "function") triggerMatrix();
+                }
+            };
+
+            recognition.onerror = (event) => {
+                console.error("Speech recognition error:", event.error);
+                isListening = false;
+                voiceBtn.classList.remove("voice-active");
+                if (event.error === 'not-allowed') {
+                    alert("Microphone access blocked. If you are opening this file directly (file://), your browser might block the microphone for security. Please use a local server like VS Code Live Server.");
+                } else if (event.error === 'no-speech') {
+                    // Do nothing, just timeout
+                } else {
+                    alert("Voice control error: " + event.error);
+                }
+            };
+
+            voiceBtn.addEventListener("click", () => {
+                if (isListening) {
+                    recognition.stop();
+                } else {
+                    try {
+                        recognition.start();
+                    } catch (e) {
+                        console.error(e);
+                    }
+                }
+            });
+        } else {
+            voiceBtn.addEventListener("click", () => {
+                alert("Voice control is not supported in this browser. Try Chrome or Edge!");
+            });
+        }
+    }
+
+    // 3. Dark Web Mode
+    const torCode = ["t", "o", "r"];
+    let torSequence = [];
+
+    document.addEventListener("keydown", (e) => {
+        torSequence.push(e.key.toLowerCase());
+        if (torSequence.length > torCode.length) torSequence.shift();
+        
+        if (JSON.stringify(torSequence) === JSON.stringify(torCode)) {
+            document.body.classList.toggle("dark-web-mode");
+            torSequence = [];
+            
+            // Text mutations for Dark Web Mode
+            if (document.body.classList.contains("dark-web-mode")) {
+                document.querySelectorAll("h2.pixel-text").forEach(el => {
+                    if (el.innerText.includes("PROJECTS")) el.setAttribute("data-orig", el.innerText), el.innerText = "CONTRABAND CACHE";
+                    if (el.innerText.includes("SKILLS")) el.setAttribute("data-orig", el.innerText), el.innerText = "AVAILABLE EXPLOITS";
+                });
+                const resBtn = document.getElementById("resume-download-btn");
+                if (resBtn) resBtn.querySelector("span").innerText = "DECRYPT DOSSIER";
+                
+                if ('speechSynthesis' in window) {
+                    const u = new SpeechSynthesisUtterance("Welcome to the underground marketplace.");
+                    u.pitch = 0.2; u.rate = 0.8;
+                    window.speechSynthesis.speak(u);
+                }
+            } else {
+                document.querySelectorAll("h2.pixel-text").forEach(el => {
+                    if (el.getAttribute("data-orig")) el.innerText = el.getAttribute("data-orig");
+                });
+                const resBtn = document.getElementById("resume-download-btn");
+                if (resBtn) resBtn.querySelector("span").innerText = "Resume";
+            }
+        }
+    });
+
+    // 4. Boss Fight
+    window.startBossFight = function() {
+        const bossOverlay = document.getElementById("boss-fight-overlay");
+        const bossChar = document.getElementById("boss-character");
+        const healthBar = document.getElementById("boss-health-bar");
+        if (!bossOverlay || !bossChar || !healthBar) {
+            triggerMatrix(); // fallback
+            return;
+        }
+        
+        bossOverlay.style.display = "flex";
+        let bossHealth = 10;
+        let pos = 50;
+        let dir = 1;
+        healthBar.style.width = "100%";
+        bossChar.classList.remove("explosion", "hit");
+        
+        // Announce boss
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.speak(new SpeechSynthesisUtterance("Warning. Intruder detected. Engaging defense mechanism."));
+        }
+        
+        const moveInterval = setInterval(() => {
+            pos += dir * (Math.random() * 5 + 2);
+            if (pos > 90) dir = -1;
+            if (pos < 10) dir = 1;
+            bossChar.style.left = pos + "%";
+            // erratic vertical movement
+            bossChar.style.top = (100 + Math.random() * 200) + "px";
+        }, 100);
+
+        bossChar.onclick = function() {
+            bossHealth--;
+            healthBar.style.width = (bossHealth * 10) + "%";
+            bossChar.classList.add("hit");
+            setTimeout(() => bossChar.classList.remove("hit"), 100);
+            
+            if (bossHealth <= 0) {
+                clearInterval(moveInterval);
+                bossChar.classList.add("explosion");
+                bossChar.onclick = null;
+                
+                if ('speechSynthesis' in window) {
+                    const u = new SpeechSynthesisUtterance("Defense mechanism bypassed. Access granted.");
+                    u.pitch = 0.5;
+                    window.speechSynthesis.speak(u);
+                }
+                
+                setTimeout(() => {
+                    bossOverlay.style.display = "none";
+                    triggerMatrix();
+                }, 1000);
+            }
+        };
+    };
 });
