@@ -671,13 +671,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // 1. UI Glitch & Shake
         document.body.classList.add("ui-shake", "ui-glitch");
 
-        // 2. Robotic Voiceover
-        if ('speechSynthesis' in window && !isMuted) {
-            const utterance = new SpeechSynthesisUtterance("System Override Engaged. Welcome to the Matrix.");
-            utterance.pitch = 0.5;
-            utterance.rate = 0.9;
-            window.speechSynthesis.speak(utterance);
-        }
+
 
         // 3. Hacking Terminal Intro
         setTimeout(() => {
@@ -848,11 +842,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (JSON.stringify(retroSequence) === JSON.stringify(retroCode)) {
             document.body.classList.toggle("crt-mode");
             retroSequence = [];
-            if ('speechSynthesis' in window) {
-                const u = new SpeechSynthesisUtterance(document.body.classList.contains("crt-mode") ? "Retro Mode Activated" : "Retro Mode Deactivated");
-                u.pitch = 0.8;
-                window.speechSynthesis.speak(u);
-            }
+
         }
     });
 
@@ -868,12 +858,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isNuked = true;
             
             nukeOverlay.style.display = "flex";
-            if ('speechSynthesis' in window) {
-                const u = new SpeechSynthesisUtterance("Warning. Self destruct sequence initiated.");
-                u.pitch = 0.5;
-                u.rate = 1.1;
-                window.speechSynthesis.speak(u);
-            }
+
 
             let count = 5;
             nukeCountdown.innerText = "0" + count;
@@ -917,7 +902,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 cliOutput.innerHTML += `<span style="color:#0f0;">admin@apurve.dev:~$ </span>${cmd}\n`;
                 
                 if (cmd === "help") {
-                    cliOutput.innerHTML += `Available commands:\n  help      - show this message\n  whoami    - about the author\n  ls        - list files and directories\n  cat       - display file contents (try 'cat skills.txt')\n  open      - open a section (try 'open projects')\n  date      - show current system date and time\n  echo      - print text to terminal\n  matrix    - ???\n  sudo      - execute a command as superuser\n  clear     - clear terminal\n  exit      - exit terminal mode\n`;
+                    cliOutput.innerHTML += `Available commands:\n  help      - show this message\n  whoami    - about the author\n  ls        - list files and directories\n  cat       - display file contents (try 'cat skills.txt')\n  open      - open a section (try 'open projects')\n  date      - show current system date and time\n  echo      - print text to terminal\n  matrix    - ???\n  sandbox   - launch live code injector\n  hack      - initiate system override protocol\n  sudo      - execute a command as superuser\n  clear     - clear terminal\n  exit      - exit terminal mode\n`;
                 } else if (cmd === "whoami") {
                     cliOutput.innerHTML += `Name: Apurve Karanwal\nRole: Full-Stack Developer & IoT Engineer\nLocation: Asia/Delhi\nStatus: Building the future.\nBio: I specialize in creating high-performance web applications, scalable backend systems, and hardware-software integrations. Passionate about AI, 3D web experiences, and cypherpunk aesthetics.\n`;
                 } else if (cmd === "ls") {
@@ -947,6 +932,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (cmd === "retro") {
                     cliOutput.innerHTML += `Toggling CRT retro filter...\n`;
                     document.body.classList.toggle("crt-mode");
+                } else if (cmd === "sandbox") {
+                    cliOutput.innerHTML += `Launching Live Code Injector...\n`;
+                    setTimeout(() => {
+                        cliOverlay.style.display = "none";
+                        document.getElementById("sandbox-modal").style.display = "flex";
+                    }, 500);
+                } else if (cmd === "hack") {
+                    cliOutput.innerHTML += `Bypassing security protocols...\n`;
+                    setTimeout(() => {
+                        cliOverlay.style.display = "none";
+                        if (typeof initHeistGame === "function") initHeistGame();
+                    }, 500);
                 } else if (cmd.startsWith("sudo ")) {
                     cliOutput.innerHTML += `[sudo] password for guest: \nSorry, try again.\n[sudo] password for guest: \nsudo: 3 incorrect password attempts\nThis incident will be reported.\n`;
                 } else if (cmd.startsWith("open ")) {
@@ -1055,77 +1052,7 @@ document.addEventListener("DOMContentLoaded", () => {
         drawSpiderweb();
     }
 
-    // 2. Voice Control System
-    const voiceBtn = document.getElementById("voice-mode-btn");
-    let isListening = false;
-    let recognition;
 
-    if (voiceBtn) {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (SpeechRecognition) {
-            recognition = new SpeechRecognition();
-            recognition.continuous = true;
-            recognition.interimResults = false;
-            
-            recognition.onstart = () => {
-                isListening = true;
-                voiceBtn.classList.add("voice-active");
-            };
-            
-            recognition.onend = () => {
-                isListening = false;
-                voiceBtn.classList.remove("voice-active");
-            };
-
-            recognition.onresult = (event) => {
-                const transcript = event.results[event.results.length - 1][0].transcript.toLowerCase();
-                console.log("Voice Command heard:", transcript);
-                
-                if (transcript.includes("scroll to projects") || transcript.includes("open projects")) {
-                    document.getElementById("projects").scrollIntoView({behavior: "smooth"});
-                } else if (transcript.includes("scroll to skills") || transcript.includes("open skills")) {
-                    document.getElementById("skills").scrollIntoView({behavior: "smooth"});
-                } else if (transcript.includes("dark web") || transcript.includes("dark mode")) {
-                    document.body.classList.toggle("dark-web-mode");
-                } else if (transcript.includes("enable retro") || transcript.includes("retro mode")) {
-                    document.body.classList.toggle("crt-mode");
-                } else if (transcript.includes("self destruct") || transcript.includes("destruct")) {
-                    if(nukeBtn) nukeBtn.click();
-                } else if (transcript.includes("matrix")) {
-                    if (typeof triggerMatrix === "function") triggerMatrix();
-                }
-            };
-
-            recognition.onerror = (event) => {
-                console.error("Speech recognition error:", event.error);
-                isListening = false;
-                voiceBtn.classList.remove("voice-active");
-                if (event.error === 'not-allowed') {
-                    alert("Microphone access blocked. If you are opening this file directly (file://), your browser might block the microphone for security. Please use a local server like VS Code Live Server.");
-                } else if (event.error === 'no-speech') {
-                    // Do nothing, just timeout
-                } else {
-                    alert("Voice control error: " + event.error);
-                }
-            };
-
-            voiceBtn.addEventListener("click", () => {
-                if (isListening) {
-                    recognition.stop();
-                } else {
-                    try {
-                        recognition.start();
-                    } catch (e) {
-                        console.error(e);
-                    }
-                }
-            });
-        } else {
-            voiceBtn.addEventListener("click", () => {
-                alert("Voice control is not supported in this browser. Try Chrome or Edge!");
-            });
-        }
-    }
 
     // 3. Dark Web Mode
     const torCode = ["t", "o", "r"];
@@ -1148,11 +1075,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const resBtn = document.getElementById("resume-download-btn");
                 if (resBtn) resBtn.querySelector("span").innerText = "DECRYPT DOSSIER";
                 
-                if ('speechSynthesis' in window) {
-                    const u = new SpeechSynthesisUtterance("Welcome to the underground marketplace.");
-                    u.pitch = 0.2; u.rate = 0.8;
-                    window.speechSynthesis.speak(u);
-                }
+
             } else {
                 document.querySelectorAll("h2.pixel-text").forEach(el => {
                     if (el.getAttribute("data-orig")) el.innerText = el.getAttribute("data-orig");
@@ -1180,10 +1103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         healthBar.style.width = "100%";
         bossChar.classList.remove("explosion", "hit");
         
-        // Announce boss
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.speak(new SpeechSynthesisUtterance("Warning. Intruder detected. Engaging defense mechanism."));
-        }
+
         
         const moveInterval = setInterval(() => {
             pos += dir * (Math.random() * 5 + 2);
@@ -1205,17 +1125,193 @@ document.addEventListener("DOMContentLoaded", () => {
                 bossChar.classList.add("explosion");
                 bossChar.onclick = null;
                 
-                if ('speechSynthesis' in window) {
-                    const u = new SpeechSynthesisUtterance("Defense mechanism bypassed. Access granted.");
-                    u.pitch = 0.5;
-                    window.speechSynthesis.speak(u);
-                }
-                
+
                 setTimeout(() => {
                     bossOverlay.style.display = "none";
                     triggerMatrix();
                 }, 1000);
             }
         };
+    }
+
+    // === PHASE 4 LEGENDARY FEATURES ===
+
+    // 1. Cyber Skull Centerpiece
+    const skull = document.getElementById("cyber-skull");
+    if (skull) {
+        let skullRotX = 0;
+        let skullRotY = 0;
+        document.addEventListener('mousemove', (event) => {
+            const x = (event.clientX / window.innerWidth - 0.5) * 2;
+            const y = (event.clientY / window.innerHeight - 0.5) * 2;
+            skullRotX = -y * 25;
+            skullRotY = x * 25;
+        });
+        
+        function animateSkull() {
+            requestAnimationFrame(animateSkull);
+            skull.style.transform = `rotateX(${skullRotX}deg) rotateY(${skullRotY}deg)`;
+        }
+        animateSkull();
+    }
+
+    // 2. Sandbox Modal
+    const sandboxModal = document.getElementById("sandbox-modal");
+    const closeSandboxBtn = document.getElementById("close-sandbox-btn");
+    const runSandboxBtn = document.getElementById("run-sandbox-btn");
+    const sandboxEditor = document.getElementById("sandbox-editor");
+
+    if (sandboxModal) {
+        closeSandboxBtn.addEventListener("click", () => sandboxModal.style.display = "none");
+        runSandboxBtn.addEventListener("click", () => {
+            const code = sandboxEditor.value;
+            try {
+                new Function(code)();
+            } catch (err) {
+                alert("Sandbox Error: " + err.message);
+            }
+        });
+    }
+
+    // 3. Heist Mini-Game
+    window.initHeistGame = function() {
+        const heistModal = document.getElementById("heist-modal");
+        const heistWordsContainer = document.getElementById("heist-words");
+        const heistLogs = document.getElementById("heist-logs");
+        const heistAttemptsEl = document.getElementById("heist-attempts");
+        const closeHeistBtn = document.getElementById("close-heist-btn");
+        
+        if (!heistModal) return;
+        heistModal.style.display = "flex";
+        heistWordsContainer.innerHTML = "";
+        heistLogs.innerHTML = "> Enter Password...<br>";
+        
+        const words = ["HACKER", "SYSTEM", "SECURE", "ACCESS", "CYBER", "MATRIX", "CODING", "FUTURE"];
+        const gameWords = words.sort(() => 0.5 - Math.random()).slice(0, 6);
+        const password = gameWords[Math.floor(Math.random() * gameWords.length)];
+        let attempts = 4;
+
+        function updateAttempts() {
+            let blocks = "";
+            for(let i=0; i<attempts; i++) blocks += "⬛ ";
+            heistAttemptsEl.innerText = `${attempts} ATTEMPTS REMAINING: ${blocks}`;
+        }
+        updateAttempts();
+
+        gameWords.forEach(word => {
+            const span = document.createElement("span");
+            span.className = "heist-word";
+            span.innerText = word;
+            span.onclick = () => {
+                if (attempts <= 0) return;
+                
+                let matches = 0;
+                for (let i = 0; i < word.length; i++) {
+                    if (word[i] === password[i]) matches++;
+                }
+                
+                heistLogs.innerHTML += `> ${word}<br>> Entry denied (${matches}/${word.length} correct)<br>`;
+                heistLogs.scrollTop = heistLogs.scrollHeight;
+                
+                if (word === password) {
+                    heistLogs.innerHTML += `<span style="color:#fff; background:#0f0;">> EXACT MATCH! ACCESS GRANTED.</span><br>`;
+                    setTimeout(() => {
+                        heistModal.style.display = "none";
+                        alert("VIP Access Granted: You have successfully hacked the portfolio. Hire me! 😉");
+                    }, 1500);
+                } else {
+                    attempts--;
+                    updateAttempts();
+                    if (attempts === 0) {
+                        heistLogs.innerHTML += `<span style="color:#f00;">> SYSTEM LOCKED.</span><br>`;
+                        setTimeout(() => heistModal.style.display = "none", 2000);
+                    }
+                }
+            };
+            heistWordsContainer.appendChild(span);
+        });
+
+        closeHeistBtn.onclick = () => heistModal.style.display = "none";
     };
+
+    // 4. AR Modal
+    const arBtn = document.getElementById("ar-mode-btn");
+    const arModal = document.getElementById("ar-modal");
+    const closeArBtn = document.getElementById("close-ar-btn");
+
+    if (arBtn && arModal) {
+        arBtn.addEventListener("click", () => arModal.style.display = "block");
+        closeArBtn.addEventListener("click", () => arModal.style.display = "none");
+    }
+
+    // 5. Lo-Fi Radio Player
+    const radioPlayer = document.getElementById("radio-player");
+    const radioPlayBtn = document.getElementById("radio-play-btn");
+    const radioVisualizer = document.getElementById("radio-visualizer");
+    let isRadioPlaying = false;
+    let ytPlayer;
+
+    if (radioPlayer) {
+        radioPlayer.style.display = "block";
+
+        let isDraggingRadio = false;
+        let rOffsetX, rOffsetY;
+        const rHeader = document.getElementById("radio-header");
+        
+        rHeader.addEventListener("mousedown", (e) => {
+            isDraggingRadio = true;
+            rOffsetX = e.clientX - radioPlayer.getBoundingClientRect().left;
+            rOffsetY = e.clientY - radioPlayer.getBoundingClientRect().top;
+        });
+        document.addEventListener("mousemove", (e) => {
+            if (isDraggingRadio) {
+                radioPlayer.style.left = (e.clientX - rOffsetX) + "px";
+                radioPlayer.style.top = (e.clientY - rOffsetY) + "px";
+                radioPlayer.style.bottom = "auto";
+                radioPlayer.style.right = "auto";
+            }
+        });
+        document.addEventListener("mouseup", () => isDraggingRadio = false);
+
+        setInterval(() => {
+            if (isRadioPlaying) {
+                const bars = radioVisualizer.querySelectorAll(".bar");
+                bars.forEach(bar => bar.style.height = (Math.random() * 15 + 5) + "px");
+            } else {
+                const bars = radioVisualizer.querySelectorAll(".bar");
+                bars.forEach(bar => bar.style.height = "5px");
+            }
+        }, 100);
+
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        window.onYouTubeIframeAPIReady = function() {
+            ytPlayer = new YT.Player('yt-player-container', {
+                height: '0',
+                width: '0',
+                videoId: '36YnV9STBqc', // Hindi Lofi Mix 2023
+                playerVars: { 'autoplay': 0, 'controls': 0 },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        };
+
+        function onPlayerReady(event) {
+            radioPlayBtn.addEventListener("click", () => {
+                if (isRadioPlaying) {
+                    ytPlayer.pauseVideo();
+                    radioPlayBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                    isRadioPlaying = false;
+                } else {
+                    ytPlayer.playVideo();
+                    radioPlayBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    isRadioPlaying = true;
+                }
+            });
+        }
+    }
 });

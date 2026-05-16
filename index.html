@@ -227,6 +227,11 @@
             style="border-color: var(--color-card-border); background-color: var(--color-accent-secondary); color: var(--color-text-dark); box-shadow: 6px 6px 0 var(--color-card-border); font-weight:700;">
             > EXECUTE_WORK_VIEW <span class="text-2xl ml-2">⚡</span>
         </a>
+        <button id="ar-mode-btn"
+            class="inline-flex items-center mt-8 ml-4 px-8 py-3 font-extrabold text-xl rounded-lg mono-tech glitch-on-hover pixel-block-3d-cta"
+            style="border-color: var(--color-card-border); background-color: #3b82f6; color: var(--color-text-dark); box-shadow: 6px 6px 0 var(--color-card-border); font-weight:700; cursor: pointer;">
+            <i class="fa-solid fa-cube mr-2"></i> AR MODE
+        </button>
     </section>
 
     <section id="system-status" class="text-center pt-8 pb-8 responsive-p animated-section"
@@ -1069,6 +1074,52 @@
         <div class="boss-instructions">CLICK TO DEFEAT!</div>
     </div>
 
+    <!-- CYBER SKULL CENTERPIECE -->
+    <div id="cyber-skull-container">
+        <i id="cyber-skull" class="fa-solid fa-skull"></i>
+    </div>
+
+    <!-- RADIO PLAYER -->
+    <div id="radio-player" style="display:none;">
+        <div id="radio-header"><i class="fa-solid fa-radio"></i> LOFI_RADIO.exe</div>
+        <div id="radio-controls">
+            <button id="radio-play-btn"><i class="fa-solid fa-play"></i></button>
+            <div id="radio-visualizer">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
+        </div>
+        <div id="yt-player-container" style="display:none;"></div>
+    </div>
+
+    <!-- SANDBOX MODAL -->
+    <div id="sandbox-modal" style="display:none;">
+        <div class="sandbox-header">
+            <span>// LIVE_CODE_INJECTOR</span>
+            <button id="close-sandbox-btn" style="background:transparent;border:none;color:#f00;cursor:pointer;font-size:20px;">&times;</button>
+        </div>
+        <textarea id="sandbox-editor" spellcheck="false" placeholder="Enter JavaScript to hack the DOM...
+Example:
+document.body.style.filter = 'invert(1)';"></textarea>
+        <button id="run-sandbox-btn">EXECUTE</button>
+    </div>
+
+    <!-- HEIST MODAL -->
+    <div id="heist-modal" style="display:none;">
+        <div class="heist-terminal">
+            <div class="heist-header">ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM<br>COPYRIGHT 2075-2077 ROBCO INDUSTRIES<br>-Server 1-<br><br>Compiling security protocol...</div>
+            <div id="heist-attempts">4 ATTEMPTS REMAINING: ⬛ ⬛ ⬛ ⬛</div>
+            <div id="heist-words" class="flex flex-wrap gap-4 mt-4"></div>
+            <div id="heist-logs" class="mt-4" style="height:100px;overflow-y:auto;color:#0f0;"></div>
+            <button id="close-heist-btn" style="margin-top:15px;background:#f00;color:#000;border:none;padding:5px 10px;cursor:pointer;">EXIT</button>
+        </div>
+    </div>
+
+    <!-- AR MODAL -->
+    <div id="ar-modal" style="display:none;">
+        <button id="close-ar-btn" style="position:absolute;top:20px;right:20px;background:#f00;color:#000;border:none;padding:10px;font-weight:bold;cursor:pointer;z-index:10;">CLOSE AR</button>
+        <model-viewer id="ar-viewer" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1" style="width:100%;height:100%;background-color:#111;"></model-viewer>
+    </div>
+
     <!-- HACKING TERMINAL OVERLAY -->
     <div id="hacking-terminal" style="display:none;">
         <div class="scanline-overlay"></div>
@@ -1085,6 +1136,8 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js" defer></script>
 </body>
 
 </html>

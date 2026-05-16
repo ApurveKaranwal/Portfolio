@@ -1334,16 +1334,6 @@ body {
 
 /* === PHASE 3 INTERACTIVE FEATURES === */
 
-/* Voice Button Active State */
-.voice-active {
-    animation: pulse-red 1s infinite alternate;
-    background-color: #ef4444 !important;
-}
-
-@keyframes pulse-red {
-    from { box-shadow: 0 0 10px #ef4444; }
-    to { box-shadow: 0 0 30px #ef4444; }
-}
 
 /* Dark Web Mode */
 .dark-web-mode {
@@ -1437,4 +1427,179 @@ body {
     0% { transform: translateX(-50%) scale(1); opacity: 1; filter: brightness(1); }
     50% { transform: translateX(-50%) scale(2); opacity: 1; filter: brightness(2); }
     100% { transform: translateX(-50%) scale(0); opacity: 0; filter: brightness(3); }
+}
+
+/* === PHASE 4 LEGENDARY FEATURES === */
+
+/* Radio Player */
+#radio-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 280px;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 245, 255, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(0, 245, 255, 0.15);
+    z-index: 9000;
+    font-family: 'Space Mono', monospace;
+    color: #00f5ff;
+    padding: 15px;
+    cursor: move;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+#radio-player:hover {
+    box-shadow: 0 8px 32px 0 rgba(0, 245, 255, 0.4);
+    border-color: #00f5ff;
+}
+#radio-header {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed rgba(0, 245, 255, 0.3);
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+#radio-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#radio-play-btn {
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid #00f5ff;
+    color: #00f5ff;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#radio-play-btn:hover {
+    background: #00f5ff;
+    color: #000;
+    box-shadow: 0 0 15px #00f5ff;
+}
+
+/* 3D Skull Centerpiece */
+#cyber-skull-container {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+    pointer-events: none;
+    perspective: 1000px;
+    opacity: 0.15;
+}
+#cyber-skull {
+    font-size: 400px;
+    color: #00f5ff;
+    text-shadow: 0 0 50px #00f5ff, 0 0 100px #00f5ff;
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+}
+.dark-web-mode #cyber-skull {
+    color: #ff0000;
+    text-shadow: 0 0 50px #ff0000, 0 0 100px #ff0000;
+}
+#radio-visualizer {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 20px;
+}
+#radio-visualizer .bar {
+    width: 5px;
+    background: #00f5ff;
+    height: 5px;
+    transition: height 0.1s;
+}
+
+/* Sandbox Modal */
+#sandbox-modal {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; max-width: 600px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #10b981;
+    box-shadow: 0 0 30px #10b981;
+    z-index: 15000;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.sandbox-header {
+    display: flex;
+    justify-content: space-between;
+    color: #10b981;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+#sandbox-editor {
+    width: 100%;
+    height: 200px;
+    background: #000;
+    color: #0f0;
+    font-family: 'Space Mono', monospace;
+    border: 1px solid #10b981;
+    padding: 10px;
+    resize: none;
+    outline: none;
+}
+#run-sandbox-btn {
+    margin-top: 10px;
+    background: #10b981;
+    color: #000;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Space Mono', monospace;
+}
+
+/* Heist Modal */
+#heist-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 15000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.heist-terminal {
+    width: 90%; max-width: 800px;
+    background: #000;
+    border: 2px solid #0f0;
+    box-shadow: 0 0 20px #0f0;
+    padding: 20px;
+    color: #0f0;
+    font-family: 'Space Mono', monospace;
+}
+.heist-word {
+    cursor: pointer;
+    padding: 2px 5px;
+}
+.heist-word:hover {
+    background: #0f0;
+    color: #000;
+}
+
+/* AR Modal */
+#ar-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #000;
+    z-index: 16000;
 }
