@@ -632,6 +632,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
     let matrixInterval;
 
+    const secretOverrideBtn = document.getElementById("secret-override-btn");
+    if (secretOverrideBtn) {
+        secretOverrideBtn.addEventListener("click", () => {
+            triggerMatrix();
+        });
+    }
+
     document.addEventListener("keydown", (e) => {
         currentSequence.push(e.key);
         if (currentSequence.length > secretCode.length) {
