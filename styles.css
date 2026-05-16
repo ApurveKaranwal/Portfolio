@@ -1093,4 +1093,97 @@ body {
         font-size: 0.75rem !important;
     }
 }
-﻿
+
+/* === EASTER EGG EFFECTS === */
+
+/* UI Glitch & Shake */
+.ui-shake {
+    animation: shake-screen 0.1s infinite;
+}
+
+@keyframes shake-screen {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.ui-glitch {
+    filter: invert(100%) hue-rotate(90deg) contrast(150%);
+}
+
+/* Hacking Terminal Overlay */
+#hacking-terminal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: black;
+    z-index: 12000;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+#terminal-content {
+    font-family: 'Space Mono', monospace;
+    color: #0F0;
+    font-size: 16px;
+    text-shadow: 0 0 5px #0F0;
+    white-space: pre-wrap;
+    overflow-y: hidden;
+}
+
+/* Achievement Notification */
+#achievement-notification {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1a1a1a;
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    border-radius: 8px;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 12500;
+    transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#achievement-notification.show {
+    top: 30px;
+}
+
+.achievement-icon {
+    font-size: 30px;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.achievement-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.achievement-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #aaa;
+    text-transform: uppercase;
+}
+
+.achievement-desc {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #fff;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}

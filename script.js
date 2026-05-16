@@ -650,8 +650,70 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    let isMatrixActive = false;
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
     function triggerMatrix() {
+        if (isMatrixActive) return;
+        isMatrixActive = true;
         initAudio();
+
+        // 1. UI Glitch & Shake
+        document.body.classList.add("ui-shake", "ui-glitch");
+
+        // 2. Robotic Voiceover
+        if ('speechSynthesis' in window && !isMuted) {
+            const utterance = new SpeechSynthesisUtterance("System Override Engaged. Welcome to the Matrix.");
+            utterance.pitch = 0.5;
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // 3. Hacking Terminal Intro
+        setTimeout(() => {
+            document.body.classList.remove("ui-shake", "ui-glitch");
+            const termOverlay = document.getElementById("hacking-terminal");
+            const termContent = document.getElementById("terminal-content");
+            if (termOverlay && termContent) {
+                termOverlay.style.display = "flex";
+                termContent.innerHTML = "";
+                
+                const logs = [
+                    "INITIATING OVERRIDE PROTOCOL...",
+                    "BYPASSING MAINFRAME FIREWALL...",
+                    "DECRYPTING AES-256 KERNEL...",
+                    "ACCESS GRANTED.",
+                    "WAKING UP..."
+                ];
+                let logIdx = 0;
+                
+                const typeLog = () => {
+                    if (logIdx < logs.length) {
+                        termContent.innerHTML += "> " + logs[logIdx] + "<br>";
+                        logIdx++;
+                        setTimeout(typeLog, 300);
+                    } else {
+                        // Move to Matrix phase
+                        setTimeout(() => {
+                            termOverlay.style.display = "none";
+                            startMatrixRain();
+                        }, 500);
+                    }
+                };
+                typeLog();
+            } else {
+                startMatrixRain(); // fallback
+            }
+        }, 1500);
+    }
+
+    function startMatrixRain() {
         if (!isMuted) {
             playSound("matrix");
         }
@@ -661,8 +723,7 @@ document.addEventListener("DOMContentLoaded", () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const katakana =
-            "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヲギジヂビピウゥクスツヌフムユュルグズブプエェケセテネヘメレヲゴゾドボポオォコソトノホモヨョロ";
+        const katakana = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヲギジヂビピウゥクスツヌフムユュルグズブプエェケセテネヘメレヲゴゾドボポオォコソトノホモヨョロ";
         const latin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const nums = "0123456789";
         const alphabet = katakana + latin + nums;
@@ -679,17 +740,30 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = "#0F0";
             ctx.font = fontSize + "px monospace";
 
             for (let i = 0; i < drops.length; i++) {
                 const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
+                
+                // Interactive distance check
+                const charX = i * fontSize;
+                const charY = drops[i] * fontSize;
+                const dx = mouseX - charX;
+                const dy = mouseY - charY;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                
+                if (dist < 100) {
+                    ctx.fillStyle = "#FFF";
+                    // Slight scatter effect
+                    ctx.fillText(text, charX + (Math.random() * 10 - 5), charY);
+                } else {
+                    ctx.fillStyle = "#0F0";
+                    ctx.fillText(text, charX, charY);
                 }
 
+                if (charY > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
                 drops[i]++;
             }
         };
@@ -699,12 +773,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         matrixInterval = setInterval(draw, 30);
 
+        // Show Achievement
+        const ach = document.getElementById("achievement-notification");
+        if (ach) {
+            ach.classList.add("show");
+            setTimeout(() => {
+                ach.classList.remove("show");
+            }, 4000);
+        }
+
         canvas.addEventListener(
             "click",
             () => {
                 canvas.style.display = "none";
                 canvas.style.pointerEvents = "none";
                 clearInterval(matrixInterval);
+                isMatrixActive = false;
             },
             { once: true }
         );

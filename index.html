@@ -235,11 +235,14 @@
                 <p>LOCATION: <span style="color:#c084fc;">ASIA/DELHI</span></p>
                 <div class="mt-5 pt-4 border-t-2 border-dashed" style="border-color: rgba(239, 68, 68, 0.4);">
                     <p class="text-sm font-bold mb-2 tracking-wide pixel-text-flicker" style="color:#ef4444;">
-                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> ENCRYPTED_PROTOCOL_DETECTED
+                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> HIGHLY CLASSIFIED DATA
                     </p>
                     <button id="secret-override-btn" class="text-sm sm:text-base font-bold mono-tech w-full text-center p-3 rounded transition-transform hover:scale-[1.02] active:scale-95" style="color:#ffffff; background-color: #dc2626; border: 2px solid #991b1b; box-shadow: 0 0 15px rgba(220, 38, 38, 0.4), 4px 4px 0 #7f1d1d; cursor: pointer;">
-                        <i class="fa-solid fa-terminal mr-1"></i> [OVERRIDE]: &uarr; &uarr; &darr; &darr; &larr; &rarr; &larr; &rarr; B A
+                        <i class="fa-solid fa-skull mr-1"></i> DEFINITELY DO NOT CLICK HERE!
                     </button>
+                    <p class="text-xs mt-2 text-center" style="color:var(--color-text-light); opacity: 0.6;">
+                        (Or try: &uarr; &uarr; &darr; &darr; &larr; &rarr; &larr; &rarr; B A)
+                    </p>
                 </div>
             </div>
         </div>
@@ -1023,6 +1026,21 @@
         <p class="mono-tech" style="color:var(--color-accent-main);">System Status: OK. Built by Apurve with <span
                 style="color:#ef4444;">❤️</span> | All rights reserved &copy; 2025</p>
     </footer>
+    <!-- HACKING TERMINAL OVERLAY -->
+    <div id="hacking-terminal" style="display:none;">
+        <div class="scanline-overlay"></div>
+        <div id="terminal-content"></div>
+    </div>
+
+    <!-- ACHIEVEMENT NOTIFICATION -->
+    <div id="achievement-notification">
+        <div class="achievement-icon"><i class="fa-solid fa-trophy"></i></div>
+        <div class="achievement-text">
+            <div class="achievement-title">Achievement Unlocked</div>
+            <div class="achievement-desc">The Red Pill</div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 
