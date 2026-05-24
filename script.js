@@ -457,7 +457,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const textToType =
-        "> **[STATUS: ONLINE]** Aspiring Full-Stack Developer | IoT Engineer. Turning ideas into interactive systems.";
+        "> **[STATUS: ONLINE]** Backend & DevOps-Focused Engineer. Building reliable APIs, job systems, and production-minded software.";
     const typeWriterElement = document.getElementById("hero-typewriter");
 
     function startTypewriter() {
@@ -556,75 +556,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    let audioCtx = null;
-    let isMuted = true;
-
-    const audioToggle = document.getElementById("audio-toggle");
-    const audioIcon = document.getElementById("audio-icon");
-
-    function initAudio() {
-        if (!audioCtx) {
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            audioCtx = new AudioContext();
-        }
-    }
-
-    function playSound(type) {
-        if (isMuted || !audioCtx) {
-            return;
-        }
-
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        const now = audioCtx.currentTime;
-
-        if (type === "hover") {
-            osc.type = "sine";
-            osc.frequency.setValueAtTime(800, now);
-            osc.frequency.exponentialRampToValueAtTime(1200, now + 0.05);
-            gain.gain.setValueAtTime(0.05, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
-            osc.start(now);
-            osc.stop(now + 0.05);
-        } else if (type === "click") {
-            osc.type = "square";
-            osc.frequency.setValueAtTime(200, now);
-            osc.frequency.exponentialRampToValueAtTime(50, now + 0.1);
-            gain.gain.setValueAtTime(0.1, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
-            osc.start(now);
-            osc.stop(now + 0.1);
-        } else if (type === "matrix") {
-            osc.type = "sawtooth";
-            osc.frequency.setValueAtTime(100, now);
-            osc.frequency.linearRampToValueAtTime(800, now + 1);
-            gain.gain.setValueAtTime(0.1, now);
-            gain.gain.linearRampToValueAtTime(0, now + 1);
-            osc.start(now);
-            osc.stop(now + 1);
-        }
-    }
-
-    document.querySelectorAll("a, button, .project-card, .pixel-block-3d").forEach((el) => {
-        el.addEventListener("mouseenter", () => playSound("hover"));
-        el.addEventListener("click", () => playSound("click"));
-    });
-
-    audioToggle.addEventListener("click", () => {
-        initAudio();
-        isMuted = !isMuted;
-        if (!isMuted) {
-            audioIcon.classList.replace("fa-volume-xmark", "fa-volume-high");
-            playSound("click");
-        } else {
-            audioIcon.classList.replace("fa-volume-high", "fa-volume-xmark");
-        }
-    });
-
     const secretCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
     let currentSequence = [];
 
@@ -904,15 +835,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (cmd === "help") {
                     cliOutput.innerHTML += `Available commands:\n  help      - show this message\n  whoami    - about the author\n  ls        - list files and directories\n  cat       - display file contents (try 'cat skills.txt')\n  open      - open a section (try 'open projects')\n  date      - show current system date and time\n  echo      - print text to terminal\n  matrix    - ???\n  sandbox   - launch live code injector\n  hack      - initiate system override protocol\n  sudo      - execute a command as superuser\n  clear     - clear terminal\n  exit      - exit terminal mode\n`;
                 } else if (cmd === "whoami") {
-                    cliOutput.innerHTML += `Name: Apurve Karanwal\nRole: Full-Stack Developer & IoT Engineer\nLocation: Asia/Delhi\nStatus: Building the future.\nBio: I specialize in creating high-performance web applications, scalable backend systems, and hardware-software integrations. Passionate about AI, 3D web experiences, and cypherpunk aesthetics.\n`;
+                    cliOutput.innerHTML += `Name: Apurve Karanwal\nRole: Backend & DevOps-Focused Engineer\nLocation: Asia/Delhi\nStatus: Shipping reliable systems.\nBio: I build APIs, async job systems, containerized services, and production-minded developer tooling across modern backend stacks.\n`;
                 } else if (cmd === "ls") {
                     cliOutput.innerHTML += `skills.txt   projects.dir   education.txt   hobbies.txt   resume.pdf   top_secret.enc\n`;
                 } else if (cmd === "cat skills.txt") {
-                    cliOutput.innerHTML += `[LANGUAGES]: Python, JavaScript, HTML5, CSS3, C++\n[BACKEND]: Node.js, Express, FastAPI, Django\n[DATABASES]: MongoDB, PostgreSQL, MySQL\n[TOOLS]: Docker, Git, Linux, Postman\n[HARDWARE]: Arduino, Raspberry Pi, IoT Sensors\n`;
+                    cliOutput.innerHTML += `[LANGUAGES]: Python, TypeScript, JavaScript, HTML5, CSS3, C++\n[FRONTEND]: React 19, Next.js, Vite, React Router, TipTap, Zustand, Leaflet\n[BACKEND]: FastAPI, Django, Node.js, Express, REST APIs, SQLAlchemy, Prisma\n[DATA]: PostgreSQL, MongoDB, SQLite, MySQL, Redis, BullMQ, Celery\n[AI_AND_VISION]: LangChain, LangGraph, RAG Pipelines, OCR, Tesseract OCR, OpenCV, PyTorch, Scikit-learn, Pillow\n[SECURITY]: Encryption, JWT/Auth, Password Managers, Invisible Watermarking, Web3\n[HARDWARE]: Arduino, NodeMCU, Embedded Systems, IoT Sensors, Automation\n[TOOLS]: Git, GitHub, Docker, Firebase, Cloudinary, Multer, Socket.IO, Zod\n`;
                 } else if (cmd === "cat education.txt") {
                     cliOutput.innerHTML += `B.Tech in Computer Science and Engineering\nFocus: Software Engineering, Data Structures, Algorithms, and System Design.\n`;
                 } else if (cmd === "cat hobbies.txt") {
-                    cliOutput.innerHTML += `1. Coding side projects (like this terminal!)\n2. Exploring Web3 and AI tech\n3. Hardware tinkering\n4. Gaming\n`;
+                    cliOutput.innerHTML += `1. Piano\n2. Reading and long-form writing\n3. Systems-driven side projects\n4. Gaming\n`;
                 } else if (cmd === "cat top_secret.enc") {
                     cliOutput.innerHTML += `Access Denied: File is encrypted with AES-256. Requires superuser privileges.\n`;
                 } else if (cmd === "sudo cat top_secret.enc") {
@@ -1234,84 +1165,4 @@ document.addEventListener("DOMContentLoaded", () => {
         closeHeistBtn.onclick = () => heistModal.style.display = "none";
     };
 
-    // 4. AR Modal
-    const arBtn = document.getElementById("ar-mode-btn");
-    const arModal = document.getElementById("ar-modal");
-    const closeArBtn = document.getElementById("close-ar-btn");
-
-    if (arBtn && arModal) {
-        arBtn.addEventListener("click", () => arModal.style.display = "block");
-        closeArBtn.addEventListener("click", () => arModal.style.display = "none");
-    }
-
-    // 5. Lo-Fi Radio Player
-    const radioPlayer = document.getElementById("radio-player");
-    const radioPlayBtn = document.getElementById("radio-play-btn");
-    const radioVisualizer = document.getElementById("radio-visualizer");
-    let isRadioPlaying = false;
-    let ytPlayer;
-
-    if (radioPlayer) {
-        radioPlayer.style.display = "block";
-
-        let isDraggingRadio = false;
-        let rOffsetX, rOffsetY;
-        const rHeader = document.getElementById("radio-header");
-        
-        rHeader.addEventListener("mousedown", (e) => {
-            isDraggingRadio = true;
-            rOffsetX = e.clientX - radioPlayer.getBoundingClientRect().left;
-            rOffsetY = e.clientY - radioPlayer.getBoundingClientRect().top;
-        });
-        document.addEventListener("mousemove", (e) => {
-            if (isDraggingRadio) {
-                radioPlayer.style.left = (e.clientX - rOffsetX) + "px";
-                radioPlayer.style.top = (e.clientY - rOffsetY) + "px";
-                radioPlayer.style.bottom = "auto";
-                radioPlayer.style.right = "auto";
-            }
-        });
-        document.addEventListener("mouseup", () => isDraggingRadio = false);
-
-        setInterval(() => {
-            if (isRadioPlaying) {
-                const bars = radioVisualizer.querySelectorAll(".bar");
-                bars.forEach(bar => bar.style.height = (Math.random() * 15 + 5) + "px");
-            } else {
-                const bars = radioVisualizer.querySelectorAll(".bar");
-                bars.forEach(bar => bar.style.height = "5px");
-            }
-        }, 100);
-
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        window.onYouTubeIframeAPIReady = function() {
-            ytPlayer = new YT.Player('yt-player-container', {
-                height: '0',
-                width: '0',
-                videoId: '36YnV9STBqc', // Hindi Lofi Mix 2023
-                playerVars: { 'autoplay': 0, 'controls': 0 },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        };
-
-        function onPlayerReady(event) {
-            radioPlayBtn.addEventListener("click", () => {
-                if (isRadioPlaying) {
-                    ytPlayer.pauseVideo();
-                    radioPlayBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-                    isRadioPlaying = false;
-                } else {
-                    ytPlayer.playVideo();
-                    radioPlayBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                    isRadioPlaying = true;
-                }
-            });
-        }
-    }
 });

@@ -206,6 +206,271 @@ body {
     box-shadow: 0 0 0 var(--color-card-border);
 }
 
+.skills-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.9fr);
+    gap: 1.5rem;
+    align-items: stretch;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    border-color: var(--color-accent-main);
+    background:
+        linear-gradient(135deg, rgba(252, 211, 77, 0.14), transparent 35%),
+        linear-gradient(180deg, rgba(20, 33, 32, 0.98) 0%, rgba(11, 18, 32, 0.96) 100%);
+    box-shadow: 6px 6px 0 var(--color-card-border);
+}
+
+.skills-hero-kicker {
+    display: inline-block;
+    margin-bottom: 0.85rem;
+    padding: 0.35rem 0.7rem;
+    border: 2px solid rgba(252, 211, 77, 0.45);
+    background: rgba(252, 211, 77, 0.1);
+    color: var(--color-accent-secondary);
+    font-family: "Space Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+}
+
+.skills-hero-title {
+    margin-bottom: 0.9rem;
+    color: var(--color-text-light);
+    font-family: "Press Start 2P", cursive;
+    font-size: clamp(1rem, 2vw, 1.45rem);
+    line-height: 1.5;
+    text-shadow: 2px 2px 0 var(--color-card-border);
+}
+
+.skills-hero-copy {
+    max-width: 56rem;
+    color: var(--color-text-light);
+    opacity: 0.84;
+    font-family: "Space Mono", monospace;
+    line-height: 1.85;
+}
+
+.skills-hero-stats {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.skills-stat {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.1rem;
+    border: 3px solid rgba(184, 224, 224, 0.28);
+    background: rgba(10, 16, 28, 0.7);
+    box-shadow: inset 0 0 0 1px rgba(252, 211, 77, 0.08);
+}
+
+.skills-stat-value {
+    color: var(--color-accent-secondary);
+    font-family: "Press Start 2P", cursive;
+    font-size: clamp(0.95rem, 2vw, 1.35rem);
+    line-height: 1.3;
+}
+
+.skills-stat-label {
+    color: var(--color-text-light);
+    opacity: 0.78;
+    font-family: "Space Mono", monospace;
+    font-size: 0.84rem;
+    text-align: right;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.skills-card {
+    padding: 1.5rem;
+    border-color: var(--color-accent-main);
+    background:
+        linear-gradient(180deg, rgba(20, 33, 32, 0.95) 0%, rgba(12, 21, 36, 0.96) 100%);
+    box-shadow: 4px 4px 0 var(--color-card-border);
+}
+
+.skills-card-eyebrow {
+    margin-bottom: 0.75rem;
+    color: var(--color-accent-secondary);
+    font-family: "Space Mono", monospace;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.skills-card-title {
+    margin-bottom: 0.75rem;
+    color: var(--color-accent-main);
+    font-family: "Space Mono", monospace;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.skills-card-copy {
+    margin-bottom: 1rem;
+    color: var(--color-text-light);
+    opacity: 0.82;
+    font-family: "Space Mono", monospace;
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+.skills-proof {
+    margin-top: 1rem;
+    color: var(--color-text-light);
+    opacity: 0.9;
+    font-family: "Space Mono", monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.skills-proof span {
+    color: var(--color-accent-secondary);
+}
+
+.github-activity-shell {
+    padding: 1.75rem;
+    border-color: var(--color-accent-secondary);
+    background:
+        linear-gradient(135deg, rgba(252, 211, 77, 0.12), transparent 28%),
+        linear-gradient(180deg, rgba(20, 33, 32, 0.98) 0%, rgba(8, 14, 25, 0.98) 100%);
+    box-shadow: 6px 6px 0 var(--color-card-border);
+}
+
+.github-activity-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.github-activity-kicker {
+    margin-bottom: 0.75rem;
+    color: var(--color-accent-secondary);
+    font-family: "Space Mono", monospace;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.github-activity-title {
+    margin-bottom: 0.85rem;
+    color: var(--color-accent-main);
+    font-family: "Press Start 2P", cursive;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    line-height: 1.6;
+    text-shadow: 2px 2px 0 var(--color-card-border);
+}
+
+.github-activity-copy {
+    max-width: 50rem;
+    color: var(--color-text-light);
+    opacity: 0.84;
+    font-family: "Space Mono", monospace;
+    line-height: 1.85;
+}
+
+.github-activity-copy span {
+    color: var(--color-accent-secondary);
+}
+
+.github-activity-link {
+    flex-shrink: 0;
+    align-self: center;
+    color: var(--color-text-dark);
+    background: var(--color-accent-secondary);
+    border-color: var(--color-card-border);
+    text-decoration: none;
+}
+
+.github-activity-frame {
+    position: relative;
+    overflow: hidden;
+    padding: 1.2rem;
+    border: 4px solid rgba(184, 224, 224, 0.22);
+    background:
+        linear-gradient(180deg, rgba(5, 10, 18, 0.95) 0%, rgba(10, 16, 28, 0.98) 100%);
+    box-shadow: inset 0 0 0 1px rgba(252, 211, 77, 0.06);
+}
+
+.github-activity-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(184, 224, 224, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184, 224, 224, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+}
+
+.github-activity-image {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: saturate(1.05) contrast(1.02);
+}
+
+.github-activity-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.1rem;
+}
+
+.github-activity-pill {
+    padding: 0.45rem 0.75rem;
+    border: 2px solid rgba(252, 211, 77, 0.32);
+    background: rgba(252, 211, 77, 0.08);
+    color: var(--color-text-light);
+    font-family: "Space Mono", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+}
+
+.skill-panel {
+    padding: 1.5rem;
+    border-color: var(--color-accent-main);
+    background: linear-gradient(180deg, rgba(20, 33, 32, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+    box-shadow: 4px 4px 0 var(--color-card-border);
+}
+
+.skill-panel-title {
+    margin-bottom: 1rem;
+    color: var(--color-accent-main);
+    font-family: "Space Mono", monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.skill-panel-copy {
+    margin-bottom: 1rem;
+    color: var(--color-text-light);
+    opacity: 0.78;
+    font-family: "Space Mono", monospace;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.skill-panel-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
 /* Hero Text Colors */
 .hero-title-pixel {
     color: var(--color-accent-secondary) !important;
@@ -1014,6 +1279,45 @@ body {
 
 /* ── Small phones ≤ 640px ── */
 @media (max-width: 640px) {
+    .skills-hero,
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-hero {
+        padding: 1.25rem;
+    }
+
+    .github-activity-shell {
+        padding: 1.25rem;
+    }
+
+    .github-activity-header {
+        flex-direction: column;
+    }
+
+    .github-activity-link {
+        align-self: flex-start;
+    }
+
+    .github-activity-frame {
+        padding: 0.8rem;
+        overflow-x: auto;
+    }
+
+    .github-activity-image {
+        min-width: 720px;
+    }
+
+    .skills-stat {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .skills-stat-label {
+        text-align: left;
+    }
+
     /* Header: make nav buttons icon-only, allow wrap */
     header .flex.gap-3 {
         gap: 6px;
@@ -1060,13 +1364,6 @@ body {
     /* Footer */
     footer p {
         font-size: 0.7rem;
-    }
-
-    /* Audio toggle position */
-    #audio-toggle {
-        bottom: 1rem;
-        right: 1rem;
-        padding: 8px;
     }
 
     /* Preloader progress bar */
@@ -1432,61 +1729,6 @@ body {
 /* === PHASE 4 LEGENDARY FEATURES === */
 
 /* Radio Player */
-#radio-player {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 280px;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 245, 255, 0.4);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px 0 rgba(0, 245, 255, 0.15);
-    z-index: 9000;
-    font-family: 'Space Mono', monospace;
-    color: #00f5ff;
-    padding: 15px;
-    cursor: move;
-    transition: box-shadow 0.3s, border-color 0.3s;
-}
-#radio-player:hover {
-    box-shadow: 0 8px 32px 0 rgba(0, 245, 255, 0.4);
-    border-color: #00f5ff;
-}
-#radio-header {
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    border-bottom: 1px dashed rgba(0, 245, 255, 0.3);
-    padding-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-}
-#radio-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#radio-play-btn {
-    background: rgba(0, 245, 255, 0.1);
-    border: 1px solid #00f5ff;
-    color: #00f5ff;
-    cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#radio-play-btn:hover {
-    background: #00f5ff;
-    color: #000;
-    box-shadow: 0 0 15px #00f5ff;
-}
-
 /* 3D Skull Centerpiece */
 #cyber-skull-container {
     position: fixed;
@@ -1509,19 +1751,6 @@ body {
     color: #ff0000;
     text-shadow: 0 0 50px #ff0000, 0 0 100px #ff0000;
 }
-#radio-visualizer {
-    display: flex;
-    gap: 3px;
-    align-items: flex-end;
-    height: 20px;
-}
-#radio-visualizer .bar {
-    width: 5px;
-    background: #00f5ff;
-    height: 5px;
-    transition: height 0.1s;
-}
-
 /* Sandbox Modal */
 #sandbox-modal {
     position: fixed;
@@ -1593,13 +1822,4 @@ body {
 .heist-word:hover {
     background: #0f0;
     color: #000;
-}
-
-/* AR Modal */
-#ar-modal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: #000;
-    z-index: 16000;
 }

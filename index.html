@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Apurve Karanwal - Full-Stack Developer, IoT Engineer, and Open Source Contributor. Explore projects in Python, FastAPI, React, and embedded systems.">
+    <meta name="description" content="Portfolio of Apurve Karanwal - backend and DevOps-focused engineer building APIs, job systems, developer tools, and production-minded software.">
     <meta name="theme-color" content="#627eea">
     <title>Apurve Karanwal</title>
 
@@ -125,14 +125,6 @@
         </div>
     </div>
 
-    <!-- AUDIO TOGGLE -->
-    <button id="audio-toggle"
-        class="fixed bottom-6 right-6 z-50 p-3 rounded-full pixel-block-3d transition-transform hover:scale-110"
-        style="background-color:var(--color-accent-secondary); border-color:var(--color-card-border); color:var(--color-text-dark);"
-        aria-label="Toggle Sound">
-        <i class="fa-solid fa-volume-xmark text-xl" id="audio-icon"></i>
-    </button>
-
     <!-- MATRIX RAIN CANVAS -->
     <canvas id="matrix-canvas"
         style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:9998; pointer-events:none; display:none;"></canvas>
@@ -227,11 +219,6 @@
             style="border-color: var(--color-card-border); background-color: var(--color-accent-secondary); color: var(--color-text-dark); box-shadow: 6px 6px 0 var(--color-card-border); font-weight:700;">
             > EXECUTE_WORK_VIEW <span class="text-2xl ml-2">⚡</span>
         </a>
-        <button id="ar-mode-btn"
-            class="inline-flex items-center mt-8 ml-4 px-8 py-3 font-extrabold text-xl rounded-lg mono-tech glitch-on-hover pixel-block-3d-cta"
-            style="border-color: var(--color-card-border); background-color: #3b82f6; color: var(--color-text-dark); box-shadow: 6px 6px 0 var(--color-card-border); font-weight:700; cursor: pointer;">
-            <i class="fa-solid fa-cube mr-2"></i> AR MODE
-        </button>
     </section>
 
     <section id="system-status" class="text-center pt-8 pb-8 responsive-p animated-section"
@@ -265,26 +252,156 @@
 
     <section class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" id="skills"
         style="animation-delay: 200ms; border-top-color:var(--color-accent-main);">
-        <h3 class="text-2xl sm:text-3xl font-bold mb-10 text-center pixel-text pixel-text-flicker"
-            style="color:var(--color-accent-main);">[SYSTEM] KEY SKILLS</h3>
-        <div class="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Python</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">FastAPI</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Node.js</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">JavaScript</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">HTML5</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">CSS3</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Express.js</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Git/GitHub</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Docker</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Cloudinary</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Multer</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">MySQL</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">SQLite</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">IoT</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">NodeMCU</span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Arduino </span>
-            <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">MongoDB</span>
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-2xl sm:text-3xl font-bold mb-5 text-center pixel-text pixel-text-flicker"
+                style="color:var(--color-accent-main);">[SYSTEM] SKILL MATRIX</h3>
+            <p class="max-w-4xl mx-auto mb-10 text-center text-base sm:text-lg mono-tech"
+                style="color:var(--color-text-light); opacity:0.8;">
+                // Mapped from shipped work across mdfmt, PulseAI, StadiumFlow, Playto-Pay, memepage, PNGProtect, Sentia, and embedded builds on GitHub.
+            </p>
+
+            <div class="skills-hero pixel-block-3d">
+                <div>
+                    <p class="skills-hero-kicker">STACK SIGNAL</p>
+                    <h4 class="skills-hero-title">Backend-focused engineer building reliable systems with strong DevOps instincts.</h4>
+                    <p class="skills-hero-copy">
+                        Most work here centers on API design, service architecture, async job processing, containerized development,
+                        and practical deployment workflows using Node.js, Bun, Redis, BullMQ, Docker, FastAPI, and databases across
+                        both SQL and NoSQL stacks.
+                    </p>
+                </div>
+                <div class="skills-hero-stats">
+                    <div class="skills-stat">
+                        <span class="skills-stat-value">30+</span>
+                        <span class="skills-stat-label">Public projects documenting hands-on engineering work</span>
+                    </div>
+                    <div class="skills-stat">
+                        <span class="skills-stat-value">4</span>
+                        <span class="skills-stat-label">Core strengths across backend, DevOps, data, and applied systems</span>
+                    </div>
+                    <div class="skills-stat">
+                        <span class="skills-stat-value">2026</span>
+                        <span class="skills-stat-label">Recent active work visible across the portfolio and GitHub</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-grid">
+                <article class="skills-card pixel-block-3d">
+                    <p class="skills-card-eyebrow">Frontend Systems</p>
+                    <h4 class="skills-card-title">Modern React product builds</h4>
+                    <p class="skills-card-copy">Interactive UIs, editor-heavy interfaces, and app dashboards spanning Vite, React, Next.js, and TypeScript.</p>
+                    <div class="skill-panel-tags">
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">TypeScript</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">React 19</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Next.js</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Vite</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">React Router</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">TipTap</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Zustand</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Firebase</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Markdown Tooling</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Leaflet</span>
+                    </div>
+                    <p class="skills-proof">Projects: <span>mdfmt</span>, <span>StadiumFlow</span>, <span>todo</span>, <span>memepage</span></p>
+                </article>
+
+                <article class="skills-card pixel-block-3d">
+                    <p class="skills-card-eyebrow">Backend Engineering</p>
+                    <h4 class="skills-card-title">APIs, data models, queues, and auth</h4>
+                    <p class="skills-card-copy">REST backends built with Python and Node ecosystems, from secure password managers to payout engines and media platforms.</p>
+                    <div class="skill-panel-tags">
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">FastAPI</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Django</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Node.js</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Express</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">SQLAlchemy</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">PostgreSQL</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">MongoDB</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Prisma</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Celery</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Redis</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">BullMQ</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">JWT/Auth</span>
+                    </div>
+                    <p class="skills-proof">Projects: <span>Playto-Pay</span>, <span>Securo</span>, <span>Cha-Ching</span>, <span>memepage</span></p>
+                </article>
+
+                <article class="skills-card pixel-block-3d">
+                    <p class="skills-card-eyebrow">AI + Vision</p>
+                    <h4 class="skills-card-title">Applied intelligence that ships</h4>
+                    <p class="skills-card-copy">LLM flows, OCR tooling, posture/video analysis, invisible watermarking, and image-processing pipelines grounded in practical apps.</p>
+                    <div class="skill-panel-tags">
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">LangChain</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">LangGraph</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">RAG Pipelines</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">OCR</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Tesseract OCR</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">OpenCV</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">PyTorch</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Computer Vision</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Pillow</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Scikit-learn</span>
+                    </div>
+                    <p class="skills-proof">Projects: <span>PulseAI</span>, <span>PNGProtect</span>, <span>pyOCR</span>, <span>Sentia</span></p>
+                </article>
+
+                <article class="skills-card pixel-block-3d">
+                    <p class="skills-card-eyebrow">Security + Systems</p>
+                    <h4 class="skills-card-title">Secure tooling and low-level experimentation</h4>
+                    <p class="skills-card-copy">Work across encrypted credential storage, watermark verification, hardware automation, and system-level experiments that sharpen reliability and security thinking.</p>
+                    <div class="skill-panel-tags">
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Encryption</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Password Managers</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Invisible Watermarking</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Web3</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">C++</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Arduino</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">NodeMCU</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">System Interfaces</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Device Automation</span>
+                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Automation</span>
+                    </div>
+                    <p class="skills-proof">Projects: <span>CipherVault</span>, <span>PNGProtect</span>, <span>SMART_IRRIGATION</span>, <span>Home-Automation</span></p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="github-activity" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section"
+        style="animation-delay: 240ms; border-top-color:var(--color-accent-secondary);">
+        <div class="max-w-7xl mx-auto">
+            <div class="github-activity-shell pixel-block-3d">
+                <div class="github-activity-header">
+                    <div>
+                        <p class="github-activity-kicker">LIVE GITHUB SIGNAL</p>
+                        <h3 class="github-activity-title">Contribution graph, synced from GitHub.</h3>
+                        <p class="github-activity-copy">
+                            Live contribution activity from <span>@ApurveKaranwal</span>, surfaced here as a direct signal of consistency, iteration, and public engineering output.
+                        </p>
+                    </div>
+                    <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
+                        class="github-activity-link pixel-btn-3d mono-tech">
+                        View Profile <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="github-activity-frame">
+                    <div class="github-activity-grid"></div>
+                    <img
+                        src="https://ghchart.rshah.org/fcd34d/ApurveKaranwal"
+                        alt="Live GitHub contribution graph for Apurve Karanwal"
+                        class="github-activity-image"
+                        loading="lazy"
+                        referrerpolicy="no-referrer">
+                </div>
+
+                <div class="github-activity-footer">
+                    <span class="github-activity-pill">Live calendar</span>
+                    <span class="github-activity-pill">Public GitHub activity</span>
+                    <span class="github-activity-pill">Auto-updating embed</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -622,8 +739,7 @@
                 style="color:var(--color-accent-secondary);">[ACADEMIC] UNIVERSITY PROJECTS</h3>
             <p class="max-w-4xl mx-auto text-center text-lg mono-tech"
                 style="color:var(--color-text-light); opacity:0.8;">
-                // Capstones, course work, and group projects demonstrating fundamental understanding of computer
-                science and IT principles.
+                // Selected academic and foundational work that shaped problem solving, implementation discipline, and software fundamentals.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -822,47 +938,38 @@
                 <ul class="space-y-6 text-lg mono-tech">
                     <li class="p-4 border-l-4 rounded-md pixel-block-3d"
                         style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">IoT &
-                            Robotics Project Developer (Personal)</span>
-                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Designed and
-                            implemented high-impact IoT and robotics projects using embedded systems like NodeMCU and
-                            Arduino.</span>
+                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Independent Systems Builder</span>
+                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Built and shipped independent projects across backend services, automation, security tooling, and hardware-backed systems.</span>
                     </li>
                     <li class="p-4 border-l-4 rounded-md pixel-block-3d"
                         style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
                         <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Active
                             Member: FOSSCU-K</span>
-                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Proud member of
-                            FOSSCU-K, learning open-source and vibing with the top-tier brains of KIET.</span>
+                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Contributed to an open-source focused engineering community through collaboration, peer learning, and project exposure.</span>
                     </li>
                     <li class="p-4 border-l-4 rounded-md pixel-block-3d"
                         style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
                         <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Active
                             Member: Geek Room KIET (GRK)</span>
-                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Engaged member
-                            of GRK, learning from mentors and collaborating on innovative, hands-on software and
-                            hardware projects.</span>
+                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Worked within a technical community centered on building, reviewing, and discussing practical software projects.</span>
                     </li>
                     <li class="p-4 border-l-4 rounded-md pixel-block-3d"
                         style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
                         <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">Active
                             Member: Google Developer Group (GDG)</span>
-                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Actively
-                            involved in the GDG community, focusing on collaborative learning and practical project
-                            development.</span>
+                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Participated in developer community events and discussions around modern engineering practices and product development.</span>
                     </li>
                 </ul>
             </div>
             <div>
                 <h3 class="text-2xl sm:text-3xl font-bold mb-6 pixel-text pixel-text-flicker"
-                    style="color:var(--color-accent-main);">[ACCESS] CERTIFICATIONS</h3>
+                    style="color:var(--color-accent-main);">[ACCESS] RECOGNITION</h3>
                 <ul class="space-y-6 text-lg mono-tech">
                     <li class="p-4 border-l-4 rounded-md pixel-block-3d"
                         style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">CS50P -
+                        <span class="font-extrabold block mb-1" style="color:var(--color-accent-secondary);">CS50P -
                             Introduction to Programming with Python</span> (HarvardX)
-                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">- Near
-                            Completion (Excellent foundation in Python fundamentals).</span>
+                        <span class="text-sm italic" style="color:var(--color-text-light); opacity:0.7;">Strengthened core Python problem solving, programming fundamentals, and implementation discipline through project-based coursework.</span>
                     </li>
                     <li class="p-4 border-l-4 rounded-md pixel-block-3d"
                         style="border-left-color:var(--color-accent-secondary); background-color:var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
@@ -891,8 +998,7 @@
                     </p>
                     <p class="text-sm mono-tech" style="color:var(--color-text-light); opacity:0.7;">2025 - 2029 |
                         Expected Graduation</p>
-                    <p class="text-sm mt-3 mono-tech" style="color:var(--color-text-light); opacity:0.7;">Concentrating
-                        on artificial intelligence, machine learning, and smart device development.</p>
+                    <p class="text-sm mt-3 mono-tech" style="color:var(--color-text-light); opacity:0.7;">Academic foundation complemented by ongoing work in backend engineering, systems design, and applied infrastructure.</p>
                 </div>
                 <div class="p-6 rounded-lg pixel-block-3d"
                     style="border-color:var(--color-accent-secondary); background-color:var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
@@ -952,10 +1058,10 @@
                         <i class="fa-brands fa-medium text-2xl" style="color:var(--color-text-light); opacity:0.4;"></i>
                     </div>
                     <h4 class="text-lg font-bold mb-3 pixel-text" style="color:var(--color-accent-secondary);">
-                        Coming Soon
+                        More backend notes
                     </h4>
                     <p class="text-sm mono-tech mb-4" style="color:var(--color-text-light); opacity:0.85; line-height:1.6;">
-                        Coming Soon
+                        Additional writeups and engineering notes are published on Medium as they are finalized.
                     </p>
                 </div>
                 <a href="https://medium.com/@apurvekaranwal282" target="_blank" rel="noopener noreferrer"
@@ -977,10 +1083,10 @@
                         <i class="fa-brands fa-medium text-2xl" style="color:var(--color-text-light); opacity:0.4;"></i>
                     </div>
                     <h4 class="text-lg font-bold mb-3 pixel-text" style="color:var(--color-accent-secondary);">
-                        Coming Soon
+                        More systems writing
                     </h4>
                     <p class="text-sm mono-tech mb-4" style="color:var(--color-text-light); opacity:0.85; line-height:1.6;">
-                        Coming Soon
+                        Ongoing articles cover backend internals, infrastructure, and implementation tradeoffs.
                     </p>
                 </div>
                 <a href="https://medium.com/@apurvekaranwal282" target="_blank" rel="noopener noreferrer"
@@ -1009,8 +1115,7 @@
             <div class="p-8 rounded-lg max-w-4xl mx-auto pixel-block-3d"
                 style="border-color:var(--color-accent-main); background-color:var(--color-bg-dark); box-shadow: 6px 6px 0 var(--color-card-border);">
                 <p class="text-lg mono-tech" style="color:var(--color-text-light);">
-                    // Personal Data Feed: In my free time, I love playing the **piano**, listening to my favorite
-                    songs, diving into **PC games**, and exploring new **books**.
+                    // Outside engineering, I spend time with **piano**, **books**, long-form writing, and games that reward systems thinking.
                 </p>
             </div>
         </div>
@@ -1023,8 +1128,7 @@
                 style="color:var(--color-text-dark); text-shadow: 2px 2px 0 var(--color-text-light);">READY FOR LEVEL
                 UP?</h3>
             <p class="text-xl mb-8 mono-tech" style="color:var(--color-card-border); font-weight:700;">
-                [LOG: REQUESTING CONNECTION] If you're looking for a passionate builder to join your team or collaborate
-                on a high-impact project, execute the command below.
+                [LOG: REQUESTING CONNECTION] For internships, collaborations, or backend-focused engineering opportunities, reach out directly below.
             </p>
             <a href="mailto:apurvekaranwal2025@gmail.com"
                 class="inline-block px-10 py-4 font-extrabold text-xl rounded-lg mono-tech glitch-on-hover pixel-block-3d-cta"
@@ -1079,18 +1183,6 @@
         <i id="cyber-skull" class="fa-solid fa-skull"></i>
     </div>
 
-    <!-- RADIO PLAYER -->
-    <div id="radio-player" style="display:none;">
-        <div id="radio-header"><i class="fa-solid fa-radio"></i> LOFI_RADIO.exe</div>
-        <div id="radio-controls">
-            <button id="radio-play-btn"><i class="fa-solid fa-play"></i></button>
-            <div id="radio-visualizer">
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            </div>
-        </div>
-        <div id="yt-player-container" style="display:none;"></div>
-    </div>
-
     <!-- SANDBOX MODAL -->
     <div id="sandbox-modal" style="display:none;">
         <div class="sandbox-header">
@@ -1114,12 +1206,6 @@ document.body.style.filter = 'invert(1)';"></textarea>
         </div>
     </div>
 
-    <!-- AR MODAL -->
-    <div id="ar-modal" style="display:none;">
-        <button id="close-ar-btn" style="position:absolute;top:20px;right:20px;background:#f00;color:#000;border:none;padding:10px;font-weight:bold;cursor:pointer;z-index:10;">CLOSE AR</button>
-        <model-viewer id="ar-viewer" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1" style="width:100%;height:100%;background-color:#111;"></model-viewer>
-    </div>
-
     <!-- HACKING TERMINAL OVERLAY -->
     <div id="hacking-terminal" style="display:none;">
         <div class="scanline-overlay"></div>
@@ -1136,8 +1222,6 @@ document.body.style.filter = 'invert(1)';"></textarea>
     </div>
 
     <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js" defer></script>
 </body>
 
 </html>
