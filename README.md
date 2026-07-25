@@ -72,16 +72,16 @@ Then add standard Markdown image blocks such as:
 | Social/profile links | Yes | GitHub, Discord, X, LinkedIn, Medium |
 | Resume download flow | Yes | Modal-confirmed download |
 | Project repo launcher modal | Yes | Featured repo links route through code modal |
-| Pong mini-game | Yes | Keyboard and touch support |
-| CLI terminal overlay | Yes | Multiple built-in commands |
-| Konami code | Yes | Launches boss fight / Matrix flow |
-| Boss fight | Yes | Click-to-defeat overlay |
-| Matrix mode | Yes | Fullscreen interactive canvas |
-| CRT mode | Yes | Triggered by `retro` |
-| Dark-web mode | Yes | Triggered by `tor` |
-| Self-destruct effect | Yes | Hidden footer nuke button |
-| Sandbox JS executor | Yes | Unsafe intentional novelty feature |
-| Heist mini-game | Yes | Fallout-style password guessing |
+| Pong mini-game | No | Removed |
+| CLI terminal overlay | Yes | Portfolio shell commands (`whoami`, `ls`, `cat`, etc.) |
+| Konami code | No | Removed |
+| Boss fight | No | Removed |
+| Matrix mode | No | Removed |
+| CRT mode | No | Removed |
+| Dark-web mode | No | Removed |
+| Self-destruct effect | No | Removed |
+| Sandbox JS executor | No | Removed |
+| Heist mini-game | No | Removed |
 | Custom cursor and trail | Yes | Mouse-following cursor system |
 | Ambient particle/canvas systems | Yes | Spiderweb, glyphs, lines, particles |
 | Lo-fi draggable radio | Yes | Hidden YouTube-backed playback |

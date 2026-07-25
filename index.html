@@ -39,29 +39,7 @@
         </defs>
     </svg>
 
-    <!-- CODE SESSION MODAL -->
-    <div id="code-modal">
-        <div class="code-container">
-            <div class="code-header">
-                <h2>CODE SESSION</h2>
-                <div class="code-title" id="code-project-name">Project Name</div>
-            </div>
-            <div class="terminal-output" id="code-terminal">
-                <div class="terminal-line">
-                    <span class="terminal-icon">$</span>
-                    <span>npm start && open_editor</span>
-                </div>
-            </div>
-            <div class="code-buttons">
-                <button class="code-btn" id="code-view-btn" style="display:none;">
-                    > VIEW_REPOSITORY
-                </button>
-                <button class="code-btn code-btn-close" id="code-close-btn">
-                    > CLOSE
-                </button>
-            </div>
-        </div>
-    </div>
+
 
     <!-- RESUME DOWNLOAD MODAL -->
     <div id="resume-modal">
@@ -85,36 +63,6 @@
         </div>
     </div>
 
-    <!-- PONG GAME MODAL -->
-    <div id="pong-modal">
-        <div class="pong-container">
-            <div class="pong-header">
-                <h2>PONG GAME</h2>
-            </div>
-            <canvas id="pong-canvas" width="700" height="400" style="max-width:100%;"></canvas>
-            <!-- Mobile touch controls -->
-            <div class="pong-touch-controls" id="pong-touch-controls">
-                <button class="pong-touch-btn" id="touch-left-up" aria-label="Left paddle up">▲</button>
-                <button class="pong-touch-btn" id="touch-left-down" aria-label="Left paddle down">▼</button>
-                <button class="pong-touch-btn" id="touch-right-up" aria-label="Right paddle up">▲</button>
-                <button class="pong-touch-btn" id="touch-right-down" aria-label="Right paddle down">▼</button>
-            </div>
-            <div class="pong-info" id="pong-score">SCORE: 0 - 0</div>
-            <div class="pong-controls">
-                <div style="margin-bottom: 10px;">
-                     <strong>Controls:</strong> W/S or Up/Down to move | SPACE to pause/resume
-                </div>
-                <div style="color: var(--color-accent-secondary); padding: 8px; border: 1px solid var(--color-accent-secondary); border-radius: 4px;">
-                    <strong>Ball Speed (Press 1-5):</strong> <span id="speed-indicator" style="font-weight: bold;">1x (Normal)</span>
-                </div>
-            </div>
-            <div class="pong-buttons">
-                <button class="pong-btn" id="pong-close-btn">
-                    > CLOSE GAME
-                </button>
-            </div>
-        </div>
-    </div>
     <div id="preloader">
         <div class="loader-text" id="loader-text">INITIALIZING SYSTEM...</div>
         <div class="progress-bar-container">
@@ -124,10 +72,6 @@
             > CHECKING_MODULES...
         </div>
     </div>
-
-    <!-- MATRIX RAIN CANVAS -->
-    <canvas id="matrix-canvas"
-        style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:9998; pointer-events:none; display:none;"></canvas>
 
     <div class="scanline-overlay"></div>
 
@@ -184,19 +128,6 @@
                     <span class="hidden sm:inline mono-tech">Medium</span>
                 </a>
 
-                <button id="pong-game-btn"
-                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="Play Pong Game"
-                    style="border-color: var(--color-card-border); background-color: #d946ef; color: var(--color-text-light); cursor: pointer;">
-                    <i class="fa-solid fa-gamepad text-xl" style="color:var(--color-text-light);"></i>
-                    <span class="hidden sm:inline mono-tech">Pong</span>
-                </button>
-
-                <button id="cli-mode-btn"
-                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="Terminal Mode"
-                    style="border-color: var(--color-card-border); background-color: #10b981; color: var(--color-text-dark); cursor: pointer;">
-                    <i class="fa-solid fa-terminal text-xl" style="color:var(--color-text-dark);"></i>
-                    <span class="hidden sm:inline mono-tech font-bold">CLI</span>
-                </button>
 
             </div>
         </div>
@@ -233,17 +164,7 @@
                 <p>LIVE_TIME: <span id="live-time" style="color:#60a5fa;">--:--:--</span></p>
                 <p>DATE: <span id="live-date" style="color:#60a5fa;">-- --- --</span></p>
                 <p>LOCATION: <span style="color:#c084fc;">ASIA/DELHI</span></p>
-                <div class="mt-5 pt-4 border-t-2 border-dashed" style="border-color: rgba(239, 68, 68, 0.4);">
-                    <p class="text-sm font-bold mb-2 tracking-wide pixel-text-flicker" style="color:#ef4444;">
-                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> HIGHLY CLASSIFIED DATA
-                    </p>
-                    <button id="secret-override-btn" class="text-sm sm:text-base font-bold mono-tech w-full text-center p-3 rounded transition-transform hover:scale-[1.02] active:scale-95" style="color:#ffffff; background-color: #dc2626; border: 2px solid #991b1b; box-shadow: 0 0 15px rgba(220, 38, 38, 0.4), 4px 4px 0 #7f1d1d; cursor: pointer;">
-                        <i class="fa-solid fa-skull mr-1"></i> DEFINITELY DO NOT CLICK HERE!
-                    </button>
-                    <p class="text-xs mt-2 text-center" style="color:var(--color-text-light); opacity: 0.6;">
-                        (Or try: &uarr; &uarr; &darr; &darr; &larr; &rarr; &larr; &rarr; B A)
-                    </p>
-                </div>
+
             </div>
         </div>
     </section>
@@ -251,119 +172,175 @@
 
 
     <section class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section" id="skills"
-        style="animation-delay: 200ms; border-top-color:var(--color-accent-main);">
+        style="animation-delay: 200ms; border-top-color:var(--color-accent-secondary);">
         <div class="max-w-7xl mx-auto">
-            <h3 class="text-2xl sm:text-3xl font-bold mb-5 text-center pixel-text pixel-text-flicker"
-                style="color:var(--color-accent-main);">[SYSTEM] SKILL MATRIX</h3>
-            <p class="max-w-4xl mx-auto mb-10 text-center text-base sm:text-lg mono-tech"
-                style="color:var(--color-text-light); opacity:0.8;">
-                // Mapped from shipped work across mdfmt, PulseAI, StadiumFlow, Playto-Pay, memepage, PNGProtect, Sentia, and embedded builds on GitHub.
+            <h3 class="text-2xl sm:text-4xl font-bold mb-4 text-center pixel-text pixel-text-flicker">
+                <span style="color:var(--color-accent-secondary);">[SYSTEM]</span>
+                <span style="color:var(--color-accent-main);"> SKILL MATRIX</span>
+            </h3>
+            <p class="max-w-3xl mx-auto mb-8 text-center text-sm sm:text-base mono-tech"
+                style="color:var(--color-text-light); opacity:0.85;">
+                // Mapped from shipped work across <span style="color:var(--color-accent-secondary);">mdfmt</span>, <span style="color:var(--color-accent-secondary);">PulseAI</span>, <span style="color:var(--color-accent-secondary);">StadiumFlow</span>, <span style="color:var(--color-accent-secondary);">Playto-Pay</span>, <span style="color:var(--color-accent-secondary);">PNGProtect</span>, and <span style="color:var(--color-accent-secondary);">Sentia</span>.
             </p>
 
-            <div class="skills-hero pixel-block-3d">
-                <div>
-                    <p class="skills-hero-kicker">STACK SIGNAL</p>
-                    <h4 class="skills-hero-title">Backend-focused engineer building reliable systems with strong DevOps instincts.</h4>
-                    <p class="skills-hero-copy">
-                        Most work here centers on API design, service architecture, async job processing, containerized development,
-                        and practical deployment workflows using Node.js, Bun, Redis, BullMQ, Docker, FastAPI, and databases across
-                        both SQL and NoSQL stacks.
+            <!-- OVERVIEW / STACK HERO BANNER -->
+            <div class="skills-hero pixel-block-3d mb-8" style="border-color:var(--color-accent-secondary);">
+                <div class="skills-hero-content mb-6 lg:mb-0">
+                    <span class="mono-tech text-xs font-bold tracking-widest uppercase block mb-2" style="color:var(--color-accent-secondary);">
+                        // STACK SIGNAL
+                    </span>
+                    <h4 class="text-xl sm:text-2xl font-extrabold mono-tech mb-3" style="color:var(--color-accent-secondary);">
+                        Backend-focused engineer building <span style="color:var(--color-accent-main);">reliable systems</span> with strong DevOps instincts.
+                    </h4>
+                    <p class="mono-tech text-sm sm:text-base leading-relaxed" style="color:var(--color-text-light); opacity:0.88;">
+                        Most work here centers on <span style="color:var(--color-accent-secondary); font-weight:bold;">API design</span>, <span style="color:var(--color-accent-secondary); font-weight:bold;">service architecture</span>, <span style="color:var(--color-accent-secondary); font-weight:bold;">async job processing</span>, and practical deployment workflows using <span style="color:var(--color-accent-main);">Node.js</span>, <span style="color:var(--color-accent-main);">Bun</span>, <span style="color:var(--color-accent-main);">Redis</span>, <span style="color:var(--color-accent-main);">BullMQ</span>, <span style="color:var(--color-accent-main);">Docker</span>, and <span style="color:var(--color-accent-main);">FastAPI</span>.
                     </p>
                 </div>
                 <div class="skills-hero-stats">
-                    <div class="skills-stat">
-                        <span class="skills-stat-value">30+</span>
-                        <span class="skills-stat-label">Public projects documenting hands-on engineering work</span>
+                    <div class="skills-stat-card">
+                        <span class="skills-stat-number" style="color:var(--color-accent-secondary);">30+</span>
+                        <span class="skills-stat-text">Public projects documenting hands-on engineering work</span>
                     </div>
-                    <div class="skills-stat">
-                        <span class="skills-stat-value">4</span>
-                        <span class="skills-stat-label">Core strengths across backend, DevOps, data, and applied systems</span>
+                    <div class="skills-stat-card" style="border-color:var(--color-accent-secondary);">
+                        <span class="skills-stat-number" style="color:var(--color-accent-secondary);">4</span>
+                        <span class="skills-stat-text">Core strengths across backend, DevOps, data, & applied systems</span>
                     </div>
-                    <div class="skills-stat">
-                        <span class="skills-stat-value">2026</span>
-                        <span class="skills-stat-label">Recent active work visible across the portfolio and GitHub</span>
+                    <div class="skills-stat-card">
+                        <span class="skills-stat-number" style="color:var(--color-accent-main);">2026</span>
+                        <span class="skills-stat-text">Recent active work visible across portfolio & GitHub</span>
                     </div>
                 </div>
             </div>
 
-            <div class="skills-grid">
+            <!-- SKILL CATEGORY CARDS GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- CARD 1: FRONTEND -->
                 <article class="skills-card pixel-block-3d">
-                    <p class="skills-card-eyebrow">Frontend Systems</p>
-                    <h4 class="skills-card-title">Modern React product builds</h4>
-                    <p class="skills-card-copy">Interactive UIs, editor-heavy interfaces, and app dashboards spanning Vite, React, Next.js, and TypeScript.</p>
-                    <div class="skill-panel-tags">
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">TypeScript</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">React 19</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Next.js</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Vite</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">React Router</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">TipTap</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Zustand</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Firebase</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Markdown Tooling</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Leaflet</span>
+                    <div class="skills-card-header mb-3">
+                        <h4 class="text-xl font-bold mono-tech tracking-wide" style="color:var(--color-accent-secondary);">
+                            FRONTEND SYSTEMS
+                        </h4>
+                        <p class="text-sm font-semibold mono-tech mt-1" style="color:var(--color-accent-main);">
+                            Modern React product builds
+                        </p>
                     </div>
-                    <p class="skills-proof">Projects: <span>mdfmt</span>, <span>StadiumFlow</span>, <span>todo</span>, <span>memepage</span></p>
+                    <p class="skills-card-copy text-sm mono-tech my-3" style="color:var(--color-text-light); opacity:0.85;">
+                        Interactive UIs, editor-heavy interfaces, and app dashboards spanning Vite, React, Next.js, and TypeScript.
+                    </p>
+                    <div class="flex flex-wrap gap-2 my-3">
+                        <span class="skill-tag skill-tag-gold">TypeScript</span>
+                        <span class="skill-tag skill-tag-gold">React 19</span>
+                        <span class="skill-tag skill-tag-gold">Next.js</span>
+                        <span class="skill-tag">Vite</span>
+                        <span class="skill-tag">React Router</span>
+                        <span class="skill-tag">TipTap</span>
+                        <span class="skill-tag">Zustand</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Markdown Tooling</span>
+                        <span class="skill-tag">Leaflet</span>
+                    </div>
+                    <div class="skills-proof-footer">
+                        <span class="proof-label">PROJECTS:</span>
+                        <span class="proof-items">mdfmt, StadiumFlow, todo, memepage</span>
+                    </div>
                 </article>
 
+                <!-- CARD 2: BACKEND -->
                 <article class="skills-card pixel-block-3d">
-                    <p class="skills-card-eyebrow">Backend Engineering</p>
-                    <h4 class="skills-card-title">APIs, data models, queues, and auth</h4>
-                    <p class="skills-card-copy">REST backends built with Python and Node ecosystems, from secure password managers to payout engines and media platforms.</p>
-                    <div class="skill-panel-tags">
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">FastAPI</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Django</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Node.js</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Express</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">SQLAlchemy</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">PostgreSQL</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">MongoDB</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Prisma</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Celery</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Redis</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">BullMQ</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">JWT/Auth</span>
+                    <div class="skills-card-header mb-3">
+                        <h4 class="text-xl font-bold mono-tech tracking-wide" style="color:var(--color-accent-secondary);">
+                            BACKEND ENGINEERING
+                        </h4>
+                        <p class="text-sm font-semibold mono-tech mt-1" style="color:var(--color-accent-main);">
+                            APIs, data models, queues, & auth
+                        </p>
                     </div>
-                    <p class="skills-proof">Projects: <span>Playto-Pay</span>, <span>Securo</span>, <span>Cha-Ching</span>, <span>memepage</span></p>
+                    <p class="skills-card-copy text-sm mono-tech my-3" style="color:var(--color-text-light); opacity:0.85;">
+                        REST backends built with Python and Node ecosystems, from secure password managers to payout engines and media platforms.
+                    </p>
+                    <div class="flex flex-wrap gap-2 my-3">
+                        <span class="skill-tag skill-tag-gold">FastAPI</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag skill-tag-gold">Node.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">SQLAlchemy</span>
+                        <span class="skill-tag skill-tag-gold">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Prisma</span>
+                        <span class="skill-tag">Celery</span>
+                        <span class="skill-tag skill-tag-gold">Redis</span>
+                        <span class="skill-tag skill-tag-gold">BullMQ</span>
+                        <span class="skill-tag">JWT/Auth</span>
+                    </div>
+                    <div class="skills-proof-footer">
+                        <span class="proof-label">PROJECTS:</span>
+                        <span class="proof-items">Playto-Pay, Securo, Cha-Ching, memepage</span>
+                    </div>
                 </article>
 
+                <!-- CARD 3: AI + VISION -->
                 <article class="skills-card pixel-block-3d">
-                    <p class="skills-card-eyebrow">AI + Vision</p>
-                    <h4 class="skills-card-title">Applied intelligence that ships</h4>
-                    <p class="skills-card-copy">LLM flows, OCR tooling, posture/video analysis, invisible watermarking, and image-processing pipelines grounded in practical apps.</p>
-                    <div class="skill-panel-tags">
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">LangChain</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">LangGraph</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">RAG Pipelines</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">OCR</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Tesseract OCR</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">OpenCV</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">PyTorch</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Computer Vision</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Pillow</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Scikit-learn</span>
+                    <div class="skills-card-header mb-3">
+                        <h4 class="text-xl font-bold mono-tech tracking-wide" style="color:var(--color-accent-secondary);">
+                            AI + VISION
+                        </h4>
+                        <p class="text-sm font-semibold mono-tech mt-1" style="color:var(--color-accent-main);">
+                            Applied intelligence that ships
+                        </p>
                     </div>
-                    <p class="skills-proof">Projects: <span>PulseAI</span>, <span>PNGProtect</span>, <span>pyOCR</span>, <span>Sentia</span></p>
+                    <p class="skills-card-copy text-sm mono-tech my-3" style="color:var(--color-text-light); opacity:0.85;">
+                        LLM flows, OCR tooling, posture/video analysis, invisible watermarking, and image-processing pipelines grounded in practical apps.
+                    </p>
+                    <div class="flex flex-wrap gap-2 my-3">
+                        <span class="skill-tag skill-tag-gold">LangChain</span>
+                        <span class="skill-tag">LangGraph</span>
+                        <span class="skill-tag skill-tag-gold">RAG Pipelines</span>
+                        <span class="skill-tag">OCR</span>
+                        <span class="skill-tag">Tesseract OCR</span>
+                        <span class="skill-tag skill-tag-gold">OpenCV</span>
+                        <span class="skill-tag skill-tag-gold">PyTorch</span>
+                        <span class="skill-tag">Computer Vision</span>
+                        <span class="skill-tag">Pillow</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                    </div>
+                    <div class="skills-proof-footer">
+                        <span class="proof-label">PROJECTS:</span>
+                        <span class="proof-items">PulseAI, PNGProtect, pyOCR, Sentia</span>
+                    </div>
                 </article>
 
+                <!-- CARD 4: SECURITY + SYSTEMS -->
                 <article class="skills-card pixel-block-3d">
-                    <p class="skills-card-eyebrow">Security + Systems</p>
-                    <h4 class="skills-card-title">Secure tooling and low-level experimentation</h4>
-                    <p class="skills-card-copy">Work across encrypted credential storage, watermark verification, hardware automation, and system-level experiments that sharpen reliability and security thinking.</p>
-                    <div class="skill-panel-tags">
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Encryption</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Password Managers</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Invisible Watermarking</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Web3</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">C++</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Arduino</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">NodeMCU</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">System Interfaces</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Device Automation</span>
-                        <span class="px-4 py-2 font-semibold text-sm rounded-lg skill-tag">Automation</span>
+                    <div class="skills-card-header mb-3">
+                        <h4 class="text-xl font-bold mono-tech tracking-wide" style="color:var(--color-accent-secondary);">
+                            SECURITY + SYSTEMS
+                        </h4>
+                        <p class="text-sm font-semibold mono-tech mt-1" style="color:var(--color-accent-main);">
+                            Secure tooling & low-level experiments
+                        </p>
                     </div>
-                    <p class="skills-proof">Projects: <span>CipherVault</span>, <span>PNGProtect</span>, <span>SMART_IRRIGATION</span>, <span>Home-Automation</span></p>
+                    <p class="skills-card-copy text-sm mono-tech my-3" style="color:var(--color-text-light); opacity:0.85;">
+                        Work across encrypted credential storage, watermark verification, hardware automation, and system-level experiments that sharpen reliability and security thinking.
+                    </p>
+                    <div class="flex flex-wrap gap-2 my-3">
+                        <span class="skill-tag skill-tag-gold">Encryption</span>
+                        <span class="skill-tag">Password Managers</span>
+                        <span class="skill-tag">Invisible Watermarking</span>
+                        <span class="skill-tag skill-tag-gold">Web3</span>
+                        <span class="skill-tag skill-tag-gold">C++</span>
+                        <span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">NodeMCU</span>
+                        <span class="skill-tag">System Interfaces</span>
+                        <span class="skill-tag">Device Automation</span>
+                        <span class="skill-tag">Automation</span>
+                    </div>
+                    <div class="skills-proof-footer">
+                        <span class="proof-label">PROJECTS:</span>
+                        <span class="proof-items">CipherVault, PNGProtect, SMART_IRRIGATION, Home-Automation</span>
+                    </div>
                 </article>
+
             </div>
         </div>
     </section>
@@ -371,86 +348,185 @@
     <section id="github-activity" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section"
         style="animation-delay: 240ms; border-top-color:var(--color-accent-secondary);">
         <div class="max-w-7xl mx-auto">
-            <div class="github-activity-shell pixel-block-3d">
-                <div class="github-activity-header">
+            <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-center pixel-text pixel-text-flicker"
+                style="color:var(--color-accent-secondary);">[LOG] GITHUB ACTIVITY SIGNAL</h3>
+            <p class="max-w-3xl mx-auto mb-8 text-center text-sm sm:text-base mono-tech"
+                style="color:var(--color-text-light); opacity:0.85;">
+                // Live contribution heatmap from @ApurveKaranwal, synced automatically from GitHub.
+            </p>
+
+            <div class="github-activity-shell pixel-block-3d p-6 sm:p-8" style="background-color:var(--color-bg-dark); border-color:var(--color-accent-main); box-shadow:6px 6px 0 var(--color-card-border);">
+                                <!-- TOP TELEMETRY BAR -->
+                <div class="github-activity-header flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
                     <div>
-                        <p class="github-activity-kicker">LIVE GITHUB SIGNAL</p>
-                        <h3 class="github-activity-title">Contribution graph, synced from GitHub.</h3>
-                        <p class="github-activity-copy">
-                            Live contribution activity from <span>@ApurveKaranwal</span>, surfaced here as a direct signal of consistency, iteration, and public engineering output.
-                        </p>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="inline-block w-2 h-2 rounded-full bg-yellow-300 animate-pulse"></span>
+                            <span class="mono-tech text-xs font-bold tracking-widest uppercase" style="color:var(--color-accent-secondary);">
+                                // LIVE TELEMETRY RADAR
+                            </span>
+                        </div>
+                        <h4 class="text-xl sm:text-2xl font-extrabold mono-tech" style="color:var(--color-accent-main);">
+                            365-Day Contribution Graph
+                        </h4>
                     </div>
                     <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
-                        class="github-activity-link pixel-btn-3d mono-tech">
-                        View Profile <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+                        class="pixel-btn-3d mono-tech text-sm font-bold px-4 py-2" style="background-color:var(--color-accent-secondary); color:var(--color-text-dark); text-decoration:none;">
+                        View GitHub Profile <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
                     </a>
                 </div>
 
-                <div class="github-activity-frame">
-                    <div class="github-activity-grid"></div>
+                <!-- METRIC CARDS GRID (LIVE GITHUB TELEMETRY) -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="p-3.5 rounded mono-tech" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border);">
+                        <div class="text-xs uppercase font-bold" style="color:var(--color-accent-main); opacity:0.88;">Public Repos</div>
+                        <div id="gh-stat-repos" class="pixel-text text-xl mt-1" style="color:var(--color-accent-secondary);">55</div>
+                    </div>
+                    <div class="p-3.5 rounded mono-tech" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border);">
+                        <div class="text-xs uppercase font-bold" style="color:var(--color-accent-main); opacity:0.88;">Merged PRs</div>
+                        <div id="gh-stat-merged-prs" class="pixel-text text-xl mt-1" style="color:var(--color-accent-secondary);">10</div>
+                    </div>
+                    <div class="p-3.5 rounded mono-tech" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border);">
+                        <div class="text-xs uppercase font-bold" style="color:var(--color-accent-main); opacity:0.88;">PRs Still Open</div>
+                        <div id="gh-stat-open-prs" class="pixel-text text-xl mt-1" style="color:var(--color-accent-secondary);">10</div>
+                    </div>
+                    <div class="p-3.5 rounded mono-tech" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border);">
+                        <div class="text-xs uppercase font-bold" style="color:var(--color-accent-main); opacity:0.88;">Open Issues</div>
+                        <div id="gh-stat-open-issues" class="pixel-text text-xl mt-1" style="color:var(--color-accent-secondary);">14</div>
+                    </div>
+                </div>
+
+                <div class="github-activity-frame p-4 rounded-md mb-6" style="background-color:var(--color-card-border); border:3px solid var(--color-card-main);">
                     <img
                         src="https://ghchart.rshah.org/fcd34d/ApurveKaranwal"
                         alt="Live GitHub contribution graph for Apurve Karanwal"
-                        class="github-activity-image"
+                        class="w-full h-auto block"
                         loading="lazy"
                         referrerpolicy="no-referrer">
                 </div>
 
-                <div class="github-activity-footer">
-                    <span class="github-activity-pill">Live calendar</span>
-                    <span class="github-activity-pill">Public GitHub activity</span>
-                    <span class="github-activity-pill">Auto-updating embed</span>
-                </div>
             </div>
         </div>
     </section>
 
+    <!-- OPEN SOURCE CONTRIBUTIONS SECTION -->
     <section id="open-source" class="p-8 sm:p-16 border-t-4 section-border responsive-p animated-section"
         style="animation-delay: 300ms; border-top-color:var(--color-accent-main); background-color:var(--color-card-main);">
         <div class="max-w-7xl mx-auto">
             <h3 class="text-2xl sm:text-3xl font-bold mb-10 text-center pixel-text pixel-text-flicker"
                 style="color:var(--color-accent-secondary);">[LOG] OPEN SOURCE CONTRIBUTIONS <span
                     class="text-xl ml-2"><i class="fa-solid fa-code-branch"></i></span></h3>
-            <p class="max-w-4xl mx-auto text-center text-lg mono-tech"
+            <p class="max-w-4xl mx-auto mb-10 text-center text-lg mono-tech"
                 style="color:var(--color-text-light); opacity:0.8;">
-                // Actively contributing to public repositories, improving codebases, and fostering collaboration within
-                the development community.
+                // Actively contributing to major open source projects across Apple and KGateway.
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
 
-                <div class="p-4 rounded-md mono-tech pixel-block-3d"
-                    style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                    <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">
-                        FOSS-Community/progress-tracker</h4>
-                    <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.7;">**Contribution:**
-                        Improve error handling, add Node.js check, auto .html extension, wrap in main()</p>
-                    <a href="https://github.com/FOSS-Community/progress-tracker/commit/2c9d980a8aef91ad658eb2def9600de67bf0a488"
-                        target="_blank" rel="noopener noreferrer" class="text-sm mono-tech transition duration-150"
-                        style="color:#60a5fa;">
-                        > View PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
-                    </a>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
 
-                <div class="p-4 rounded-md mono-tech pixel-block-3d"
+                <!-- 1. kgateway core engine -->
+                <div class="p-4 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
                     style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                    <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">kgateway-dev/kgateway.dev</h4>
-                    <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.7;">**Contribution:**
-                        docs: fix spelling typos and documentation errors</p>
-                    <a href="https://github.com/kgateway-dev/kgateway.dev/pull/838" target="_blank" rel="noopener noreferrer"
+                    <div>
+                        <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">
+                            kgateway-dev/kgateway</h4>
+                        <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.75;">**Contribution:**
+                            fix: support status reporting and stale status cleanup for GRPCRoute, TCPRoute, and TLSRoute</p>
+                    </div>
+                    <a href="https://github.com/kgateway-dev/kgateway/pull/14294" target="_blank" rel="noopener noreferrer"
                         class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
                         > View PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
                     </a>
                 </div>
 
-                <div class="p-4 rounded-md mono-tech pixel-block-3d"
+                <!-- 2. apple coremltools -->
+                <div class="p-4 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
                     style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
-                    <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">apple/embedding-atlas</h4>
-                    <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.7;">**Contribution:**docs: correct typos and grammar in READMEs and documentation</p>
+                    <div>
+                        <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">
+                            apple/coremltools</h4>
+                        <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.75;">**Contribution:**
+                            Improve documentation and clean up test organization</p>
+                    </div>
+                    <a href="https://github.com/apple/coremltools/pull/2741" target="_blank" rel="noopener noreferrer"
+                        class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
+                        > View PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- 3. apple embedding-atlas security fix -->
+                <div class="p-4 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                    style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                    <div>
+                        <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">
+                            apple/embedding-atlas</h4>
+                        <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.75;">**Contribution:**
+                            fix(backend): block destructive SQL queries on /data/query endpoint</p>
+                    </div>
+                    <a href="https://github.com/apple/embedding-atlas/pull/209" target="_blank" rel="noopener noreferrer"
+                        class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
+                        > View PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- 4. apple embedding-atlas docs -->
+                <div class="p-4 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                    style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                    <div>
+                        <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">
+                            apple/embedding-atlas</h4>
+                        <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.75;">**Contribution:**
+                            docs: correct typos and grammar in READMEs and documentation</p>
+                    </div>
                     <a href="https://github.com/apple/embedding-atlas/pull/206" target="_blank" rel="noopener noreferrer"
                         class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
                         > View PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
                     </a>
                 </div>
+
+                <!-- 5. kgateway.dev OAuth -->
+                <div class="p-4 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                    style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                    <div>
+                        <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">
+                            kgateway-dev/kgateway.dev</h4>
+                        <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.75;">**Contribution:**
+                            docs: add comprehensive OAuth2/OIDC integration guide</p>
+                    </div>
+                    <a href="https://github.com/kgateway-dev/kgateway.dev/pull/866" target="_blank" rel="noopener noreferrer"
+                        class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
+                        > View PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- 6. kgateway.dev Windows encoding -->
+                <div class="p-4 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                    style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                    <div>
+                        <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">
+                            kgateway-dev/kgateway.dev</h4>
+                        <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.75;">**Contribution:**
+                            fix: resolve windows compatibility and encoding issues in generator scripts</p>
+                    </div>
+                    <a href="https://github.com/kgateway-dev/kgateway.dev/pull/802" target="_blank" rel="noopener noreferrer"
+                        class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
+                        > View PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- 7. kgateway.dev upgrade considerations -->
+                <div class="p-4 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                    style="border-color: var(--color-accent-main); background-color: var(--color-bg-dark); box-shadow: 4px 4px 0 var(--color-card-border);">
+                    <div>
+                        <h4 class="font-extrabold block mb-1 text-lg" style="color:var(--color-accent-secondary);">
+                            kgateway-dev/kgateway.dev</h4>
+                        <p class="text-sm italic mb-2" style="color:var(--color-text-light); opacity:0.75;">**Contribution:**
+                            docs: uncomment upgrade considerations and clean up obsolete sections</p>
+                    </div>
+                    <a href="https://github.com/kgateway-dev/kgateway.dev/pull/916" target="_blank" rel="noopener noreferrer"
+                        class="text-sm mono-tech transition duration-150" style="color:#60a5fa;">
+                        > View PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
             </div>
         </div>
     </section>
@@ -460,14 +536,64 @@
         <h3 class="text-2xl sm:text-3xl font-bold mb-12 text-center pixel-text pixel-text-flicker"
             style="color:var(--color-accent-main);">[PROJECTS] FEATURED BUILDS </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+            
+            <!-- 1. PulseAI -->
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">
-                        PNGProtect</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
-                        **PNGProtect is an image protection system that uses algorithmic pixel manipulation and
-                        checksum-based integrity techniques to safeguard PNG assets. The application is implemented with
-                        a scalable web architecture for efficient and secure image processing.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">PulseAI</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Full-stack AI health platform integrating real-time MoveNet computer vision for posture tracking, NLP diet parsing, and a LangGraph LLM coaching agent on microservices.</p>
+                </div>
+                <a href="https://github.com/ApurveKaranwal/PulseAI" target="_blank" rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
+                    > VIEW_REPOSITORY
+                </a>
+            </div>
+
+            <!-- 2. Playto-Pay -->
+            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Playto-Pay</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Production-grade fintech payout engine simulating real ledger-based accounting, concurrency-safe transactions, idempotent APIs, and async Celery task processing.</p>
+                </div>
+                <a href="https://github.com/ApurveKaranwal/Playto-Pay" target="_blank" rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
+                    > VIEW_REPOSITORY
+                </a>
+            </div>
+
+            <!-- 3. StadiumFlow -->
+            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">StadiumFlow</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Stadium entry advisory platform recommending optimal gates based on walking time + queue delay, with live crowd reporting and photo privacy masking.</p>
+                </div>
+                <a href="https://github.com/ApurveKaranwal/StadiumFlow" target="_blank" rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
+                    > VIEW_REPOSITORY
+                </a>
+            </div>
+
+            <!-- 4. Sentia -->
+            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Sentia</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Intelligent video analysis system processing public video feeds to infer emotional states, demographics, and observable human behavior using AI models.</p>
+                </div>
+                <a href="https://github.com/ApurveKaranwal/Sentia" target="_blank" rel="noopener noreferrer"
+                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
+                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
+                    > VIEW_REPOSITORY
+                </a>
+            </div>
+
+            <!-- 5. PNGProtect -->
+            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">PNGProtect</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Image protection system using algorithmic pixel manipulation and checksum-based integrity techniques to embed invisible watermarks into PNG assets.</p>
                 </div>
                 <a href="https://github.com/ApurveKaranwal/PNGProtect" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
@@ -476,43 +602,11 @@
                 </a>
             </div>
 
+            <!-- 6. mdfmt -->
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">memepage
-                    </h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
-                        **Built Memepage, a fully hand-coded meme sharing platform where users can upload and browse memes, with integrated Web3 functionality.
-                            Developed using React, Express, Multer, and Cloudinary to handle image uploads, storage, and delivery efficiently.</p>
-                </div>
-                <a href="https://github.com/ApurveKaranwal/memepage" target="_blank" rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">pyOCR
-                    </h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
-                        **AI-Powered Medical OCR**: A Python tool using Tesseract, OpenCV, and BeautifulSoup to parse
-                        blood test reports (PDF/images), extracting data for health applications.</p>
-                </div>
-                <a href="https://github.com/ApurveKaranwal/pyOCR" target="_blank" rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">mdfmt
-                    </h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
-                        **Built mdfmt (README Studio), an open-source WYSIWYG Markdown editor that converts rich-text input into clean, GitHub-flavored Markdown in real time.
-                        Developed with React, TipTap, and Turndown.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">mdfmt</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Full-stack WYSIWYG Markdown editor (README Studio) converting rich-text into clean GitHub-flavored Markdown in real time. Built with React & TipTap.</p>
                 </div>
                 <a href="https://github.com/ApurveKaranwal/mdfmt" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
@@ -521,60 +615,50 @@
                 </a>
             </div>
 
+            <!-- 7. memepage -->
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">
-                        Cha-Ching!</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **An
-                        expense tracking application built with FastAPI and SQLite, designed to keep your daily finances
-                        organised, efficient, and easy to manage.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">memepage</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Interactive meme-sharing platform with Web3 features, audio attachment support, upvoting, and Cloudinary media processing. Built with React & Node.js.</p>
                 </div>
-                <a href="https://github.com/ApurveKaranwal/Cha-Ching" target="_blank" rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/memepage" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
                     style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
 
+            <!-- 8. pyOCR -->
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">RAG
-                        PIPELINE</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **An
-                        AI chatbot that answers questions from PDFs using RAG, powered by LangChain, Groq LLaMA 3.1, and
-                        FAISS. Built with Streamlit, HuggingFace, and PyPDF for seamless PDF processing and intelligent
-                        retrieval.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">pyOCR</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **AI-powered medical report parser using Tesseract OCR, OpenCV, and BeautifulSoup to parse blood test reports (PDFs/images) into structured medical data.</p>
                 </div>
-                <a href="https://github.com/ApurveKaranwal/RAG_pipeline" target="_blank" rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/pyOCR" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
                     style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
 
+            <!-- 9. waketheFUp -->
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">WOMEN
-                        SAFETY SYSTEM</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
-                        **Wearable Emergency IoT**: Device with real-time GPS tracking and instant **email/mobile
-                        alerts** powered by **NodeMCU**.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">waketheFUp</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Automated server keep-alive ping service maintaining backend activity on 30s, 60s, and 300s cycles to prevent free-tier cloud backends from sleeping.</p>
                 </div>
-                <a href="https://github.com/ApurveKaranwal/WOMEN_SAFETY_SYSTEM" target="_blank"
-                    rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/waketheFUp" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
                     style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
 
+            <!-- 10. CipherVault -->
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">
-                        CipherVault</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
-                        **Secure Password Manager**: Python application utilizing **Fernet encryption** for secure
-                        generation, storage, and retrieval of credentials.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">CipherVault</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Secure Python password manager utilizing Fernet symmetric encryption, auto-generation, clipboard integration, and terminal table formatting.</p>
                 </div>
                 <a href="https://github.com/ApurveKaranwal/CipherVault" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
@@ -583,149 +667,32 @@
                 </a>
             </div>
 
+            <!-- 11. Cha-Ching! -->
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">TextForge
-                    </h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
-                        **ASCII Art Generator**: A Python command-line utility for converting standard text input into
-                        various **stylized, creative ASCII art** displays.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Cha-Ching!</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **High-performance personal expense tracking application and REST API built with FastAPI and SQLite for fast, categorized financial logging.</p>
                 </div>
-                <a href="https://github.com/ApurveKaranwal/TextForge" target="_blank" rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/Cha-Ching" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
                     style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
 
+            <!-- 12. WOMEN SAFETY SYSTEM -->
             <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
                 <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">HOME
-                        AUTOMATION</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// Smart
-                        IoT-based system for remote **monitoring and control** of household appliances, designed to
-                        increase convenience and energy efficiency.</p>
+                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">WOMEN SAFETY SYSTEM</h4>
+                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// **Wearable emergency IoT device with real-time GPS geolocation tracking and instant automated mobile/email alerts powered by NodeMCU hardware.</p>
                 </div>
-                <a href="https://github.com/ApurveKaranwal/Home-Automation" target="_blank" rel="noopener noreferrer"
+                <a href="https://github.com/ApurveKaranwal/WOMEN_SAFETY_SYSTEM" target="_blank" rel="noopener noreferrer"
                     class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
                     style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
                     > VIEW_REPOSITORY
                 </a>
             </div>
 
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Expense
-                        Tracker</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
-                        Full-stack application for managing daily expenses. Features include **category-based
-                        tracking**, data export, and simple visualization.</p>
-                </div>
-                <a href="https://github.com/ApurveKaranwal/Expense_Tracker" target="_blank" rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">COVID-19
-                        TRACKER</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
-                        Compact IoT device monitoring real-time pandemic data (Worldometer & Thingspeak) using NodeMCU
-                        and OLED display.</p>
-                </div>
-                <a href="https://github.com/ApurveKaranwal/Covid-19-Tracker-OLed-Project" target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">SMART
-                        IRRIGATION</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">
-                        //**Automated Farming System**: IoT solution using **NodeMCU** and soil moisture sensors.
-                        Regulates water usage and sends remote status updates.</p>
-                </div>
-                <a href="https://github.com/ApurveKaranwal/SMART_IRRIGATION" target="_blank" rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Securo
-                    </h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//A fast
-                        and secure password manager backend built with FastAPI and SQLite, featuring auto password
-                        generation and safe storage.</p>
-                </div>
-                <a href="https://github.com/ApurveKaranwal/Securo" target="_blank" rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">Shirt
-                        Smith</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">//
-                        Virtual Try-On Utility**: Python-based tool for creating realistic virtual T-shirt mockups by
-                        overlaying custom designs onto model images.</p>
-                </div>
-                <a href="https://github.com/ApurveKaranwal/ShirtSmith" target="_blank" rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">coming
-                        soon...</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// coming
-                        soon...</p>
-                </div>
-                <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">coming
-                        soon...</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// coming
-                        soon...</p>
-                </div>
-                <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
-            <div class="p-6 rounded-lg transition-all duration-200 project-card flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xl font-bold mb-2 pixel-text" style="color:var(--color-accent-secondary);">coming
-                        soon...</h4>
-                    <p class="text-sm mt-2 mb-4 mono-tech" style="color:var(--color-text-light); opacity:0.8;">// coming
-                        soon...</p>
-                </div>
-                <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
-                    class="inline-block self-start mt-4 px-4 py-2 text-sm rounded mono-tech pixel-btn-3d"
-                    style="border-color:var(--color-card-border); background-color:var(--color-accent-secondary); color:var(--color-text-dark); font-weight:700;">
-                    > VIEW_REPOSITORY
-                </a>
-            </div>
         </div>
     </section>
 
@@ -1139,23 +1106,10 @@
         style="border-top-color: var(--color-accent-main);">
         <p class="mono-tech" style="color:var(--color-accent-main);">System Status: OK. Built by Apurve with <span
                 style="color:#ef4444;">❤️</span> | All rights reserved &copy; 2025</p>
-        <button id="nuke-btn" class="absolute bottom-2 right-2 w-3 h-3 rounded-full bg-red-600 hover:bg-red-400 cursor-pointer border border-red-900" title="DO NOT PUSH"></button>
+
     </footer>
 
-    <!-- CLI MODE OVERLAY -->
-    <div id="cli-mode-overlay" style="display:none;">
-        <div class="scanline-overlay"></div>
-        <div id="cli-output"></div>
-        <div class="cli-input-line">
-            <span class="cli-prompt">admin@apurve.dev:~$ </span>
-            <input type="text" id="cli-input" autocomplete="off" spellcheck="false">
-        </div>
-    </div>
 
-    <!-- NUKE OVERLAY -->
-    <div id="nuke-overlay" style="display:none;">
-        <div class="nuke-text" id="nuke-countdown">05</div>
-    </div>
 
     <!-- CUSTOM CURSOR -->
     <div id="custom-cursor"></div>
@@ -1164,59 +1118,12 @@
     <!-- SPIDERWEB CANVAS -->
     <canvas id="spiderweb-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-3;pointer-events:none;opacity:0.6;"></canvas>
 
-    <!-- BOSS FIGHT OVERLAY -->
-    <div id="boss-fight-overlay" style="display:none;">
-        <div class="boss-health-bar-container">
-            <div id="boss-health-bar"></div>
-        </div>
-        <div id="boss-character">
-            <i class="fa-solid fa-ghost"></i>
-        </div>
-        <div class="boss-instructions">CLICK TO DEFEAT!</div>
-    </div>
-
     <!-- CYBER SKULL CENTERPIECE -->
     <div id="cyber-skull-container">
         <i id="cyber-skull" class="fa-solid fa-skull"></i>
     </div>
 
-    <!-- SANDBOX MODAL -->
-    <div id="sandbox-modal" style="display:none;">
-        <div class="sandbox-header">
-            <span>// LIVE_CODE_INJECTOR</span>
-            <button id="close-sandbox-btn" style="background:transparent;border:none;color:#f00;cursor:pointer;font-size:20px;">&times;</button>
-        </div>
-        <textarea id="sandbox-editor" spellcheck="false" placeholder="Enter JavaScript to hack the DOM...
-Example:
-document.body.style.filter = 'invert(1)';"></textarea>
-        <button id="run-sandbox-btn">EXECUTE</button>
-    </div>
 
-    <!-- HEIST MODAL -->
-    <div id="heist-modal" style="display:none;">
-        <div class="heist-terminal">
-            <div class="heist-header">ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM<br>COPYRIGHT 2075-2077 ROBCO INDUSTRIES<br>-Server 1-<br><br>Compiling security protocol...</div>
-            <div id="heist-attempts">4 ATTEMPTS REMAINING: ⬛ ⬛ ⬛ ⬛</div>
-            <div id="heist-words" class="flex flex-wrap gap-4 mt-4"></div>
-            <div id="heist-logs" class="mt-4" style="height:100px;overflow-y:auto;color:#0f0;"></div>
-            <button id="close-heist-btn" style="margin-top:15px;background:#f00;color:#000;border:none;padding:5px 10px;cursor:pointer;">EXIT</button>
-        </div>
-    </div>
-
-    <!-- HACKING TERMINAL OVERLAY -->
-    <div id="hacking-terminal" style="display:none;">
-        <div class="scanline-overlay"></div>
-        <div id="terminal-content"></div>
-    </div>
-
-    <!-- ACHIEVEMENT NOTIFICATION -->
-    <div id="achievement-notification">
-        <div class="achievement-icon"><i class="fa-solid fa-trophy"></i></div>
-        <div class="achievement-text">
-            <div class="achievement-title">Achievement Unlocked</div>
-            <div class="achievement-desc">The Red Pill</div>
-        </div>
-    </div>
 
     <script src="script.js"></script>
 </body>
