@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Open Source Contributions by Apurve Karanwal - Verified merged pull requests across JSON Schema Org, Apple, KGateway, and open ecosystems.">
+    <meta name="theme-color" content="#627eea">
+    <title>Open Source Contributions | Apurve Karanwal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="min-h-screen antialiased" id="main-body">
+
+    <!-- Blockchain Network Background Elements -->
+    <div class="hexagon-grid" id="hexagon-grid"></div>
+    <svg style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;">
+        <defs>
+            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#627eea;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#00f5ff;stop-opacity:0.5" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
+    <div id="cursor-trail"></div>
+
+    <!-- Spiderweb Interactive Canvas -->
+    <canvas id="spiderweb-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+
+    <div class="scanline-overlay"></div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="p-4 sm:p-6 border-b-4 header-bg sticky top-0 z-10"
+        style="border-bottom-color: var(--color-accent-main) !important;">
+        <div class="max-w-7xl mx-auto flex justify-between items-center flex-wrap">
+            <a href="index.html"
+                class="text-xl sm:text-2xl font-extrabold tracking-tight flex items-center gap-1 pixel-text pixel-text-flicker"
+                style="color:var(--color-accent-main);">
+                APURVE.<span class="font-mono">DEV</span>
+            </a>
+            <div class="flex gap-3 mt-2 sm:mt-0 flex-wrap">
+
+                <a href="index.html"
+                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="Return to Portfolio Home"
+                    style="border-color: var(--color-card-border); background-color: var(--color-card-main); color: var(--color-accent-main); font-weight: 700;">
+                    <i class="fa-solid fa-house text-xl icon-pulse" style="color:var(--color-accent-main);"></i>
+                    <span class="hidden sm:inline mono-tech">Home</span>
+                </a>
+
+                <a href="contributions.html"
+                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="Open Source Contributions Page"
+                    style="border-color: var(--color-card-border); background-color: var(--color-accent-secondary); color: var(--color-text-dark); font-weight: 700;">
+                    <i class="fa-solid fa-code-branch text-xl icon-pulse" style="color:var(--color-text-dark);"></i>
+                    <span class="hidden sm:inline mono-tech">Contributions</span>
+                </a>
+
+                <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer"
+                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="GitHub Profile"
+                    style="border-color: var(--color-card-border); background-color: #333333; color: var(--color-text-light);">
+                    <i class="fa-brands fa-github text-xl icon-pulse" style="color:var(--color-text-light);"></i>
+                    <span class="hidden sm:inline mono-tech">GitHub</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/apurvekaranwal/" target="_blank" rel="noopener noreferrer"
+                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="LinkedIn Profile"
+                    style="border-color: var(--color-card-border); background-color: #0a66c2; color: var(--color-text-light);">
+                    <i class="fa-brands fa-linkedin-in text-xl icon-pulse" style="color:var(--color-text-light);"></i>
+                    <span class="hidden sm:inline mono-tech">LinkedIn</span>
+                </a>
+
+                <button id="copy-page-link-btn"
+                    class="text-sm rounded pixel-btn-3d flex items-center gap-1" aria-label="Copy Page URL for Resume"
+                    style="border-color: var(--color-card-border); background-color: #10b981; color: #ffffff; font-weight: 700;">
+                    <i class="fa-solid fa-link text-xl" style="color:#ffffff;"></i>
+                    <span id="copy-link-text" class="hidden sm:inline mono-tech">Copy Page Link</span>
+                </button>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO HEADER SECTION -->
+    <section class="p-8 sm:p-12 text-center responsive-p max-w-7xl mx-auto animated-section">
+        <div class="inline-block mb-4 px-4 py-1 rounded-full mono-tech text-xs font-bold"
+            style="background-color: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid #4ade80;">
+            <i class="fa-solid fa-circle-check mr-1"></i> 100% VERIFIED MERGED PULL REQUESTS ONLY
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight pixel-text pixel-text-flicker hero-title-pixel"
+            style="color: var(--color-accent-secondary);">
+            // OPEN SOURCE CONTRIBUTIONS
+        </h1>
+
+        <p class="max-w-3xl mx-auto mt-4 text-base sm:text-xl mono-tech" style="color: var(--color-text-light); opacity: 0.85;">
+            Public log of verified merged pull requests, core engine fixes, cross-platform patches, and infrastructure documentation.
+        </p>
+    </section>
+
+    <!-- SECTION 1: WEB SPECIFICATIONS & STANDARDS -->
+    <section class="p-6 sm:p-12 max-w-7xl mx-auto animated-section">
+        <div class="flex items-center gap-3 mb-6 pb-2 border-b-2" style="border-color: var(--color-accent-main);">
+            <i class="fa-solid fa-code text-3xl" style="color: var(--color-accent-secondary);"></i>
+            <h2 class="text-xl sm:text-2xl font-bold pixel-text" style="color: var(--color-accent-secondary);">
+                WEB SPECIFICATIONS & STANDARDS
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- PR 1: json-schema-spec #1761 -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #1761</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        json-schema-org/json-schema-spec
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        fix: add $vocabulary to meta-schema propertyNames regex pattern
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Fixed meta-schema property validation regex to support $vocabulary keyword in international JSON Schema Specification schemas.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">JSON Schema</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Meta-Schema</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Regex</span>
+                    </div>
+                </div>
+                <a href="https://github.com/json-schema-org/json-schema-spec/pull/1761" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+            <!-- PR 2: json-schema-spec #1757 -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #1757</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        json-schema-org/json-schema-spec
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        fix(scripts): replace semicolon with && in lint script for cross-platform execution
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Resolved cross-platform linting failure on Windows environment shells by refactoring script commands.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Node.js</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Cross-Platform</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">NPM Tooling</span>
+                    </div>
+                </div>
+                <a href="https://github.com/json-schema-org/json-schema-spec/pull/1757" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+            <!-- PR 3: json-schema-spec #1747 -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #1747</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        json-schema-org/json-schema-spec
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        fix: prevent RFC-2119 keywords from matching inside other words
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Fixed RFC-2119 normative keyword parser boundary matching in specification document rendering pipeline.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">RFC-2119</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Specification</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Parser</span>
+                    </div>
+                </div>
+                <a href="https://github.com/json-schema-org/json-schema-spec/pull/1747" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+            <!-- PR 4: json-schema-website #2442 -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #2442</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        json-schema-org/website
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        fix: resolve broken relative links on draft and spec pages (#2358)
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Resolved broken relative specification links across draft versions on the official JSON Schema standard portal.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Astro / SSG</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Web Standard</span>
+                    </div>
+                </div>
+                <a href="https://github.com/json-schema-org/website/pull/2442" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+            <!-- PR 5: json-schema-spec #1736 -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #1736</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        json-schema-org/json-schema-spec
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        fix: resolve meta-schema path as file URL for Windows compatibility
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Fixed file:// URI resolution bugs on Windows when loading local meta-schemas during specification build.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">URI Resolution</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Windows OS</span>
+                    </div>
+                </div>
+                <a href="https://github.com/json-schema-org/json-schema-spec/pull/1736" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 2: SYSTEMS & MACHINE LEARNING -->
+    <section class="p-6 sm:p-12 max-w-7xl mx-auto animated-section">
+        <div class="flex items-center gap-3 mb-6 pb-2 border-b-2" style="border-color: var(--color-accent-main);">
+            <i class="fa-solid fa-microchip text-3xl" style="color: var(--color-accent-secondary);"></i>
+            <h2 class="text-xl sm:text-2xl font-bold pixel-text" style="color: var(--color-accent-secondary);">
+                SYSTEMS & MACHINE LEARNING
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Apple CoreMLTools -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #2741</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        apple/coremltools
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        Improve documentation and clean up test organization
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Cleaned up test suite organization and corrected public API docstrings across Apple's Core ML model conversion framework.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Python</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">CoreML</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Testing</span>
+                    </div>
+                </div>
+                <a href="https://github.com/apple/coremltools/pull/2741" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+            <!-- Apple Embedding Atlas Docs -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #206</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        apple/embedding-atlas
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        docs: correct typos and grammar in READMEs and documentation
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Corrected technical documentation errors and improved clarity in READMEs across Apple's high-dimensional visualization toolkit.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Documentation</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Dev Experience</span>
+                    </div>
+                </div>
+                <a href="https://github.com/apple/embedding-atlas/pull/206" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: CLOUD & API GATEWAY INFRASTRUCTURE -->
+    <section class="p-6 sm:p-12 max-w-7xl mx-auto animated-section">
+        <div class="flex items-center gap-3 mb-6 pb-2 border-b-2" style="border-color: var(--color-accent-main);">
+            <i class="fa-solid fa-network-wired text-3xl" style="color: var(--color-accent-secondary);"></i>
+            <h2 class="text-xl sm:text-2xl font-bold pixel-text" style="color: var(--color-accent-secondary);">
+                CLOUD & API GATEWAY INFRASTRUCTURE
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- KGateway Core Engine -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #14294</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        kgateway-dev/kgateway
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        fix: support status reporting and stale status cleanup for GRPCRoute, TCPRoute, and TLSRoute
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Implemented status controller updates and stale status cleanup for GRPCRoute, TCPRoute, and TLSRoute resources in Envoy Gateway control plane.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Go (Golang)</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Kubernetes CRD</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Envoy Proxy</span>
+                    </div>
+                </div>
+                <a href="https://github.com/kgateway-dev/kgateway/pull/14294" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+            <!-- KGateway OAuth2/OIDC -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #866</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        kgateway-dev/kgateway.dev
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        docs: add comprehensive OAuth2/OIDC integration guide
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Authored complete OAuth2 and OpenID Connect authentication guide detailing token validation, client credentials, and IDP integration.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">OAuth2 / OIDC</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Authentication</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Security Architecture</span>
+                    </div>
+                </div>
+                <a href="https://github.com/kgateway-dev/kgateway.dev/pull/866" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+            <!-- KGateway Windows Generator Fix -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #802</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        kgateway-dev/kgateway.dev
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        fix: resolve windows compatibility and encoding issues in generator scripts
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Resolved cross-platform file encoding and path resolution bugs in generator scripts executing on Windows OS environments.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Python Scripts</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Cross-Platform</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Automation</span>
+                    </div>
+                </div>
+                <a href="https://github.com/kgateway-dev/kgateway.dev/pull/802" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+            <!-- KGateway Upgrade Guide -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #916</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        kgateway-dev/kgateway.dev
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        docs: uncomment upgrade considerations and clean up obsolete sections
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Updated technical migration & upgrade guides for major version transitions across KGateway control plane releases.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Migration</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Version Upgrade</span>
+                    </div>
+                </div>
+                <a href="https://github.com/kgateway-dev/kgateway.dev/pull/916" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+            <!-- KGateway Typos & Docs -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #838</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        kgateway-dev/kgateway.dev
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        docs: fix spelling typos and documentation errors across gateway guides
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Fixed spelling errors and corrected doc code snippets across Gateway routing guides.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Documentation</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Tech Writing</span>
+                    </div>
+                </div>
+                <a href="https://github.com/kgateway-dev/kgateway.dev/pull/838" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: DEVELOPER TOOLS & ECOSYSTEMS -->
+    <section class="p-6 sm:p-12 max-w-7xl mx-auto animated-section mb-12">
+        <div class="flex items-center gap-3 mb-6 pb-2 border-b-2" style="border-color: var(--color-accent-main);">
+            <i class="fa-solid fa-terminal text-3xl" style="color: var(--color-accent-secondary);"></i>
+            <h2 class="text-xl sm:text-2xl font-bold pixel-text" style="color: var(--color-accent-secondary);">
+                DEVELOPER TOOLS & ECOSYSTEMS
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- FOSS Community Progress Tracker -->
+            <div class="p-6 rounded-md mono-tech pixel-block-3d flex flex-col justify-between"
+                style="border-color: var(--color-accent-main); background-color: var(--color-card-main); box-shadow: 4px 4px 0 var(--color-card-border);">
+                <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color:rgba(74, 222, 128, 0.15); color:#4ade80; border:1px solid #4ade80;">MERGED</span>
+                        <span class="text-xs font-bold" style="color:var(--color-accent-main);">PR #381</span>
+                    </div>
+                    <h3 class="font-extrabold block mb-2 text-lg" style="color:var(--color-accent-secondary);">
+                        FOSS-Community/progress-tracker
+                    </h3>
+                    <p class="text-sm font-semibold mb-2" style="color: var(--color-text-light);">
+                        feat: replace os.system with subprocess.run and add npm install check
+                    </p>
+                    <p class="text-xs mb-4 opacity-80 leading-relaxed" style="color: var(--color-text-light);">
+                        Refactored unsafe shell invocation (`os.system`) to secure `subprocess.run` execution with automated NPM installation environment checks.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Python Security</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">Subprocess</span>
+                        <span class="text-xs px-2 py-0.5 rounded" style="background-color: var(--color-bg-dark); color: var(--color-accent-main);">CLI Tooling</span>
+                    </div>
+                </div>
+                <a href="https://github.com/FOSS-Community/progress-tracker/pull/381" target="_blank" rel="noopener noreferrer"
+                    class="pixel-btn-3d text-xs mono-tech font-bold px-3 py-2 text-center"
+                    style="background-color: var(--color-accent-secondary); color: var(--color-text-dark); text-decoration: none;">
+                    View Merged PR <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="p-8 border-t-4 text-center mono-tech text-sm"
+        style="border-top-color: var(--color-accent-main); background-color: var(--color-bg-dark); color: var(--color-text-light); opacity: 0.85;">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                © 2026 Apurve Karanwal // Open Source Engineering Telemetry
+            </div>
+            <div class="flex gap-4">
+                <a href="index.html" class="hover:underline" style="color: var(--color-accent-secondary);">[ HOME ]</a>
+                <a href="https://github.com/ApurveKaranwal" target="_blank" rel="noopener noreferrer" class="hover:underline" style="color: var(--color-accent-main);">[ GITHUB ]</a>
+                <a href="https://www.linkedin.com/in/apurvekaranwal/" target="_blank" rel="noopener noreferrer" class="hover:underline" style="color: var(--color-accent-main);">[ LINKEDIN ]</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Copy Page Link functionality for Resume Attachment
+        const copyBtn = document.getElementById("copy-page-link-btn");
+        const copyText = document.getElementById("copy-link-text");
+        if (copyBtn && copyText) {
+            copyBtn.addEventListener("click", () => {
+                const targetUrl = window.location.origin + window.location.pathname;
+                navigator.clipboard.writeText(targetUrl).then(() => {
+                    copyText.textContent = "LINK COPIED!";
+                    copyBtn.style.backgroundColor = "var(--color-accent-secondary)";
+                    copyBtn.style.color = "var(--color-text-dark)";
+                    setTimeout(() => {
+                        copyText.textContent = "Copy Page Link";
+                        copyBtn.style.backgroundColor = "#10b981";
+                        copyBtn.style.color = "#ffffff";
+                    }, 2500);
+                }).catch(err => {
+                    console.error("Copy failed", err);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

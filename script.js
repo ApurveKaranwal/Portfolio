@@ -125,18 +125,22 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.removeChild(link);
     }
 
-    resumeDownloadBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        openResumeModal();
-    });
+    if (resumeDownloadBtn) {
+        resumeDownloadBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            openResumeModal();
+        });
+    }
 
-    resumeConfirmBtn.addEventListener("click", downloadResume);
-    resumeCancelBtn.addEventListener("click", closeResumeModal);
-    resumeModal.addEventListener("click", (e) => {
-        if (e.target === resumeModal) {
-            closeResumeModal();
-        }
-    });
+    if (resumeConfirmBtn) resumeConfirmBtn.addEventListener("click", downloadResume);
+    if (resumeCancelBtn) resumeCancelBtn.addEventListener("click", closeResumeModal);
+    if (resumeModal) {
+        resumeModal.addEventListener("click", (e) => {
+            if (e.target === resumeModal) {
+                closeResumeModal();
+            }
+        });
+    }
 
 
 
