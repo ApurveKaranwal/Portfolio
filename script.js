@@ -392,33 +392,33 @@ document.addEventListener("DOMContentLoaded", () => {
         const openPrsEl = document.getElementById("gh-stat-open-prs");
         const openIssuesEl = document.getElementById("gh-stat-open-issues");
 
-        try {
-            const [userRes, mergedRes, openPrRes, openIssueRes] = await Promise.all([
-                fetch("https://api.github.com/users/ApurveKaranwal"),
-                fetch("https://api.github.com/search/issues?q=author:ApurveKaranwal+type:pr+is:merged"),
-                fetch("https://api.github.com/search/issues?q=author:ApurveKaranwal+type:pr+is:open"),
-                fetch("https://api.github.com/search/issues?q=author:ApurveKaranwal+type:issue+is:open")
-            ]);
-
-            if (userRes.ok) {
-                const userData = await userRes.json();
-                if (reposEl && userData.public_repos !== undefined) reposEl.textContent = userData.public_repos;
+        async function fetchMetric(url, onData) {
+            try {
+                const res = await fetch(url, { cache: "no-cache" });
+                if (!res.ok) return;
+                const data = await res.json();
+                onData(data);
+            } catch (err) {
+                console.warn("GitHub API telemetry endpoint fallback active for:", url, err);
             }
-            if (mergedRes.ok) {
-                const mergedData = await mergedRes.json();
-                if (mergedPrsEl && mergedData.total_count !== undefined) mergedPrsEl.textContent = mergedData.total_count;
-            }
-            if (openPrRes.ok) {
-                const openPrData = await openPrRes.json();
-                if (openPrsEl && openPrData.total_count !== undefined) openPrsEl.textContent = openPrData.total_count;
-            }
-            if (openIssueRes.ok) {
-                const openIssueData = await openIssueRes.json();
-                if (openIssuesEl && openIssueData.total_count !== undefined) openIssuesEl.textContent = openIssueData.total_count;
-            }
-        } catch (e) {
-            console.log("GitHub API live telemetry fallback active.", e);
         }
+
+        // Fetch each metric independently so rate limits or failures on one never block open PRs or others
+        fetchMetric("https://api.github.com/users/ApurveKaranwal", (data) => {
+            if (reposEl && data.public_repos !== undefined) reposEl.textContent = data.public_repos;
+        });
+
+        fetchMetric("https://api.github.com/search/issues?q=author:ApurveKaranwal+type:pr+is:merged", (data) => {
+            if (mergedPrsEl && data.total_count !== undefined) mergedPrsEl.textContent = data.total_count;
+        });
+
+        fetchMetric("https://api.github.com/search/issues?q=author:ApurveKaranwal+type:pr+is:open", (data) => {
+            if (openPrsEl && data.total_count !== undefined) openPrsEl.textContent = data.total_count;
+        });
+
+        fetchMetric("https://api.github.com/search/issues?q=author:ApurveKaranwal+type:issue+is:open", (data) => {
+            if (openIssuesEl && data.total_count !== undefined) openIssuesEl.textContent = data.total_count;
+        });
     }
     fetchLiveGitHubStats();
 });

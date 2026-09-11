@@ -384,22 +384,38 @@
 
                 <!-- METRIC CARDS GRID (LIVE GITHUB TELEMETRY) -->
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    <div class="p-3.5 rounded mono-tech" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border);">
-                        <div class="text-xs uppercase font-bold" style="color:var(--color-accent-main); opacity:0.88;">Public Repos</div>
+                    <a href="https://github.com/ApurveKaranwal?tab=repositories" target="_blank" rel="noopener noreferrer"
+                        class="p-3.5 rounded mono-tech block hover:-translate-y-1 transition-transform" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border); text-decoration:none;">
+                        <div class="text-xs uppercase font-bold flex justify-between items-center" style="color:var(--color-accent-main); opacity:0.88;">
+                            <span>Public Repos</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]" style="opacity:0.6;"></i>
+                        </div>
                         <div id="gh-stat-repos" class="pixel-text text-xl mt-1" style="color:var(--color-accent-secondary);">62</div>
-                    </div>
-                    <div class="p-3.5 rounded mono-tech" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border);">
-                        <div class="text-xs uppercase font-bold" style="color:var(--color-accent-main); opacity:0.88;">Merged PRs</div>
-                        <div id="gh-stat-merged-prs" class="pixel-text text-xl mt-1" style="color:var(--color-accent-secondary);">18</div>
-                    </div>
-                    <div class="p-3.5 rounded mono-tech" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border);">
-                        <div class="text-xs uppercase font-bold" style="color:var(--color-accent-main); opacity:0.88;">PRs Still Open</div>
-                        <div id="gh-stat-open-prs" class="pixel-text text-xl mt-1" style="color:var(--color-accent-secondary);">10</div>
-                    </div>
-                    <div class="p-3.5 rounded mono-tech" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border);">
-                        <div class="text-xs uppercase font-bold" style="color:var(--color-accent-main); opacity:0.88;">Open Issues</div>
-                        <div id="gh-stat-open-issues" class="pixel-text text-xl mt-1" style="color:var(--color-accent-secondary);">10</div>
-                    </div>
+                    </a>
+                    <a href="https://github.com/search?q=author%3AApurveKaranwal+type%3Apr+is%3Amerged" target="_blank" rel="noopener noreferrer"
+                        class="p-3.5 rounded mono-tech block hover:-translate-y-1 transition-transform" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border); text-decoration:none;">
+                        <div class="text-xs uppercase font-bold flex justify-between items-center" style="color:var(--color-accent-main); opacity:0.88;">
+                            <span>Merged PRs</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]" style="opacity:0.6;"></i>
+                        </div>
+                        <div id="gh-stat-merged-prs" class="pixel-text text-xl mt-1" style="color:var(--color-accent-secondary);">19</div>
+                    </a>
+                    <a href="https://github.com/search?q=author%3AApurveKaranwal+type%3Apr+is%3Aopen" target="_blank" rel="noopener noreferrer"
+                        class="p-3.5 rounded mono-tech block hover:-translate-y-1 transition-transform" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border); text-decoration:none;">
+                        <div class="text-xs uppercase font-bold flex justify-between items-center" style="color:var(--color-accent-main); opacity:0.88;">
+                            <span>PRs Still Open</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]" style="opacity:0.6;"></i>
+                        </div>
+                        <div id="gh-stat-open-prs" class="pixel-text text-xl mt-1" style="color:var(--color-accent-secondary);">9</div>
+                    </a>
+                    <a href="https://github.com/search?q=author%3AApurveKaranwal+type%3Aissue+is%3Aopen" target="_blank" rel="noopener noreferrer"
+                        class="p-3.5 rounded mono-tech block hover:-translate-y-1 transition-transform" style="background:var(--color-card-main); border:2px solid var(--color-card-border); box-shadow:3px 3px 0 var(--color-card-border); text-decoration:none;">
+                        <div class="text-xs uppercase font-bold flex justify-between items-center" style="color:var(--color-accent-main); opacity:0.88;">
+                            <span>Open Issues</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]" style="opacity:0.6;"></i>
+                        </div>
+                        <div id="gh-stat-open-issues" class="pixel-text text-xl mt-1" style="color:var(--color-accent-secondary);">11</div>
+                    </a>
                 </div>
 
                 <div class="github-activity-frame p-4 rounded-md mb-6" style="background-color:var(--color-card-border); border:3px solid var(--color-card-main);">
