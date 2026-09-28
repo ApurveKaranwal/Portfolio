@@ -392,6 +392,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const openPrsEl = document.getElementById("gh-stat-open-prs");
         const openIssuesEl = document.getElementById("gh-stat-open-issues");
 
+        if (!reposEl && !mergedPrsEl && !openPrsEl && !openIssuesEl) return;
+
         async function fetchMetric(url, onData) {
             try {
                 const res = await fetch(url, { cache: "no-cache" });
