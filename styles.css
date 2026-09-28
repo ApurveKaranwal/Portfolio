@@ -108,9 +108,11 @@
     }
 }
 
-/* ADDED: Smooth scrolling for all section links */
+/* ADDED: Smooth scrolling and horizontal overflow prevention */
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 /* Setting Space Mono as the secondary "high-tech" font */
@@ -128,6 +130,9 @@ body {
     color: var(--color-text-light);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
+    position: relative;
 }
 
 /* Pixel font class for headers and prominent text */
@@ -137,6 +142,20 @@ body {
     /* Classic 2D pixel shadow */
     text-shadow: 2px 2px 0 var(--color-card-border);
     color: var(--color-accent-main);
+    word-break: break-word;
+}
+
+/* Fluid responsive headings for pixel fonts across devices */
+h1.pixel-text,
+h2.pixel-text,
+h3.pixel-text {
+    font-size: clamp(1.15rem, 3.8vw, 1.875rem);
+    line-height: 1.35;
+}
+
+h4.pixel-text {
+    font-size: clamp(0.95rem, 2.8vw, 1.25rem);
+    line-height: 1.3;
 }
 
 /* --- BLOCK / 3D UI STYLING --- */
@@ -890,135 +909,190 @@ body {
     transform: translate(2px, 2px);
 }
 
-/* ── Tablets & Laptops ≤ 900px ── */
-@media (max-width: 900px) {
-    .skills-hero {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+/* ==========================================================================
+   RESPONSIVE DESIGN & ADAPTIVE LAYOUTS (MOBILE, TABLET, DESKTOP)
+   ========================================================================== */
+
+/* ── Global Touch / Mobile Cursor Support ── */
+@media (hover: none), (pointer: coarse) {
+    #custom-cursor,
+    #cursor-trail {
+        display: none !important;
+    }
+    body, a, button, input, textarea, select, .project-card, .pixel-btn-3d, .pixel-block-3d {
+        cursor: auto !important;
+    }
+    /* Prevent jarring block translations on mobile scroll touch */
+    .pixel-block-3d:hover {
+        transform: none !important;
+        box-shadow: 4px 4px 0 var(--color-card-border) !important;
     }
 }
 
-/* ── Small phones ≤ 640px ── */
-@media (max-width: 640px) {
-    .skills-hero,
-    .skills-grid {
-        grid-template-columns: 1fr;
+/* ── Large Tablets & Laptops (≤ 1024px) ── */
+@media (max-width: 1024px) {
+    #cyber-skull-container {
+        top: 32%;
+        opacity: 0.10;
+    }
+    #cyber-skull {
+        font-size: clamp(220px, 32vw, 320px);
+    }
+    .ambassador-card {
+        padding: 1.5rem !important;
+    }
+}
+
+/* ── Tablets & iPad Portrait (≤ 768px) ── */
+@media (max-width: 768px) {
+    #cyber-skull-container {
+        top: 35%;
+        opacity: 0.08;
+    }
+    #cyber-skull {
+        font-size: clamp(160px, 40vw, 240px);
     }
 
-    .skills-hero {
-        padding: 1.25rem;
-    }
-
-    .github-activity-shell {
-        padding: 1.25rem;
-    }
-
-    .github-activity-header {
-        flex-direction: column;
-    }
-
-    .github-activity-link {
-        align-self: flex-start;
-    }
-
-    .github-activity-frame {
-        padding: 0.8rem;
-        overflow-x: auto;
-    }
-
-    .github-activity-image {
-        min-width: 720px;
-    }
-
-    .skills-stat {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .skills-stat-label {
-        text-align: left;
-    }
-
-    /* Header: make nav buttons icon-only, allow wrap */
-    header .flex.gap-3 {
-        gap: 6px;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 6px;
-    }
+    /* Compact header buttons */
     header .pixel-btn-3d {
-        padding: 6px 8px;
+        padding: 6px 10px;
+        font-size: 0.8rem;
     }
 
     /* Hero section */
     .hero-title-pixel {
-        font-size: clamp(0.7rem, 3vw, 1.2rem) !important;
+        font-size: clamp(1.35rem, 5vw, 2.2rem) !important;
     }
+    .hero-subtitle-mono {
+        font-size: 1rem !important;
+        min-height: 4rem !important;
+    }
+
+    /* Section padding */
+    .responsive-p {
+        padding: 2.5rem 1.25rem !important;
+    }
+
+    /* Resume modal */
+    .resume-container {
+        width: 92%;
+        padding: 24px 18px !important;
+    }
+    .resume-header h2 {
+        font-size: 1.1rem;
+        margin-bottom: 14px;
+    }
+    .resume-message {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .resume-btn {
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ── Phones & Handhelds (≤ 640px) ── */
+@media (max-width: 640px) {
+    /* Header layout */
+    header {
+        padding: 0.65rem 0.75rem !important;
+    }
+    header .max-w-7xl {
+        gap: 0.5rem;
+    }
+    header a.pixel-text {
+        font-size: 1.05rem !important;
+    }
+    header .pixel-btn-3d {
+        padding: 6px 9px;
+        font-size: 0.75rem;
+        min-height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Hero Section */
     section.text-center.responsive-p {
         padding: 2rem 1rem !important;
     }
+    .hero-title-pixel {
+        font-size: clamp(1.15rem, 5.5vw, 1.6rem) !important;
+        letter-spacing: 0.02rem;
+    }
+    .hero-subtitle-mono {
+        font-size: 0.85rem !important;
+        min-height: 4.5rem !important;
+        line-height: 1.5;
+    }
 
-    /* System status card */
+    /* System status */
+    #system-status {
+        padding: 1rem 0 !important;
+    }
     #system-status .max-w-md {
-        width: 90%;
-        padding: 1rem;
+        width: 100%;
+        padding: 1.25rem;
+    }
+    #system-status p.pixel-text {
+        font-size: 1.15rem;
     }
 
-    /* Skills section — tighter tags */
-    .skill-tag {
-        font-size: 0.7rem;
-        padding: 4px 8px;
-    }
-
-    /* Project cards */
+    /* Project Cards */
     .project-card {
-        margin-left: 0;
-        margin-right: 0;
+        padding: 1.25rem !important;
     }
 
-    /* CTA button */
+    /* CTA buttons */
     .pixel-block-3d-cta {
-        font-size: 0.9rem !important;
-        padding: 0.6rem 1.2rem !important;
+        font-size: 0.95rem !important;
+        padding: 0.75rem 1.4rem !important;
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* Preloader */
+    .progress-bar-container {
+        width: 82vw;
+    }
+    .loader-text {
+        font-size: 0.75rem;
+        padding: 0 0.5rem;
     }
 
     /* Footer */
     footer p {
+        font-size: 0.75rem;
+        line-height: 1.6;
+    }
+}
+
+/* ── Ultra-compact screens (≤ 380px) ── */
+@media (max-width: 380px) {
+    header a.pixel-text {
+        font-size: 0.9rem !important;
+    }
+    header .pixel-btn-3d {
+        padding: 5px 7px;
         font-size: 0.7rem;
     }
-
-    /* Preloader progress bar */
-    .progress-bar-container {
-        width: 80vw;
-    }
-    .loader-text {
-        font-size: 0.75rem;
-        text-align: center;
-        padding: 0 1rem;
-    }
-}
-
-/* ── Very small phones ≤ 400px ── */
-@media (max-width: 400px) {
     .hero-title-pixel {
-        font-size: clamp(0.55rem, 2.5vw, 0.9rem) !important;
-        letter-spacing: 0;
-    }
-    header a.pixel-text {
-        font-size: 0.8rem !important;
+        font-size: 1.05rem !important;
     }
     .pixel-block-3d-cta {
-        font-size: 0.75rem !important;
+        font-size: 0.8rem !important;
+        padding: 0.65rem 1rem !important;
     }
 }
 
-/* === EASTER EGG EFFECTS === */
+/* === EASTER EGG EFFECTS & CENTERPIECE === */
 
-
-
-/* === ADVANCED EASTER EGGS === */
-
-/* Custom Cursor - GPU Accelerated & Smooth */
+/* Custom Cursor - GPU Accelerated & Smooth (Desktop Pointer Fine Only) */
 @media (pointer: fine) {
     body {
         cursor: none;
@@ -1076,9 +1150,9 @@ body {
     opacity: 0.15;
 }
 #cyber-skull {
-    font-size: 400px;
+    font-size: 380px;
     color: #00f5ff;
-    text-shadow: 0 0 50px #00f5ff, 0 0 100px #00f5ff;
+    text-shadow: 0 0 40px #00f5ff, 0 0 80px #00f5ff;
     transition: transform 0.1s ease-out;
     transform-style: preserve-3d;
 }

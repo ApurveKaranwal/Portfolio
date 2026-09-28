@@ -32,7 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function createHexagonGrid() {
         const grid = document.getElementById("hexagon-grid");
-        const hexSize = 60;
+        if (!grid) return;
+        const hexSize = window.innerWidth < 768 ? 90 : 60;
         for (let x = 0; x < window.innerWidth; x += hexSize) {
             for (let y = 0; y < window.innerHeight; y += hexSize) {
                 const hex = document.createElement("div");
@@ -198,6 +199,16 @@ document.addEventListener("DOMContentLoaded", () => {
         progressBar.style.width = width + "%";
     }, 30);
 
+    // Safety fallback: ensure preloader is always dismissed on mobile / slow connections
+    setTimeout(() => {
+        if (preloader && !preloader.classList.contains("fade-out")) {
+            clearInterval(interval);
+            preloader.classList.add("fade-out");
+            document.body.style.overflow = "";
+            startTypewriter();
+        }
+    }, 2500);
+
     function updateClock() {
         const now = new Date();
         const timeElement = document.getElementById("live-time");
@@ -291,9 +302,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (swCanvas) {
         const sctx = swCanvas.getContext("2d");
         let particles = [];
-        const numParticles = 60;
-        const connectionDistance = 120;
-        const mouseConnectionDistance = 180;
+        const isMobile = window.innerWidth < 768;
+        const numParticles = isMobile ? 22 : 55;
+        const connectionDistance = isMobile ? 85 : 120;
+        const mouseConnectionDistance = isMobile ? 0 : 180;
 
         function resizeSw() {
             swCanvas.width = window.innerWidth;
