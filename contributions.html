@@ -837,7 +837,7 @@
         if (copyBtn && copyText) {
             copyBtn.addEventListener("click", () => {
                 const targetUrl = window.location.origin + window.location.pathname;
-                navigator.clipboard.writeText(targetUrl).then(() => {
+                function onCopied() {
                     copyText.textContent = "LINK COPIED!";
                     copyBtn.style.backgroundColor = "var(--color-accent-secondary)";
                     copyBtn.style.color = "var(--color-text-dark)";
@@ -846,9 +846,26 @@
                         copyBtn.style.backgroundColor = "#10b981";
                         copyBtn.style.color = "#ffffff";
                     }, 2500);
-                }).catch(err => {
-                    console.error("Copy failed", err);
-                });
+                }
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(targetUrl).then(onCopied).catch(err => {
+                        console.error("Copy failed", err);
+                    });
+                } else {
+                    try {
+                        const textArea = document.createElement("textarea");
+                        textArea.value = targetUrl;
+                        textArea.style.position = "fixed";
+                        textArea.style.opacity = "0";
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand("copy");
+                        document.body.removeChild(textArea);
+                        onCopied();
+                    } catch (err) {
+                        console.error("Fallback copy failed", err);
+                    }
+                }
             });
         }
     </script>

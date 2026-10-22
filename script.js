@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function createConnectingLines() {
         const svg = document.querySelector("svg");
+        if (!svg) return;
         setInterval(() => {
             if (Math.random() > 0.8) {
                 const x1 = Math.random() * window.innerWidth;
@@ -107,12 +108,17 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     function openResumeModal() {
+        if (!resumeModal) return;
         resumeModal.classList.add("active");
-        const randomMsg = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
-        document.getElementById("resume-message").innerHTML = randomMsg;
+        const resumeMsg = document.getElementById("resume-message");
+        if (resumeMsg) {
+            const randomMsg = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+            resumeMsg.innerHTML = randomMsg;
+        }
     }
 
     function closeResumeModal() {
+        if (!resumeModal) return;
         resumeModal.classList.remove("active");
     }
 
@@ -169,45 +175,50 @@ document.addEventListener("DOMContentLoaded", () => {
     const loaderText = document.getElementById("loader-text");
     const loaderSubtext = document.getElementById("loader-subtext");
 
-    let width = 0;
-    const interval = setInterval(() => {
-        width += Math.floor(Math.random() * 5) + 1;
+    if (preloader && progressBar && loaderText && loaderSubtext) {
+        let width = 0;
+        const interval = setInterval(() => {
+            width += Math.floor(Math.random() * 5) + 1;
 
-        if (width > 30 && width < 50) {
-            loaderSubtext.innerText = "> LOADING_ASSETS...";
-        }
-        if (width > 50 && width < 80) {
-            loaderSubtext.innerText = "> ESTABLISHING_LINK...";
-        }
-        if (width > 80) {
-            loaderSubtext.innerText = "> DECODING_DATA...";
-        }
+            if (width > 30 && width < 50) {
+                loaderSubtext.innerText = "> LOADING_ASSETS...";
+            }
+            if (width > 50 && width < 80) {
+                loaderSubtext.innerText = "> ESTABLISHING_LINK...";
+            }
+            if (width > 80) {
+                loaderSubtext.innerText = "> DECODING_DATA...";
+            }
 
-        if (width >= 100) {
-            width = 100;
-            clearInterval(interval);
-            loaderText.innerText = "ACCESS GRANTED";
-            loaderSubtext.innerText = "> WELCOME_USER";
-            progressBar.style.backgroundColor = "var(--color-accent-secondary)";
+            if (width >= 100) {
+                width = 100;
+                clearInterval(interval);
+                loaderText.innerText = "ACCESS GRANTED";
+                loaderSubtext.innerText = "> WELCOME_USER";
+                progressBar.style.backgroundColor = "var(--color-accent-secondary)";
 
-            setTimeout(() => {
+                setTimeout(() => {
+                    preloader.classList.add("fade-out");
+                    document.body.style.overflow = "";
+                    setTimeout(startTypewriter, 500);
+                }, 800);
+            }
+            progressBar.style.width = width + "%";
+        }, 30);
+
+        // Safety fallback: ensure preloader is always dismissed on mobile / slow connections
+        setTimeout(() => {
+            if (preloader && !preloader.classList.contains("fade-out")) {
+                clearInterval(interval);
                 preloader.classList.add("fade-out");
                 document.body.style.overflow = "";
-                setTimeout(startTypewriter, 500);
-            }, 800);
-        }
-        progressBar.style.width = width + "%";
-    }, 30);
-
-    // Safety fallback: ensure preloader is always dismissed on mobile / slow connections
-    setTimeout(() => {
-        if (preloader && !preloader.classList.contains("fade-out")) {
-            clearInterval(interval);
-            preloader.classList.add("fade-out");
-            document.body.style.overflow = "";
-            startTypewriter();
-        }
-    }, 2500);
+                startTypewriter();
+            }
+        }, 2500);
+    } else {
+        document.body.style.overflow = "";
+        startTypewriter();
+    }
 
     function updateClock() {
         const now = new Date();
@@ -255,19 +266,24 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Shared mouse coordinates for cursor and spiderweb canvas
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    }, { passive: true });
+
     // Custom Cursor - Instant 1:1 Response & Smooth Hardware-Accelerated Trail
     const customCursor = document.getElementById("custom-cursor");
     const cursorTrail = document.getElementById("cursor-trail");
     if (customCursor && cursorTrail) {
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
         let trailX = mouseX, trailY = mouseY;
 
         document.addEventListener("mousemove", (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
             // Instant 1:1 lockstep position for main dot (0ms input lag)
-            customCursor.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0)`;
+            customCursor.style.transform = `translate3d(${e.clientX - 4}px, ${e.clientY - 4}px, 0)`;
         }, { passive: true });
 
         function updateCursorTrail() {
